@@ -1,3 +1,3 @@
 # uFeed_Front-end
 
-Javascript code for uFeed project implementation.
+Front-end for uFeed project implementation.
