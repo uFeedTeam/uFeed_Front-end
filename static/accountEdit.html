@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="styles/accountEditStyle.css">
+        <link rel="stylesheet" type="text/css" href="styles/headMenuStyle.css">
+        <link rel="stylesheet" type="text/css" href="materialize/css/materialize.min.css">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+    </head>
+    <body>
+        <div class="headMenu">
+            <div class="headLogo">
+                <a href="#"><img src="content/images/logo.png" class="logoImage"></a>
+            </div>
+            <div class="headLinks input-field">
+                <a class="dropdown-button" href="#" data-activates="drop1"><img src="content/images/person.png" class="miniPhoto"><img src="content/images/arrow.png"></a>
+                
+                <ul id='drop1' class='dropdown-content'>
+                    <li><a href="#!">Settings</a></li>
+                    <li><a href="#!">Help</a></li>
+                    <li><a href="#!">Log out</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="location">
+            <h3 class="locationText">Account Settings</h3>
+        </div>
+        <div class="content">
+            <div class="mainInfo">
+                <div class="profilePhoto">
+                    <img src="content/images/person.png" class="mainPhoto">
+                    <br>
+                    <div class="qwe">
+                        <a href="#" class="photoLink"><h5><img src="content/images/download_icon.png" class="uploadPhoto"> Upload photo</h5></a>
+                    </div>
+                </div>
+                <div class="data">
+                    <div class="inputLabel">
+                            <h5>Login</h5>
+                    </div>
+                    <div class="input-field">
+                        <input name="login" type="text" >
+                    </div>
+                    <br>
+                    <div class="inputLabel">
+                            <h5>Email</h5>
+                    </div>
+                    <div class=" input-field">
+                        <input name="email" type="text" >
+                    </div>
+                    <br>
+                    <div class="passwordInputLabel">
+                            <h5>Password</h5>
+                    </div>
+                    <div class="input-field">
+                        <input name="password" type="text" >
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <div class="socials">
+                <div>
+                    <h5>Social networks </h5>
+                </div>
+                <div class="socialUl">
+                <ul>
+                <p><input type="checkbox" id="Fb" />
+                  <label for="Fb"><img src="content/images/fb_logo.png" class="ulImage">Facebook</label> <a href="#" class="ulLink">Manage network</a></p>
+
+                  <p><input type="checkbox" id="Vk" />
+                  <label for="Vk"><img src="content/images/vk_logo.png" class="ulImage">Vkontakte</label> <a href="#" class="ulLink">Manage network</a></p>
+                    
+                  <p><a href="#"><img src="content/images/add_icon.png" class="addNewSocial">Add network</a></p>
+                </ul>
+                </div>
+                <br>
+                <div class="deactivate">
+                    <a href="#"><h5><u>Deactivate account</u></h5></a>
+                </div>
+                <br>
+                <div class="controlPanel">
+                    <a href="#"><img src="content/images/cancel.png" class="controlLink"></a>
+                    <a href="#"><img src="content/images/save.png" class="controlLink"></a>
+                </div>
+            </div>
+        </div>
+    </body>
+    
+</html>
