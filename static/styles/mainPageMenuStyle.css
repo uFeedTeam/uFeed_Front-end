@@ -1,0 +1,45 @@
+@media screen and (min-width: 1300px)
+{
+    .logoImage {
+        width: 200px;
+        height: 80px;
+    }
+    
+    .headlink {
+        width: 140px;
+        margin-left: 30%;
+        height: 60px;
+    }
+}
+
+@media screen and (max-width: 1300px)
+{
+    .logoImage {
+        width: 150px;
+        height: 55px;
+    }
+    
+    
+    .headlink {
+        width: 90px;
+        margin-left: 20%;
+        height: 40px;
+    }
+}
+
+.headLogo {
+    margin-left: 16%;
+    width: 50%;
+}
+
+
+.headMenu {
+    margin-top: 2%;
+    white-space:nowrap;
+    min-width: 900px;
+}
+
+.headMenu div {
+    vertical-align: middle;
+    display:inline-block;
+}
