@@ -12,6 +12,7 @@ import {UserAuthenticationService} from "../services/UserAuthenticationService";
                 <a routerLink="/login"> <img src="content/images/login.png" class="headlink"></a>
                 <a routerLink="/register"><img src="content/images/signUp.png" class="headlink"></a>
             </div>
+            
         </div>        
 `
 })

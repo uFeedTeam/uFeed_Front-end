@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
 import {UserAuthenticationService} from "../services/UserAuthenticationService";
 import {UserCredentials} from "../model/UserCredentials";
+import {Router} from "@angular/router";
 @Component({
     selector: 'login',
     template: `
@@ -24,7 +25,7 @@ import {UserCredentials} from "../model/UserCredentials";
                             <input required  class="materialInput" [(ngModel)]="user.name" name="login" placeholder="Login" type="text">
                             <br>
                             <input required class="materialInput" [(ngModel)]="user.password" name="password" placeholder="Password" type="password">
-                            <h3 *ngIf="errorMsg">{{errorMsg}}</h3>
+                            <h3 *ngIf="errorMsg" style="color: black">{{errorMsg}}</h3>
                             <input type="submit" type="image" src="content/images/logInL.png" class="submitButton">
                         </form>
                     </div>
@@ -54,7 +55,8 @@ export class UserLoginComponent {
     private errorMsg: string = "";
     user: UserCredentials = new UserCredentials('', '', '', '');
 
-    constructor(private authService: UserAuthenticationService) {}
+    constructor(private authService: UserAuthenticationService,
+    private router: Router) {}
 
     onSubmit(event: Event) {
         event.preventDefault();
@@ -64,7 +66,7 @@ export class UserLoginComponent {
 
         if(success) {
             console.log("logged sucessfully");
-
+            this.router.navigate(['/profile']);
         } else {
             console.log("logged unsucessfully");
             this.errorMsg = "Logged unsuccessfully";

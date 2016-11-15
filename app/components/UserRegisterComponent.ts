@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
 import {UserAuthenticationService} from "../services/UserAuthenticationService";
 import {UserCredentials} from "../model/UserCredentials";
+import {Router} from "@angular/router";
 @Component({
     selector: 'register',
     template: `
@@ -27,7 +28,7 @@ import {UserCredentials} from "../model/UserCredentials";
                     <input required name="password" [(ngModel)]="user.Password" class="materialInput" placeholder="Password" type="password">
                     <br>
                     <input required name="comfirmPass" [(ngModel)]="user.ConfirmPassword" class="materialInput" placeholder="Confirm password" type="password">
-                    <h3 *ngIf="errorMsg">{{errorMsg}}</h3>
+                    <h3 *ngIf="errorMsg" style="color: black;">{{errorMsg}}</h3>
 
                     <input type="image" src="content/images/signUpR.png" class="submitButton">
                 </form>
@@ -57,7 +58,8 @@ export class UserRegisterComponent {
     errorMsg: string = "";
     user: UserCredentials = new UserCredentials('', '', '', '');
 
-    constructor(private authService: UserAuthenticationService) {
+    constructor(private authService: UserAuthenticationService,
+    private router: Router) {
     }
 
     onSubmit(user: UserCredentials) {
@@ -66,11 +68,11 @@ export class UserRegisterComponent {
             .subscribe((result) => {
                 success = result;
             });
-        if (!success) {
-            this.errorMsg = "Cannot register new user";
+        if (success) {
+            this.router.navigate(['/profile']);
         } else {
-            console.log('reg succesfully');
             this.errorMsg = "Cannot register. Check credentials";
+            console.log('reg succesfully');
         }
     }
 }

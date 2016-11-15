@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {UserCredentials} from "../model/UserCredentials";
 import {Http, Headers, Response} from "@angular/http";
 import {Observable} from "rxjs";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class UserAuthenticationService {
