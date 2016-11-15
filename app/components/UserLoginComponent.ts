@@ -20,12 +20,12 @@ import {UserCredentials} from "../model/UserCredentials";
                         <a href="#"><img src="content/images/exit.png" class="exitLink"></a>
                     </div>
                     <div class="bodyForm">
-                        <form>
-                            <input class="materialInput" placeholder="Login" type="text">
+                        <form #form="ngForm" (submit)="onSubmit($event)">
+                            <input required  class="materialInput" [(ngModel)]="user.name" name="login" placeholder="Login" type="text">
                             <br>
-                            <input class="materialInput" placeholder="Password" type="password">
-
-                            <input type="image" src="content/images/logInL.png" class="submitButton">
+                            <input required class="materialInput" [(ngModel)]="user.password" name="password" placeholder="Password" type="password">
+                            <h3 *ngIf="errorMsg">{{errorMsg}}</h3>
+                            <input type="submit" type="image" src="content/images/logInL.png" class="submitButton">
                         </form>
                     </div>
                 </div>

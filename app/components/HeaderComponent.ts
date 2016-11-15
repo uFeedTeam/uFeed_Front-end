@@ -1,4 +1,5 @@
 import {Component} from "@angular/core";
+import {UserAuthenticationService} from "../services/UserAuthenticationService";
 @Component({
     selector: 'header-dir',
     template: `
@@ -15,6 +16,12 @@ import {Component} from "@angular/core";
 `
 })
 export class HeaderComponent {
-    isLogined: boolean = false;
+
+    constructor(private authService: UserAuthenticationService)
+    {}
+
+    get isLogined() {
+        return this.authService.isLogined;
+    }
 
 }

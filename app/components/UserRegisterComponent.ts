@@ -19,15 +19,16 @@ import {UserCredentials} from "../model/UserCredentials";
                 <a routerLink="/"><img src="content/images/exit.png" class="exitLink"></a>
             </div>
             <div class="bodyForm">
-                <form>
-                    <input class="materialInput" placeholder="Login" type="text">
+                <form (submit)="onSubmit(user)">
+                    <input required name="name" [(ngModel)]="user.Name" class="materialInput" placeholder="Login" type="text">
                     <br>
-                    <input class="materialInput" placeholder="Email" type="text">
+                    <input required name="email" [(ngModel)]="user.Email" class="materialInput" placeholder="Email" type="text">
                     <br>
-                    <input class="materialInput" placeholder="Password" type="password">
+                    <input required name="password" [(ngModel)]="user.Password" class="materialInput" placeholder="Password" type="password">
                     <br>
-                    <input class="materialInput" placeholder="Confirm password" type="password">
-                    
+                    <input required name="comfirmPass" [(ngModel)]="user.ConfirmPassword" class="materialInput" placeholder="Confirm password" type="password">
+                    <h3 *ngIf="errorMsg">{{errorMsg}}</h3>
+
                     <input type="image" src="content/images/signUpR.png" class="submitButton">
                 </form>
             </div>
@@ -42,7 +43,7 @@ import {UserCredentials} from "../model/UserCredentials";
                         <br>
                         <li><img src="content/images/like_icon.png" class="ulIcon">mark content as favourite to keep it in one place <br>      and make it easy to access</li>
                     </ul>
-                    <a href="#"><img src="content/images/letsStart.png" class="startUpLink"></a>
+                    <a routerLink="/"><img src="content/images/letsStart.png" class="startUpLink"></a>
                 </div>
                 <div class="contentImage">
                     <img src="content/images/computer.png" class="mainImage">
@@ -68,7 +69,8 @@ export class UserRegisterComponent {
         if (!success) {
             this.errorMsg = "Cannot register new user";
         } else {
-            console.log('reg sucesfully')
+            console.log('reg succesfully');
+            this.errorMsg = "Cannot register. Check credentials";
         }
     }
 }

@@ -10,7 +10,14 @@ export class UserAuthenticationService {
     private static loginUrl: string = "/token";
     private static TOKEN_KEY: string = 'tokenJson';
 
+
+    private logined: boolean;
+
     constructor(private http: Http) {
+    }
+
+    get isLogined() {
+        return this.logined;
     }
 
     register(user: UserCredentials): Observable<boolean> {
@@ -23,12 +30,13 @@ export class UserAuthenticationService {
     }
 
     logout(): void {
+        this.logined = false;
         localStorage.removeItem(UserAuthenticationService.TOKEN_KEY);
     }
 
     login(user: UserCredentials): Observable<boolean> {
         let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
-        let body: string = `grant_type=password&username=${user.email}&password=${user.password}}`;
+        let body: string = `grant_type=password&username=${user.Email}&password=${user.Password}}`;
         return this.http.post(UserAuthenticationService.loginUrl, body, headers)
             .map((resp: Response) => {
                 if (!resp.ok) {
@@ -37,6 +45,7 @@ export class UserAuthenticationService {
                     let tokenJson = resp.json() && resp.json();
                     if (tokenJson) {
                         localStorage.setItem(UserAuthenticationService.TOKEN_KEY, tokenJson);
+                        this.logined = true;
                     } else {
                         return false;
                     }
