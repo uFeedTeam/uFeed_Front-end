@@ -1,4 +1,7 @@
 import {Component} from "@angular/core";
+import {UserAuthenticationService} from "../services/UserAuthenticationService";
+import {Router} from "@angular/router";
+import {Response} from "@angular/http";
 @Component({
     template: `
         <div class="location">
@@ -54,7 +57,7 @@ import {Component} from "@angular/core";
                 </div>
                 <br>
                 <div class="deactivate">
-                    <a href="#"><h5><u>Deactivate account</u></h5></a>
+                    <a (click)="deleteAccount()"><h5><u>Deactivate account</u></h5></a>
                 </div>
                 <br>
                 <div class="controlPanel">
@@ -67,4 +70,18 @@ import {Component} from "@angular/core";
 })
 export class ProfileComponent {
 
+    constructor(private authService: UserAuthenticationService, private router: Router)
+    {}
+
+    deleteAccount() {
+        let result: boolean;
+        this.authService.deleteAcc()
+            .subscribe((resp: boolean) => {
+                result = resp;
+            });
+
+        if(result) {
+            this.router.navigate(['/']);
+        }
+    }
 }

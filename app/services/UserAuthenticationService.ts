@@ -2,15 +2,14 @@ import {Injectable} from "@angular/core";
 import {UserCredentials} from "../model/UserCredentials";
 import {Http, Headers, Response} from "@angular/http";
 import {Observable} from "rxjs";
-import {Router} from "@angular/router";
 
 @Injectable()
 export class UserAuthenticationService {
 
-    private static registrationUrl: string = "api/account/register";
-    private static loginUrl: string = "/token";
+    public static registrationUrl: string = "api/account/register";
+    public static loginUrl: string = "/token";
+    public static deleteAccUrl: string = "api/account/delete";
     private static TOKEN_KEY: string = 'tokenJson';
-
 
     private logined: boolean;
 
@@ -21,6 +20,16 @@ export class UserAuthenticationService {
         return this.logined;
     }
 
+    deleteAcc(): Observable<boolean> {
+        let headers = new Headers({'Authorization': 'Bearer ' + this.getToken()});
+        this.logout();
+        let body: string = '';
+        return this.http.post(UserAuthenticationService.loginUrl, body, headers)
+            .map((resp: Response) => {
+                return resp.ok;
+        });
+    }
+
     register(user: UserCredentials): Observable<boolean> {
         let headers = new Headers({'Content-Type': 'application/json'});
         return this.http.post(UserAuthenticationService.registrationUrl,
@@ -28,6 +37,10 @@ export class UserAuthenticationService {
             .map((resp: Response) => {
                 return resp.ok;
             });
+    }
+
+    getToken(): string {
+        return localStorage.getItem(UserAuthenticationService.TOKEN_KEY);
     }
 
     logout(): void {
