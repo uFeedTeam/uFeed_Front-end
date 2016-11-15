@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {UserCredentials} from "../model/UserCredentials";
-import {Http, Headers, Response} from "@angular/http";
+import {Http, Headers, Response, RequestOptions} from "@angular/http";
 import {Observable} from "rxjs";
 
 @Injectable()
@@ -21,19 +21,23 @@ export class UserAuthenticationService {
     }
 
     deleteAcc(): Observable<boolean> {
+
         let headers = new Headers({'Authorization': 'Bearer ' + this.getToken()});
+        let options = new RequestOptions({ headers: headers });
         this.logout();
         let body: string = '';
-        return this.http.post(UserAuthenticationService.loginUrl, body, headers)
+        return this.http.post(UserAuthenticationService.deleteAccUrl, body, options)
             .map((resp: Response) => {
-                return resp.ok;
+                return resp.ok || true;
         });
     }
 
     register(user: UserCredentials): Observable<boolean> {
         let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({ headers: headers });
+
         return this.http.post(UserAuthenticationService.registrationUrl,
-            JSON.stringify(user), headers)
+            JSON.stringify(user), options)
             .map((resp: Response) => {
                 return resp.ok;
             });
@@ -50,8 +54,10 @@ export class UserAuthenticationService {
 
     login(user: UserCredentials): Observable<boolean> {
         let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
+        let options = new RequestOptions({ headers: headers });
+
         let body: string = `grant_type=password&username=${user.Email}&password=${user.Password}}`;
-        return this.http.post(UserAuthenticationService.loginUrl, body, headers)
+        return this.http.post(UserAuthenticationService.loginUrl, body, options)
             .map((resp: Response) => {
                 if (!resp.ok) {
                     return false;

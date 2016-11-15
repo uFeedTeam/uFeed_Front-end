@@ -77,6 +77,7 @@ export class ProfileComponent {
         let result: boolean;
         this.authService.deleteAcc()
             .subscribe((resp: boolean) => {
+                console.log("--> " + resp);
                 result = resp;
             });
 
