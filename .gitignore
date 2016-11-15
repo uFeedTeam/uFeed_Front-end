@@ -56,3 +56,5 @@ fabric.properties
 
 #node
 node_modules/
+app/**/*.js
+app/**/*.map

@@ -1,22 +1,9 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="styles/mainPageMenuStyle.css">
-        <link rel="stylesheet" type="text/css" href="styles/mainPageStyle.css">
-        <link rel="stylesheet" type="text/css" href="styles/reglogStyle.css">
-        <link rel="stylesheet" type="text/css" href="styles/inputMaterial.css">
-        <title>uFeed - Main Page</title>
-    </head>
-    <body>
-        <div class="headMenu">
-            <div class="headLogo">
-                <a href="index.html"><img src="content/images/logo.png" class="logoImage"></a>
-            </div>
-            <div class="headLinks">
-                <a href="index.html"><img src="content/images/login.png" class="headlink"></a>
-                <a href="index.html"><img src="content/images/signUp.png" class="headlink"></a>
-            </div>
-        </div>
+import {Component} from "@angular/core";
+import {UserAuthenticationService} from "../services/UserAuthenticationService";
+import {UserCredentials} from "../model/UserCredentials";
+@Component({
+    selector: 'login',
+    template: `
         <div class="content">
             <div class="contentHeader">
                 <div class="mainLogoContainer">
@@ -53,12 +40,36 @@
                         <br>
                         <li><img src="content/images/like_icon.png" class="ulIcon">mark content as favourite to keep it in one place <br>      and make it easy to access</li>
                     </ul>
-                    <a href="#"><img src="content/images/letsStart.png" class="startUpLink"></a>
+                    <a routerLink="/"><img src="content/images/letsStart.png" class="startUpLink"></a>
                 </div>
                 <div class="contentImage">
                     <img src="content/images/computer.png" class="mainImage">
                 </div>
             </div>            
-        </div>         
-    </body>
-</html>
+        </div> 
+    `
+})
+export class UserLoginComponent {
+
+    private errorMsg: string = "";
+    user: UserCredentials = new UserCredentials('', '', '', '');
+
+    constructor(private authService: UserAuthenticationService) {}
+
+    onSubmit(event: Event) {
+        event.preventDefault();
+        let success;
+        this.authService.login(this.user)
+            .subscribe((result) => success = result);
+
+        if(success) {
+            console.log("logged sucessfully");
+
+        } else {
+            console.log("logged unsucessfully");
+            this.errorMsg = "Logged unsuccessfully";
+        }
+    }
+
+
+}
