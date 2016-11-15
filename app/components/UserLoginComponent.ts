@@ -18,14 +18,14 @@ import {Router} from "@angular/router";
             <div class="container container-custom">
                 <div class="login-container">
                     <div class="exit">
-                        <a href="#"><img src="content/images/exit.png" class="exitLink"></a>
+                        <a routerLink="/"><img src="content/images/exit.png" class="exitLink"></a>
                     </div>
                     <div class="bodyForm">
                         <form #form="ngForm" (submit)="onSubmit($event)">
-                            <input required  class="materialInput" [(ngModel)]="user.name" name="login" placeholder="Login" type="text">
+                            <input required  class="materialInput" [(ngModel)]="user.Email" name="email" placeholder="Email" type="email">
                             <br>
-                            <input required class="materialInput" [(ngModel)]="user.password" name="password" placeholder="Password" type="password">
-                            <h3 *ngIf="errorMsg" style="color: black">{{errorMsg}}</h3>
+                            <input required class="materialInput" [(ngModel)]="user.Password" name="password" placeholder="Password" type="password">
+                            <h4 *ngIf="errorMsg" style="color: black">{{errorMsg}}</h4>
                             <input type="submit" type="image" src="content/images/logInL.png" class="submitButton">
                         </form>
                     </div>
@@ -61,8 +61,27 @@ export class UserLoginComponent {
     constructor(private authService: UserAuthenticationService,
     private router: Router) {}
 
-    onSubmit(event: Event) {
+    private validatePassword(user: UserCredentials): boolean {
+        let pass = user.Password;
+
+        let isValid: boolean = true;
+        isValid = isValid && pass.search("\\w") != -1
+            && pass.search("\\d") != -1
+            && pass.length >= 6;
+
+        if(!isValid) {
+            this.errorMsg = "Password must contain at list 6 symbols of digit and char";
+        }
+
+        return isValid;
+    }
+
+    onSubmit(event: Event) :void {
         event.preventDefault();
+        if(!this.validatePassword(this.user)) {
+            return;
+        }
+
         let success;
         this.authService.login(this.user)
             .subscribe((result) => success = result);

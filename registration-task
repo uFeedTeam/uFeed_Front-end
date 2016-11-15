@@ -1,0 +1,16 @@
+для регистрации
+POST запрос.
+в хэдере ставишь Content-Type: application/json
+в теле:
+{ Email:"string 1", Name:"string 2", Password:"string 3",ConfirmPassword:"string 3"}
+api/account/register
+потом нужно получть токен
+/token
+Пост запрос.
+В хэдере: Content-Type: application/x-www-form-urlencoded
+В теле: grant_type=password&username=<Email здеся>&password=<пароль тута>
+в ответочку прилетит токен
+Обрезал токен
+{"access_token":"токен","token_type":"bearer","expires_in":1209599,
+"userName":"qwe@qwe.qwe",".issued":"Sun, 13 Nov 2016 13:55:38
+GMT",".expires":"Sun, 27 Nov 2016 13:55:38 GMT"}

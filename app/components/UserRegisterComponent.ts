@@ -20,7 +20,7 @@ import {Router} from "@angular/router";
                 <a routerLink="/"><img src="content/images/exit.png" class="exitLink"></a>
             </div>
             <div class="bodyForm">
-                <form (submit)="onSubmit(user)">
+                <form (submit)="onSubmit(user, $event)">
                     <input required name="name" [(ngModel)]="user.Name" class="materialInput" placeholder="Login" type="text">
                     <br>
                     <input required name="email" [(ngModel)]="user.Email" class="materialInput" placeholder="Email" type="text">
@@ -28,7 +28,7 @@ import {Router} from "@angular/router";
                     <input required name="password" [(ngModel)]="user.Password" class="materialInput" placeholder="Password" type="password">
                     <br>
                     <input required name="comfirmPass" [(ngModel)]="user.ConfirmPassword" class="materialInput" placeholder="Confirm password" type="password">
-                    <h3 *ngIf="errorMsg" style="color: black;">{{errorMsg}}</h3>
+                    <h4 *ngIf="errorMsg" style="color: black;">{{errorMsg}}</h4>
 
                     <input type="image" src="content/images/signUpR.png" class="submitButton">
                 </form>
@@ -65,7 +65,32 @@ export class UserRegisterComponent {
     private router: Router) {
     }
 
-    onSubmit(user: UserCredentials) {
+    private validatePassword(user: UserCredentials): boolean {
+        let pass = user.Password;
+
+        let isValid: boolean = true;
+        isValid = isValid && pass.search("\\w") != -1
+            && pass.search("\\d") != -1
+            && pass.length >= 6;
+
+        if(user.Password !== user.ConfirmPassword) {
+            this.errorMsg = "Passwords don't match";
+            return false;
+        }
+
+        if(!isValid) {
+            this.errorMsg = "Password must contain at list 6 symbols of digit and char";
+        }
+
+        return isValid;
+    }
+
+    onSubmit(user: UserCredentials, event: Event): void {
+        event.preventDefault();
+        if(!this.validatePassword(user)) {
+            return;
+        }
+
         let success;
         this.authService.register(user)
             .subscribe((result) => {
