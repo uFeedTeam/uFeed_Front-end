@@ -9,9 +9,12 @@
     padding-top: 40px;
 }
 
+body {
+    min-width: 930px;
+}
+
 .content {
     background-image: url(../content/images/background.png);
-    min-width: 930px;
     padding-bottom: 110px;
 }
 

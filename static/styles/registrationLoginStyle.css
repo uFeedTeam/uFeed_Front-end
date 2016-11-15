@@ -1,9 +1,6 @@
-.container {
-    border-radius: 20px;
-    width: 200px;
+.content {
+    width: 350px;
 }
-
-
 .exitLink {
     width: 10px;
     height: 10px;
@@ -19,7 +16,8 @@
 }
 
 .materialInput {
-    margin-left: 100px;
+    margin-left: 90px;
+    width: 180px;
 }
 
 .submitButton {
