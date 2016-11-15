@@ -11,6 +11,7 @@ import {RouterModule} from "@angular/router";
 
 import {IndexComponent} from "../components/IndexComponent";
 import {HeaderComponent} from "../components/HeaderComponent";
+import {ProfileComponent} from "../components/ProfileComponent";
 
 @NgModule({
     imports: [
@@ -20,7 +21,8 @@ import {HeaderComponent} from "../components/HeaderComponent";
         RouterModule.forRoot([
             {path: '', component: IndexComponent},
             {path: 'login', component: UserLoginComponent},
-            {path: 'register', component: UserRegisterComponent}
+            {path: 'register', component: UserRegisterComponent},
+            {path: 'profile', component: ProfileComponent}
         ])],
     declarations:
         [AppComponent, HeaderComponent, IndexComponent,
