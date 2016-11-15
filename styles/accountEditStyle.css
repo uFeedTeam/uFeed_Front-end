@@ -1,0 +1,104 @@
+.location {
+    background-color: rgb(23, 129, 224);
+    padding-bottom: 1%;
+    padding-top: 1%;
+    margin-top: 1%;
+}
+
+@font-face {
+    font-family: 'PT Sans';
+    src: url('../font/pt-sans.ttf');
+} 
+
+ h3 {
+    font-family: 'PT Sans';
+    color: white;
+}
+
+h5 {
+    font-family: 'PT Sans';
+}
+
+.locationText {
+    margin-left: 10%;
+}
+
+
+.profilePhoto {
+    text-align: center;
+    margin-left: 8%;
+    margin-top: 5%;
+}
+
+.uploadPhoto {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.mainPhoto {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+}
+
+.socials {
+    margin-top: 3%;
+    margin-left: 45%;
+    white-space: nowrap;
+}
+
+.socials div {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.socialUl {
+    padding-left: 10%;
+}
+
+.ulImage {
+    width: 25px;
+    height: 20px;
+}
+
+.ulLink {
+    padding-left: 35%;
+}
+
+.addNewSocial {
+    margin-left: 35px;
+    width: 30x;
+    height: 20px;
+}
+
+.data {
+    margin-left: 30%;
+}
+
+.mainInfo {
+    white-space: nowrap;
+}
+
+.mainInfo div {
+    display: inline-block;
+}
+
+.controlPanel {
+    margin-top: 7%;
+    margin-left: 30%;
+}
+
+.controlLink {
+    width: 130px;
+    margin-right: 20%;
+    height: 50px;
+}
+
+.inputLabel {
+    margin-right: 30%;
+}
+
+.passwordInputLabel {
+    margin-right: 15%;
+}

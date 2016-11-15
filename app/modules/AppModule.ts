@@ -25,7 +25,7 @@ import {ProfileComponent} from "../components/ProfileComponent";
             {path: 'profile', component: ProfileComponent}
         ])],
     declarations:
-        [AppComponent, HeaderComponent, IndexComponent,
+        [AppComponent, HeaderComponent, IndexComponent, ProfileComponent,
         UserLoginComponent, UserRegisterComponent],
     providers: [UserAuthenticationService],
     bootstrap: [AppComponent]
