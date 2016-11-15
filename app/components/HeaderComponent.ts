@@ -1,5 +1,6 @@
 import {Component} from "@angular/core";
 import {UserAuthenticationService} from "../services/UserAuthenticationService";
+import {Router} from "@angular/router";
 @Component({
     selector: 'header-dir',
     template: `
@@ -8,9 +9,12 @@ import {UserAuthenticationService} from "../services/UserAuthenticationService";
                 <a href="index.html"><img src="content/images/logo.png" class="logoImage"></a>
             </div>
             
-            <div *ngIf="!isLogined" class="headLinks">
+            <div *ngIf="!isLogined()" class="headLinks">
                 <a routerLink="/login"> <img src="content/images/login.png" class="headlink"></a>
                 <a routerLink="/register"><img src="content/images/signUp.png" class="headlink"></a>
+            </div>
+            <div *ngIf="isLogined()" class="headLinks">
+                <a (click)="logout()">Logout</a>
             </div>
             
         </div>        
@@ -18,10 +22,17 @@ import {UserAuthenticationService} from "../services/UserAuthenticationService";
 })
 export class HeaderComponent {
 
-    constructor(private authService: UserAuthenticationService)
+    constructor(private authService: UserAuthenticationService,
+    private router: Router)
     {}
 
-    get isLogined() {
+    logout() {
+        this.authService.logout();
+        this.router.navigate(['/']);
+    }
+
+    // todo
+    isLogined(): boolean {
         return this.authService.isLogined;
     }
 

@@ -13,7 +13,10 @@ import {Component} from "@angular/core";
                 </div>
             </div>
             <div class="contentBody">
-                <div class="features mainText">
+                <div class="features mainText" style="
+    position: relative;
+    top: 30px;
+">
                     <ul>
                         <h2>YOU ARE ABLE TO:</h2>
                         <li><img src="content/images/unite_icon.png" class="ulIcon">unite a content from different social networks</li>

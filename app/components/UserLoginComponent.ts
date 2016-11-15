@@ -15,7 +15,7 @@ import {Router} from "@angular/router";
                     into custom categories and keep it in one place and one format!</p>
                 </div>
             </div>
-            <div class="container">
+            <div class="container container-custom">
                 <div class="login-container">
                     <div class="exit">
                         <a href="#"><img src="content/images/exit.png" class="exitLink"></a>
@@ -32,7 +32,10 @@ import {Router} from "@angular/router";
                 </div>
             </div>
             <div class="contentBody">
-                <div class="features mainText">
+                <div class="features mainText" style="
+    position: relative;
+    top: 30px;
+">
                     <ul>
                         <h2>YOU ARE ABLE TO:</h2>
                         <li><img src="content/images/unite_icon.png" class="ulIcon">unite a content from different social networks</li>
