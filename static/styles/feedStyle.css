@@ -1,0 +1,80 @@
+.userInfoPhoto {
+    width: 80px;
+    height: 80px;
+    border-radius: 100px;
+    vertical-align:middle
+}
+
+@font-face {
+    font-family: 'PT Sans';
+    src: url('../font/pt-sans.ttf');
+}
+
+h5, a, p {
+    font-family: 'PT Sans';
+}
+
+.feedContent {
+    margin-top: 4%;
+}
+
+.availableSocials {
+    width: 20%;
+}
+
+.ulImage {
+    width: 25px;
+    height: 20px;
+}
+
+.socialLink {
+    width: 300px;
+}
+
+.socialLink:link, .socialLink:visited {
+    background-color: white;
+    color: grey;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.socialLink:hover, .availableSocials .active {
+  background-color: rgb(21, 63, 120);
+    color: white;
+}
+
+.tabLinks:link, .tabLinks:visited {
+    background-color: white;
+    color: grey;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.tabLinks:hover, .tabs .active {
+  background-color: rgb(243, 243, 243);
+    color: black;
+}
+
+.ulLink {
+    width: 20px;
+    vertical-align:middle;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.lineUp {
+    white-space:nowrap;
+}
+
+.lineUp {
+    vertical-align: top;
+    display:inline-block;
+}
+
+.tabContent {
+    background-color: rgb(243, 243, 243);
+    border-radius: 5px;
+}
+
