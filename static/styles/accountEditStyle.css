@@ -1,7 +1,7 @@
 .location {
     background-color: rgb(23, 129, 224);
-    padding-bottom: 1%;
-    padding-top: 1%;
+    padding-bottom: 10px;
+    padding-top: 5px;
     margin-top: 1%;
 }
 
@@ -10,7 +10,7 @@
     src: url('../font/pt-sans.ttf');
 } 
 
- h3 {
+ h4 {
     font-family: 'PT Sans';
     color: white;
 }
@@ -20,14 +20,14 @@ h5 {
 }
 
 .locationText {
-    margin-left: 10%;
+    margin-left: 5%;
 }
 
 
 .profilePhoto {
     text-align: center;
-    margin-left: 8%;
-    margin-top: 5%;
+    margin-left: 12%;
+    margin-top: 6%;
 }
 
 .uploadPhoto {
@@ -37,14 +37,30 @@ h5 {
 }
 
 .mainPhoto {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     border-radius: 100px;
 }
 
+@media screen and (min-width: 1200px) {
+   
+    .socials {
+        margin-left: 41%;
+    }
+    
+}
+
+
+@media screen and (max-width: 1200px) {
+   
+    .socials {
+        text-align: center;
+    }
+    
+}
+
 .socials {
-    margin-top: 3%;
-    margin-left: 45%;
+    margin-top: 4%;
     white-space: nowrap;
 }
 
@@ -73,7 +89,7 @@ h5 {
 }
 
 .data {
-    margin-left: 30%;
+    margin-left: 16%;
 }
 
 .mainInfo {
@@ -85,14 +101,14 @@ h5 {
 }
 
 .controlPanel {
-    margin-top: 7%;
+    margin-top: 4%;
     margin-left: 30%;
 }
 
 .controlLink {
-    width: 130px;
+    width: 110px;
     margin-right: 20%;
-    height: 50px;
+    height: 40px;
 }
 
 .inputLabel {
@@ -103,3 +119,8 @@ h5 {
     margin-right: 15%;
 }
 
+body {
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 6%;
+}
