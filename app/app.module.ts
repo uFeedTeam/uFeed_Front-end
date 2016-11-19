@@ -1,17 +1,17 @@
 import {NgModule} from "@angular/core";
 import {AppComponent} from "./app.component";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BrowserModule} from "@angular/platform-browser";
 import {AppRoutingModule} from "./app-routing.module";
 import {HeadComponent} from "./head.component";
 import {AuthModule} from "./auth/auth.module";
-import {AuthComponent} from "./auth.component";
 
 @NgModule({
     imports: [
-        AuthModule,
+        ReactiveFormsModule,
         BrowserModule,
         FormsModule,
+        AuthModule,
         AppRoutingModule],
 
     declarations: [AppComponent, HeadComponent],

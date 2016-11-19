@@ -1,6 +1,5 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
-import {IndexComponent} from "./auth/index.component";
 import {AuthComponent} from "./auth.component";
 
 let ROUTES: Routes = [

@@ -5,19 +5,43 @@
         </div>
         <div class="bodyForm">
             <form>
-                <div class="materialInput">
-                    <input placeholder="Login" type="text">
+                <div *ngIf="name.errors">
+                    <small>Name must consist from 1 to 25 characters</small>
                 </div>
                 <div class="materialInput">
-                    <input placeholder="Email" type="text">
-                </div>
-                <div class="materialInput">
-                    <input placeholder="Password" type="password">
-                </div>
-                <div class="materialInput">
-                    <input placeholder="Confirm Password" type="password">
+                    <input placeholder="Name" pattern="\w{1,25}"
+                           [(ngModel)]="user.name" #name="ngModel"
+                           [class.red]="name.errors" [class.lighten-5]="name.errors"
+                           name="name" type="text">
                 </div>
 
+                <div *ngIf="emailInput.errors">
+                    <small>Email's not valid. What about example@email.com?</small>
+                </div>
+                <div class="materialInput">
+                    <input placeholder="Email" pattern="\w+@\w+(\.\w+)*"
+                           [(ngModel)]="user.email" #emailInput="ngModel"
+                           [class.red]="emailInput.errors" [class.lighten-5]="emailInput.errors"
+                           name="email" type="text">
+                </div>
+
+                <div *ngIf="passInput.errors">
+                    <small>Password not valid. Digits and chars with length [6..25]</small>
+                </div>
+                <div class="materialInput">
+                    <input placeholder="Password" pattern="[\w\d]{6,25}"
+                           #passInput="ngModel" [(ngModel)]="user.password"
+                           [class.red]="passInput.errors" [class.lighten-5]="passInput.errors"
+                           name="password" type="password">
+                </div>
+                <div *ngIf="!(passInput.value===confirmInput.value)">
+                    <small>Passwords do not match</small>
+                </div>
+                <div class="materialInput">
+                    <input placeholder="Confirm Password" #confirmInput="ngModel" [(ngModel)]="confirmPass"
+                           [class.red]="confirmInput.errors" [class.lighten-5]="confirmInput.errors"
+                           name="confirmPass" type="password">
+                </div>
                 <input type="image" src="content/images/signUpR.png" class="submitButton">
             </form>
         </div>

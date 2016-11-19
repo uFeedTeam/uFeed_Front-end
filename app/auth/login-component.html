@@ -5,14 +5,27 @@
         </div>
         <div class="bodyForm">
             <form>
-                <div class="materialInput">
-                    <input placeholder="Login" type="text">
+                <div *ngIf="emailInput.errors">
+                    <small>Email is incorrect. Maybe example@domain.com ?</small>
                 </div>
                 <div class="materialInput">
-                    <input placeholder="Password" type="password">
+                    <input placeholder="Email" pattern="\w+@\w+(\.\w+)*"
+                           [(ngModel)]="user.email" name="email"
+                           [class.red]="emailInput.errors" [class.lighten-5]="emailInput.errors"
+                           #emailInput="ngModel" type="text">
+                </div>
+                <div class="materialInput">
+                    <input placeholder="Password" type="password"
+                           pattern="[\w\d]{6,25}"
+                           [class.red]="passInput.errors" [class.lighten-5]="passInput.errors"
+                           #passInput="ngModel" [(ngModel)]="user.password" name="password">
                 </div>
 
-                <input type="image" src="content/images/logInL.png" class="submitButton">
+                <div *ngIf="passInput.errors">
+                    <small>Password not valid. Digits and chars with length [6..25]</small>
+                </div>
+                <input type="image" src="content/images/logInL.png"
+                       class="submitButton">
             </form>
         </div>
     </div>

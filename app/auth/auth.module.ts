@@ -4,9 +4,13 @@ import {RouterModule} from "@angular/router";
 import {LoginComponent} from "./login.component";
 import {RegisterComponent} from "./register.component";
 import {AuthComponent} from "../auth.component";
+import {CommonModule} from "@angular/common";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
     imports: [
+        CommonModule,
+        FormsModule,
         RouterModule.forChild([
             {
                 path: '',
