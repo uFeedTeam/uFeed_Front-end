@@ -25,3 +25,9 @@
     height: 40px;
     margin-top: 50px;
 }
+
+.menuLogs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
