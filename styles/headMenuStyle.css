@@ -1,0 +1,35 @@
+.headMenu {
+    margin-top: 1%;
+    white-space: nowrap;
+}
+
+body {
+    min-width: 900px;
+}
+
+.headMenu div {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.logoImage {
+    width: 160px;
+    height: 60px;
+}
+
+.miniPhoto {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border-radius: 100px;
+}
+
+.headLinks {
+    position: fixed;
+    float: right;
+}
+
+.arrowImage {
+    width: 20px;
+    height: 10px;
+}
