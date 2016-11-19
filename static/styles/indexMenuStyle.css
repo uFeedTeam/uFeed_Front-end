@@ -1,14 +1,14 @@
 @media screen and (min-width: 1300px)
 {
     .logoImage {
-        width: 200px;
-        height: 80px;
+        width: 160px;
+        height: 60px;
     }
     
     .headlink {
-        width: 140px;
+        width: 100px;
         margin-left: 30%;
-        height: 60px;
+        height: 40px;
     }
 }
 
@@ -21,20 +21,20 @@
     
     
     .headlink {
-        width: 90px;
-        margin-left: 20%;
+        width: 100px;
+        margin-left: 15%;
         height: 40px;
     }
 }
 
 .headLogo {
     margin-left: 16%;
-    width: 50%;
+    width: 45%;
 }
 
 
 .headMenu {
-    margin-top: 2%;
+    margin-top: 1%;
     white-space:nowrap;
 }
 
