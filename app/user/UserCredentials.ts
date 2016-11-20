@@ -1,20 +1,20 @@
 export class UserCredentials {
-    constructor(public name: string,
-                public email: string,
-                public password: string,
-                public id?: number,
-                public categories?: number[],
-                public photo?: string) {
-        if (id == null) {
-            id = 0;
+    constructor(public Name: string,
+                public Email: string,
+                public Password: string,
+                public Id?: number,
+                public Categories?: number[],
+                public Photo?: string) {
+        if (Id == null) {
+            Id = 0;
         }
 
-        if (categories == null) {
-            categories = []
+        if (Categories == null) {
+            Categories = []
         }
 
-        if (photo == null) {
-            photo = "";
+        if (Photo == null) {
+            Photo = "";
         }
     }
 }

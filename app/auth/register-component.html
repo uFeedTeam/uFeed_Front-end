@@ -10,7 +10,7 @@
                 </div>
                 <div class="materialInput">
                     <input placeholder="Name" pattern="\w{1,25}"
-                           [(ngModel)]="user.name" #name="ngModel"
+                           [(ngModel)]="user.Name" #name="ngModel"
                            [class.red]="name.errors" [class.lighten-5]="name.errors"
                            name="name" type="text">
                 </div>
@@ -20,7 +20,7 @@
                 </div>
                 <div class="materialInput">
                     <input placeholder="Email" pattern="\w+@\w+(\.\w+)*"
-                           [(ngModel)]="user.email" #emailInput="ngModel"
+                           [(ngModel)]="user.Email" #emailInput="ngModel"
                            [class.red]="emailInput.errors" [class.lighten-5]="emailInput.errors"
                            name="email" type="text">
                 </div>
@@ -30,7 +30,7 @@
                 </div>
                 <div class="materialInput">
                     <input placeholder="Password" pattern="[\w\d]{6,25}"
-                           #passInput="ngModel" [(ngModel)]="user.password"
+                           #passInput="ngModel" [(ngModel)]="user.Password"
                            [class.red]="passInput.errors" [class.lighten-5]="passInput.errors"
                            name="password" type="password">
                 </div>

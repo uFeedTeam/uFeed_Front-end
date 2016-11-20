@@ -7,10 +7,12 @@ import {HeadComponent} from "./head.component";
 import {AuthModule} from "./auth/auth.module";
 import {UserModule} from "./user/user-specific.module";
 import {AuthService} from "./auth/auth.service";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
     imports: [
         UserModule,
+        CommonModule,
         ReactiveFormsModule,
         BrowserModule,
         FormsModule,

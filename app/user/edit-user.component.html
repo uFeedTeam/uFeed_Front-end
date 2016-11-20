@@ -11,31 +11,38 @@
                     Upload photo</h5></a>
             </div>
         </div>
-        <div class="data">
-            <div class="inputLabel">
-                <h5>Name</h5>
+        <form>
+            <div class="data">
+                <div class="inputLabel">
+                    <h5>Name</h5>
+                </div>
+                <div class="input-field">
+                    <small style="display: block" *ngIf="name.errors">Name must consist from 1 to 25 characters</small>
+                    <input placeholder="Name" pattern="\w{1,25}"
+                           [(ngModel)]="user.Name" #name="ngModel"
+                           [class.red]="name.errors" [class.lighten-5]="name.errors"
+                           name="name" type="text"></div>
+                <br>
+
+                <div class="passwordInputLabel">
+                    <h5>Password</h5>
+                </div>
+                <div class="input-field">
+                    <small style="display: block" *ngIf="passInput.errors">Password may contain 6..25 digits or chars
+                    </small>
+                    <input placeholder="Password" pattern="[\w\d]{6,25}"
+                           #passInput="ngModel" [(ngModel)]="user.Password"
+                           [class.red]="passInput.errors" [class.lighten-5]="passInput.errors"
+                           name="password" type="password">
+                </div>
+                <br>
             </div>
-            <div class="input-field">
-                <input name="name" [(ngModel)]="user.name" type="text">
-            </div>
-            <br>
-            <div class="inputLabel">
-                <h5>Email</h5>
-            </div>
-            <div class=" input-field">
-                <input name="email" #e="ngModel" [(ngModel)]="user.email" type="email">
-            </div>
-            <br>
-            <div class="passwordInputLabel">
-                <h5>Password</h5>
-            </div>
-            <div class="input-field">
-                <input name="password" [(ngModel)]="user.password" type="password">
-            </div>
-            <br>
-        </div>
+        </form>
     </div>
     <div class="socials">
+
+        <h6 *ngFor="let updProp of updateProps">System has successfully updated {{updProp}}</h6>
+
         <div>
             <h5>Social networks </h5>
         </div>
@@ -56,12 +63,12 @@
         </div>
         <br>
         <div class="deactivate">
-            <a (click)="deactivateAccount()"><h5><u>Deactivate account</u></h5></a>
+            <a (click)="deactivateAccount()" style="cursor: pointer"><h5><u>Deactivate account</u></h5></a>
         </div>
         <br>
         <div class="controlPanel">
-            <a href="#"><img src="content/images/cancel.png" class="controlLink"></a>
-            <a href="#"><img src="content/images/save.png" class="controlLink"></a>
+            <a routerLink="/feed"><img src="content/images/cancel.png" class="controlLink"></a>
+            <a (click)="updateProfile(user)"><img src="content/images/save.png" class="controlLink"></a>
         </div>
     </div>
 </div>

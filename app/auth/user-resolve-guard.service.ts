@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {Resolve, ActivatedRouteSnapshot, RouterStateSnapshot} from "@angular/router";
 import {UserCredentials} from "../user/UserCredentials";
 import {Observable} from "rxjs";
-import {UserEditService} from "../user/user.edit.service";
+import {UserEditService} from "../user/user.service";
 
 @Injectable()
 export class UserAuthResolveGuard implements Resolve<UserCredentials> {

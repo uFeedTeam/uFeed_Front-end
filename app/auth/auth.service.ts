@@ -27,7 +27,7 @@ export class AuthService {
     public user: UserCredentials;
 
     login(user: UserCredentials): Observable<UserCredentials> {
-        let body = `grant_type=password&username=${user.email}&password=${user.password}`;
+        let body = `grant_type=password&username=${user.Email}&password=${user.Password}`;
 
         var headers = new Headers();
         headers.set("Content-Type", "application/x-www-form-urlencoded");
@@ -47,10 +47,10 @@ export class AuthService {
 
     register(user: UserCredentials): Observable<UserCredentials> {
         let body = {
-            Email: user.email,
-            Name: user.name,
-            Password: user.password,
-            ConfirmPassword: user.password
+            Email: user.Email,
+            Name: user.Name,
+            Password: user.Password,
+            ConfirmPassword: user.Password
         };
 
         var headers = new Headers();

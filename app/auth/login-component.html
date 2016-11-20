@@ -10,7 +10,7 @@
                 </div>
                 <div class="materialInput">
                     <input placeholder="Email" pattern="\w+@\w+(\.\w+)*"
-                           [(ngModel)]="user.email" name="email"
+                           [(ngModel)]="user.Email" name="email"
                            [class.red]="emailInput.errors" [class.lighten-5]="emailInput.errors"
                            #emailInput="ngModel" type="text">
                 </div>
@@ -21,7 +21,7 @@
                     <input placeholder="Password" type="password"
                            pattern="[\w\d]{6,25}"
                            [class.red]="passInput.errors" [class.lighten-5]="passInput.errors"
-                           #passInput="ngModel" [(ngModel)]="user.password" name="password">
+                           #passInput="ngModel" [(ngModel)]="user.Password" name="password">
                 </div>
 
 
