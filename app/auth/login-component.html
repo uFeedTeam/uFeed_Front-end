@@ -4,7 +4,7 @@
             <a routerLink="../"><img src="content/images/exit.png" class="exitLink"></a>
         </div>
         <div class="bodyForm">
-            <form>
+            <form #formTemplate="ngForm" (ngSubmit)="login()">
                 <div *ngIf="emailInput.errors">
                     <small>Email is incorrect. Maybe example@domain.com ?</small>
                 </div>
@@ -14,6 +14,9 @@
                            [class.red]="emailInput.errors" [class.lighten-5]="emailInput.errors"
                            #emailInput="ngModel" type="text">
                 </div>
+                <div *ngIf="passInput.errors">
+                    <small>Password not valid. Digits and chars with length [6..25]</small>
+                </div>
                 <div class="materialInput">
                     <input placeholder="Password" type="password"
                            pattern="[\w\d]{6,25}"
@@ -21,9 +24,7 @@
                            #passInput="ngModel" [(ngModel)]="user.password" name="password">
                 </div>
 
-                <div *ngIf="passInput.errors">
-                    <small>Password not valid. Digits and chars with length [6..25]</small>
-                </div>
+
                 <input type="image" src="content/images/logInL.png"
                        class="submitButton">
             </form>

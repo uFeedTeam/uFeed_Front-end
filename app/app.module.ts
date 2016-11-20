@@ -6,6 +6,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import {HeadComponent} from "./head.component";
 import {AuthModule} from "./auth/auth.module";
 import {UserModule} from "./user/user-specific.module";
+import {AuthService} from "./auth/auth.service";
 
 @NgModule({
     imports: [
@@ -18,7 +19,7 @@ import {UserModule} from "./user/user-specific.module";
 
     declarations: [AppComponent, HeadComponent],
     bootstrap: [AppComponent],
-    providers: []
+    providers: [AuthService]
 })
 export class AppModule {
 }

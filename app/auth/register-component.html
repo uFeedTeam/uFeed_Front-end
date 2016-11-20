@@ -4,7 +4,7 @@
             <a routerLink="../"><img src="content/images/exit.png" class="exitLink"></a>
         </div>
         <div class="bodyForm">
-            <form>
+            <form #formTemplate="ngForm">
                 <div *ngIf="name.errors">
                     <small>Name must consist from 1 to 25 characters</small>
                 </div>
@@ -42,7 +42,9 @@
                            [class.red]="confirmInput.errors" [class.lighten-5]="confirmInput.errors"
                            name="confirmPass" type="password">
                 </div>
-                <input type="image" src="content/images/signUpR.png" class="submitButton">
+                <input type="image" src="content/images/signUpR.png"
+                       (click)="register()"
+                       class="submitButton">
             </form>
         </div>
     </div>

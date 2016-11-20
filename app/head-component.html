@@ -2,8 +2,21 @@
     <div class="headLogo">
         <a routerLink="/"><img src="content/images/logo.png" class="logoImage"></a>
     </div>
-    <div class="headLinks">
-        <a routerLink="/login"><img src="content/images/login.png" class="headlink"></a>
-        <a routerLink="/register"><img src="content/images/signUp.png" class="headlink"></a>
+    <div [ngSwitch]="isAuthorized">
+        <div *ngSwitchCase="false" class="headLinks">
+            <a routerLink="/login"><img src="content/images/login.png" class="headlink"></a>
+            <a routerLink="/register"><img src="content/images/signUp.png" class="headlink"></a>
+        </div>
+        <div *ngSwitchCase="true" class="headLinks input-field">
+            <a class="dropdown-button" href="#" data-activates="drop1"><img src="content/images/person.png"
+                                                                            class="miniPhoto"><img
+                    src="content/images/arrow.png" class="arrowImage"></a>
+
+            <ul id='drop1' class='dropdown-content'>
+                <li><a href="#!">Settings</a></li>
+                <li><a href="#!">Help</a></li>
+                <li><a href="#!">Log out</a></li>
+            </ul>
+        </div>
     </div>
 </div>

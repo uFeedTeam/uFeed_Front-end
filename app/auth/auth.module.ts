@@ -6,11 +6,14 @@ import {RegisterComponent} from "./register.component";
 import {AuthComponent} from "../auth.component";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+import {AuthService} from "./auth.service";
+import {HttpModule} from "@angular/http";
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
+        HttpModule,
         RouterModule.forChild([
             {
                 path: '',
@@ -29,7 +32,8 @@ import {FormsModule} from "@angular/forms";
         IndexComponent,
         LoginComponent,
         RegisterComponent,
-        AuthComponent]
+        AuthComponent],
+    providers: [AuthService]
 })
 export class AuthModule {
 }
