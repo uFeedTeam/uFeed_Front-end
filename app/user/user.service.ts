@@ -12,6 +12,7 @@ export class UserEditService {
     private DELETE_URL: string = "http://localhost:3995/api/account/delete";
     private UPDATE_USR_LOGIN_URL: string = "http://localhost:3995/api/user/newname";
     private CHANGE_PASS_URL = "http://localhost:3995/api/Account/ChangePassword";
+    private SEND_PIC = "http://localhost:3995/api/user/newphoto";
 
     constructor(private http: Http, private router: Router, private authService: AuthService) {
     }
@@ -27,6 +28,13 @@ export class UserEditService {
                     json.Id, json.Categories, json.Photo);
                 return usr;
             });
+    }
+
+    sendPic(bytes: Int8Array): Observable<string> {
+        let nums = [];
+        bytes.forEach(b => nums.push(b));
+        return this.http.put(this.SEND_PIC, nums, {headers: this.authService.AuthHeader})
+            .map(resp => 'picture');
     }
 
     deleteAccount(): Observable<boolean> {
@@ -45,7 +53,7 @@ export class UserEditService {
             .map(resp => 'user name');
 
         if (oldPass !== null) {
-            let passUpd: Observable<boolean> = this.http.post(this.CHANGE_PASS_URL,
+            let passUpd: Observable<string> = this.http.post(this.CHANGE_PASS_URL,
                 {OldPassword: oldPass, NewPassword: user.Password, ConfirmPassword: user.Password},
                 {headers: this.authService.AuthHeader})
                 .map(resp => 'password');

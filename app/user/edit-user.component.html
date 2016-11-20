@@ -4,11 +4,14 @@
 <div class="content">
     <div class="mainInfo">
         <div class="profilePhoto">
-            <img src="content/images/person.png" class="mainPhoto">
+            <img *ngIf="!picUrl" src="content/images/person.png" class="mainPhoto">
+            <img *ngIf="picUrl" #img [src]="picUrl" class="mainPhoto">
+
             <br>
             <div class="uploadLink">
-                <a href="#" class="photoLink"><h5><img src="content/images/download_icon.png" class="uploadPhoto">
-                    Upload photo</h5></a>
+                <h5><img (click)="sendPicture()" src="content/images/download_icon.png" class="uploadPhoto">
+                </h5><input type="file" #fileInput (change)="fileChange(fileInput)">
+
             </div>
         </div>
         <form>

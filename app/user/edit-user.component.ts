@@ -1,8 +1,9 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, ViewChild} from "@angular/core";
 import {UserCredentials} from "./UserCredentials";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserEditService} from "./user.service";
 import {Observable} from "rxjs";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
     moduleId: module.id,
@@ -13,10 +14,14 @@ import {Observable} from "rxjs";
 })
 export class EditComponent implements OnInit {
 
+    @ViewChild("img") img;
+    picUrl;
     private oldPassword;
     updateProps: string[] = [];
+    photo: Int8Array;
 
-    constructor(private route: ActivatedRoute, private router: Router, private userEditService: UserEditService) {
+    constructor(private route: ActivatedRoute, private router: Router, private sanitizer: DomSanitizer,
+                private userEditService: UserEditService) {
         this.user = new UserCredentials('', '', '');
     }
 
@@ -30,13 +35,36 @@ export class EditComponent implements OnInit {
 
     user: UserCredentials;
 
+    sendPicture() {
+        this.userEditService.sendPic(this.photo)
+            .subscribe(
+                (resp: string)=> this.updateProps.push(resp),
+                (err) => alert(err)
+            );
+    }
+
     deactivateAccount() {
         this.userEditService.deleteAccount()
             .subscribe(resp => this.router.navigate(["/"]), err => alert(err));
     }
 
-    updatePhoto() {
+    fileChange(input): void {
 
+        let reader = new FileReader();
+        reader.addEventListener("load", (event: UIEvent) => {
+            this.photo = new Int8Array(reader.result);
+        }, false);
+        reader.readAsArrayBuffer(input.files[0]);
+        reader.addEventListener("progress", (e: ProgressEvent) => {
+            console.log(e.loaded / e.total);
+        });
+
+        let byteStringReader = new FileReader();
+        byteStringReader.readAsDataURL(input.files[0]);
+        byteStringReader.addEventListener("load", (e: UIEvent)=> {
+            // unsafe, but i have to pass sprint successful!
+            this.picUrl = this.sanitizer.bypassSecurityTrustUrl(byteStringReader.result);
+        });
     }
 
     updateProfile() {
