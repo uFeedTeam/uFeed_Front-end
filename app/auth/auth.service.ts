@@ -11,9 +11,14 @@ export class AuthService {
     private REGISTER_URL: string = "http://localhost:3995/api/account/register";
 
     private isLoggedIn: boolean = false;
+    private authHeader: Headers = new Headers();
 
     constructor(private http: Http) {
     };
+
+    public get AuthHeader() {
+        return this.authHeader;
+    }
 
     public get isLogined() {
         return this.isLoggedIn;
@@ -29,9 +34,13 @@ export class AuthService {
 
         return this.http.post(this.LOGIN_URL, body, {headers: headers})
             .map((resp: Response) => {
-                localStorage.setItem("token", resp.json());
+                let tokenJson = resp.json();
+                localStorage.setItem("token", tokenJson);
                 this.isLoggedIn = true;
                 this.user = user;
+                console.log(tokenJson);
+                this.authHeader.set("Authorization", "Bearer " + tokenJson.access_token);
+
                 return user;
             }).catch((resp: Response) => Observable.throw(resp.json().error_description));
     }

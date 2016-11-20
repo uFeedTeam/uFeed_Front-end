@@ -8,6 +8,8 @@ import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {AuthService} from "./auth.service";
 import {HttpModule} from "@angular/http";
+import {AuthGuard} from "./auth-guard.service";
+import {UserAuthResolveGuard} from "./user-resolve-guard.service";
 
 @NgModule({
     imports: [
@@ -32,8 +34,9 @@ import {HttpModule} from "@angular/http";
         IndexComponent,
         LoginComponent,
         RegisterComponent,
-        AuthComponent],
-    providers: [AuthService]
+        AuthComponent,
+    ],
+    providers: [AuthService, AuthGuard, UserAuthResolveGuard]
 })
 export class AuthModule {
 }

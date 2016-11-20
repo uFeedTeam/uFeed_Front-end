@@ -13,24 +13,24 @@
         </div>
         <div class="data">
             <div class="inputLabel">
-                <h5>Login</h5>
+                <h5>Name</h5>
             </div>
             <div class="input-field">
-                <input name="login" type="text">
+                <input name="name" [(ngModel)]="user.name" type="text">
             </div>
             <br>
             <div class="inputLabel">
                 <h5>Email</h5>
             </div>
             <div class=" input-field">
-                <input name="email" type="text">
+                <input name="email" #e="ngModel" [(ngModel)]="user.email" type="email">
             </div>
             <br>
             <div class="passwordInputLabel">
                 <h5>Password</h5>
             </div>
             <div class="input-field">
-                <input name="password" type="text">
+                <input name="password" [(ngModel)]="user.password" type="password">
             </div>
             <br>
         </div>
@@ -56,7 +56,7 @@
         </div>
         <br>
         <div class="deactivate">
-            <a href="#"><h5><u>Deactivate account</u></h5></a>
+            <a (click)="deactivateAccount()"><h5><u>Deactivate account</u></h5></a>
         </div>
         <br>
         <div class="controlPanel">

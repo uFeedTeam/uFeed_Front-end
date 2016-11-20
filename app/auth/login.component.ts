@@ -18,7 +18,7 @@ export class LoginComponent {
         this.authService.login(this.user)
             .subscribe(
                 good => {
-                    alert('good')
+                    this.router.navigate(['/edit']);
                 },
                 err => {
                     alert(err);
