@@ -27,9 +27,6 @@ h5, a, p {
     height: 20px;
 }
 
-.socialLink {
-    width: 300px;
-}
 
 .socialLink:link, .socialLink:visited {
     background-color: white;
@@ -44,7 +41,7 @@ h5, a, p {
     color: white;
 }
 
-.tabLinks:link, .tabLinks:visited {
+.tabLink:link, .tabLink:visited {
     background-color: white;
     color: grey;
     padding: 10px 20px;
@@ -52,10 +49,11 @@ h5, a, p {
     display: inline-block;
 }
 
-.tabLinks:hover, .tabs .active {
+.tabLink:hover, .tabs .active {
   background-color: rgb(243, 243, 243);
     color: black;
 }
+
 
 .ulLink {
     width: 20px;
@@ -63,6 +61,7 @@ h5, a, p {
     height: 20px;
     margin-right: 10px;
 }
+
 
 .lineUp {
     white-space:nowrap;
@@ -75,6 +74,104 @@ h5, a, p {
 
 .tabContent {
     background-color: rgb(243, 243, 243);
-    border-radius: 5px;
+    border-radius: 3px;
+    white-space: normal;
 }
 
+.tabContent .tabCard {
+    display:inline-block;
+}
+
+.tabCard {
+    vertical-align: middle;
+    background-color: white;
+    border-radius: 3px;
+    padding: 20px;
+    margin: 20px;
+}
+
+.tabCard p {
+    white-space: pre-line;
+}
+
+.carContentImages {
+    white-space: pre-line;
+    text-align: center;
+}
+
+.cardHeader {
+    overflow: auto;
+}
+
+.tabPublic {
+    width: 40px;
+    height: 40px;
+}
+
+.likeContainer {
+    float: left;
+}
+
+.publicLink {
+    float: left;
+}
+
+.favouriteLink {
+    float: right;
+}
+
+.cardContentImage {
+    text-align: center;
+    width: 100%;
+    height: 40%;
+}
+
+.cardText {
+    color: rgb(190, 190, 190);
+}
+
+.postTime {
+    color: rgb(190, 190, 190);
+    float: right;
+}
+
+@media screen and (min-width : 1350px)
+{
+    .tabContent {
+        width: 985px;
+    }
+    
+    .socialLink {
+        width: 300px;
+    }
+    
+    .tabCard {
+        width: 450px;
+    }
+}
+
+@media screen and (max-width : 1350px)
+{
+    .feedSettings li {
+        display: inline;
+    }
+    
+    .feedSettings, .availableSocials {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .socialLink {
+        width: 200px;
+    }
+    
+    .tabCard {
+        width: 40%;
+    }
+    
+    .tabContent{
+        text-align: center;
+    }
+    
+    
+}
