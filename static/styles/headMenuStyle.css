@@ -5,6 +5,8 @@
 
 body {
     min-width: 900px;
+    padding-left: 2%;
+    padding-right: 2%;
 }
 
 .headMenu div {
@@ -23,6 +25,7 @@ body {
     height: 50px;
     margin-right: 10px;
     border-radius: 100px;
+    vertical-align:middle
 }
 
 .headLinks {

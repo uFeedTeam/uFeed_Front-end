@@ -1,0 +1,177 @@
+.userInfoPhoto {
+    width: 80px;
+    height: 80px;
+    border-radius: 100px;
+    vertical-align:middle
+}
+
+@font-face {
+    font-family: 'PT Sans';
+    src: url('../font/pt-sans.ttf');
+}
+
+h5, a, p {
+    font-family: 'PT Sans';
+}
+
+.feedContent {
+    margin-top: 4%;
+}
+
+.availableSocials {
+    width: 20%;
+}
+
+.ulImage {
+    width: 25px;
+    height: 20px;
+}
+
+
+.socialLink:link, .socialLink:visited {
+    background-color: white;
+    color: grey;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.socialLink:hover, .availableSocials .active {
+  background-color: rgb(21, 63, 120);
+    color: white;
+}
+
+.tabLink:link, .tabLink:visited {
+    background-color: white;
+    color: grey;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.tabLink:hover, .tabs .active {
+  background-color: rgb(243, 243, 243);
+    color: black;
+}
+
+
+.ulLink {
+    width: 20px;
+    vertical-align:middle;
+    height: 20px;
+    margin-right: 10px;
+}
+
+
+.lineUp {
+    white-space:nowrap;
+}
+
+.lineUp {
+    vertical-align: top;
+    display:inline-block;
+}
+
+.tabContent {
+    background-color: rgb(243, 243, 243);
+    border-radius: 3px;
+    white-space: normal;
+}
+
+.tabContent .tabCard {
+    display:inline-block;
+}
+
+.tabCard {
+    vertical-align: middle;
+    background-color: white;
+    border-radius: 3px;
+    padding: 20px;
+    margin: 20px;
+}
+
+.tabCard p {
+    white-space: pre-line;
+}
+
+.carContentImages {
+    white-space: pre-line;
+    text-align: center;
+}
+
+.cardHeader {
+    overflow: auto;
+}
+
+.tabPublic {
+    width: 40px;
+    height: 40px;
+}
+
+.likeContainer {
+    float: left;
+}
+
+.publicLink {
+    float: left;
+}
+
+.favouriteLink {
+    float: right;
+}
+
+.cardContentImage {
+    text-align: center;
+    width: 100%;
+    height: 40%;
+}
+
+.cardText {
+    color: rgb(190, 190, 190);
+}
+
+.postTime {
+    color: rgb(190, 190, 190);
+    float: right;
+}
+
+@media screen and (min-width : 1350px)
+{
+    .tabContent {
+        width: 985px;
+    }
+    
+    .socialLink {
+        width: 300px;
+    }
+    
+    .tabCard {
+        width: 450px;
+    }
+}
+
+@media screen and (max-width : 1350px)
+{
+    .feedSettings li {
+        display: inline;
+    }
+    
+    .feedSettings, .availableSocials {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .socialLink {
+        width: 200px;
+    }
+    
+    .tabCard {
+        width: 40%;
+    }
+    
+    .tabContent{
+        text-align: center;
+    }
+    
+    
+}
