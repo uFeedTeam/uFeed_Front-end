@@ -14,6 +14,7 @@ export class FeedListComponent {
     constructor(private feedService: FeedService, private authService: AuthService) {
         feedService.getFeed("3", "1", "5")
             .subscribe(posts => {
+                console.log(posts);
                 this.posts = posts;
             });
 
