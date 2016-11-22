@@ -8,6 +8,7 @@ import {AuthModule} from "./auth/auth.module";
 import {UserModule} from "./user/user-specific.module";
 import {AuthService} from "./auth/auth.service";
 import {CommonModule} from "@angular/common";
+import {FeedModule} from "./feed/feed.module";
 
 @NgModule({
     imports: [
@@ -16,6 +17,7 @@ import {CommonModule} from "@angular/common";
         ReactiveFormsModule,
         BrowserModule,
         FormsModule,
+        FeedModule,
         AuthModule,
         AppRoutingModule],
 

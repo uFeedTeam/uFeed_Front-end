@@ -27,7 +27,6 @@
             // other libraries
             'rxjs': 'npm:rxjs',
             'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
-            'ng2-facebook-sdk': "npm:ng2-facebook-sdk",
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
@@ -39,10 +38,7 @@
                 main: 'bundles/Rx.js',
                 defaultExtension: 'js'
             },
-            'ng2-facebook-sdk': {
-                main: 'dist/ng2-facebook-sdk.js',
-                defaultExtension: 'js'
-            }
+
         }
 
 

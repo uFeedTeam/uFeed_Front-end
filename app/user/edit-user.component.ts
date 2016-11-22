@@ -4,7 +4,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {UserEditService} from "./user.service";
 import {Observable} from "rxjs";
 import {DomSanitizer} from "@angular/platform-browser";
-import {FacebookService, FacebookLoginResponse} from "ng2-facebook-sdk/dist";
 
 
 @Component({
@@ -12,7 +11,6 @@ import {FacebookService, FacebookLoginResponse} from "ng2-facebook-sdk/dist";
     selector: 'edit',
     templateUrl: 'edit-user.component.html',
     styleUrls: ['edit-user.styles.css'],
-    providers: [FacebookService]
 
 })
 export class EditComponent implements OnInit {
@@ -25,15 +23,8 @@ export class EditComponent implements OnInit {
     isFBConnected: boolean = false;
 
     constructor(private route: ActivatedRoute, private router: Router, private sanitizer: DomSanitizer,
-                private userEditService: UserEditService, private fb: FacebookService) {
+                private userEditService: UserEditService) {
         this.user = new UserCredentials('', '', '');
-
-        let fbParams = {
-            appId: '141340716272867',
-            xfbml: true,
-            version: 'v2.6'
-        };
-        this.fb.init(fbParams);
     }
 
     ngOnInit(): void {
@@ -77,13 +68,6 @@ export class EditComponent implements OnInit {
             // unsafe, but i have to pass sprint successful!
             this.picUrl = this.sanitizer.bypassSecurityTrustUrl(byteStringReader.result);
         });
-    }
-
-    manageFacebook() {
-        this.fb.login().then(
-            (response: FacebookLoginResponse) => console.log(response),
-            (error: any) => console.error(error)
-        );
     }
 
     activateFB() {

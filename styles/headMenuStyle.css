@@ -1,33 +1,33 @@
 .headMenu {
     margin-top: 1%;
-    white-space: nowrap;
+    white-space:nowrap;
 }
 
 body {
     min-width: 900px;
+    padding-left: 2%;
+    padding-right: 2%;
 }
 
 .headMenu div {
     vertical-align: middle;
-    display: inline-block;
+    display:inline-block;
 }
 
+
 .logoImage {
-    width: 160px;
-    height: 60px;
-}
+        width: 160px;
+        height: 60px;
+    }
 
 .miniPhoto {
     width: 50px;
     height: 50px;
     margin-right: 10px;
     border-radius: 100px;
+    vertical-align:middle
 }
 
-.headLinks {
-    position: fixed;
-    float: right;
-}
 
 .arrowImage {
     width: 20px;

@@ -8,9 +8,9 @@
 @font-face {
     font-family: 'PT Sans';
     src: url('../font/pt-sans.ttf');
-}
+} 
 
-h4 {
+ h4 {
     font-family: 'PT Sans';
     color: white;
 }
@@ -22,6 +22,7 @@ h5 {
 .locationText {
     margin-left: 5%;
 }
+
 
 .profilePhoto {
     text-align: center;
@@ -42,19 +43,20 @@ h5 {
 }
 
 @media screen and (min-width: 1200px) {
-
+   
     .socials {
         margin-left: 41%;
     }
-
+    
 }
 
-@media screen and (max-width: 1200px) {
 
+@media screen and (max-width: 1200px) {
+   
     .socials {
         text-align: center;
     }
-
+    
 }
 
 .socials {

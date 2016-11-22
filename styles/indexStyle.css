@@ -34,30 +34,30 @@ body {
     color: white;
 }
 
-@media screen and (min-width: 1150px) {
+@media screen and (min-width: 1150px){
     .mainDescription p {
         font-size: 34px;
-    }
-
+    }   
+    
     .mainImage {
         width: 450px;
         height: 350px;
     }
-
+    
     .features {
         margin-left: 10%;
     }
 }
 
-@media screen and (max-width: 1150px) {
+@media screen and (max-width: 1150px){
     .mainDescription p {
         font-size: 24px;
-    }
-
+    }   
+    
     .features {
         margin-left: 5%;
     }
-
+    
     .mainImage {
         width: 350px;
         height: 250px;
@@ -66,13 +66,14 @@ body {
 
 .contentBody {
     margin-top: 150px;
-    white-space: nowrap;
+    white-space:nowrap;
 }
 
 .contentBody div {
     vertical-align: middle;
-    display: inline-block;
+    display:inline-block;
 }
+
 
 .features {
     width: 50%;
