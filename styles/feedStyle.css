@@ -83,7 +83,7 @@ h5, a, p {
 }
 
 .tabCard {
-    vertical-align: middle;
+    vertical-align: top;
     background-color: white;
     border-radius: 3px;
     padding: 20px;
