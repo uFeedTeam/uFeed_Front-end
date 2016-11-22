@@ -2,21 +2,22 @@
     <div class="headLogo">
         <a routerLink="/"><img src="content/images/logo.png" class="logoImage"></a>
     </div>
-    <div [ngSwitch]="isAuthorized">
-        <div *ngSwitchCase="false" class="headLinks">
-            <a routerLink="/login"><img src="content/images/login.png" class="headlink"></a>
-            <a routerLink="/register"><img src="content/images/signUp.png" class="headlink"></a>
-        </div>
-        <div *ngSwitchCase="true" class="headLinks input-field">
-            <a class="dropdown-button" href="#" data-activates="drop1"><img src="content/images/person.png"
-                                                                            class="miniPhoto"><img
-                    src="content/images/arrow.png" class="arrowImage"></a>
+    <div *ngIf="!isAuthorized" class="headLinks">
+        <a routerLink="/login"><img src="content/images/login.png" class="headlink"></a>
+        <a routerLink="/register"><img src="content/images/signUp.png" class="headlink"></a>
+    </div>
+    <div *ngIf="isAuthorized" (click)="toggleDropdown()"
+         style="position: relative; right: -100px;" class="headLinks input-field">
+        <a class="dropdown-button" data-activates="drop1"><img src="content/images/person.png"
+                                                                        class="miniPhoto"><img
+                src="content/images/arrow.png" class="arrowImage"></a>
 
-            <ul id='drop1' class='dropdown-content'>
-                <li><a href="#!">Settings</a></li>
-                <li><a href="#!">Help</a></li>
-                <li><a href="#!">Log out</a></li>
-            </ul>
-        </div>
+        <ul *ngIf="dropdownShown" id="drop1" class="dropdown-content active" style="width: 80px; position: absolute; top: 15px; left: 0px; opacity: 1; display: block;">
+            <li><a routerLink="/edit">Settings</a></li>
+            <li><a routerLink="/feed">Feed</a></li>
+            <li><a (click)="logout()">Log out</a></li>
+        </ul>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
     </div>
 </div>

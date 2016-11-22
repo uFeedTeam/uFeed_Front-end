@@ -26,6 +26,10 @@ export class AuthService {
 
     public user: UserCredentials;
 
+    logout() {
+        this.isLoggedIn = false;
+    }
+
     login(user: UserCredentials): Observable<UserCredentials> {
         let body = `grant_type=password&username=${user.Email}&password=${user.Password}`;
 

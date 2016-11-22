@@ -1,16 +1,31 @@
 import {Component, OnInit} from "@angular/core";
 import {AuthService} from "./auth/auth.service";
+import {Router} from "@angular/router";
 @Component({
     moduleId: module.id,
     selector: 'head-component',
     templateUrl: 'head-component.html'
 })
 export class HeadComponent implements OnInit {
-    ngOnInit(): void {
-        console.log('init');
+
+    dropdownShown: boolean = false;
+
+    toggleDropdown() {
+        this.dropdownShown = !this.dropdownShown;
     }
 
-    constructor(private authService: AuthService) {
+    ngOnInit(): void {
+        setInterval(() => {
+            this.isAuthorized = this.authService.isLogined;
+        }, 100);
+    }
+
+    logout() {
+        this.authService.logout();
+        this.router.navigate(["/"]);
+    }
+
+    constructor(private authService: AuthService, private router: Router) {
     }
 
     isAuthorized: boolean = false;
