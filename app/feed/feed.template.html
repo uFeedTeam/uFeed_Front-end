@@ -1,8 +1,7 @@
 <div class="feedContent">
     <div class="feedSettings lineUp">
         <div class="userInfo">
-            <h5><img src="content/images/person.png" class="userInfoPhoto">
-                {{user.Name}}</h5>
+            <h5> {{user.Name}}</h5>
         </div>
         <div class="availableSocials">
             <ul>
@@ -13,7 +12,8 @@
                     <a href="#" class="socialLink"><img src="content/images/fb.png" class="ulLink">Facebook</a>
                 </li>
                 <li>
-                    <a href="#" class="socialLink"><img src="content/images/add_category.png" class="ulLink">Add category</a>
+                    <a href="#" class="socialLink"><img src="content/images/add_category.png" class="ulLink">Add
+                        category</a>
                 </li>
                 <li>
                     <a href="#" class="socialLink"><img src="content/images/favourite.png" class="ulLink">Favourite</a>
@@ -23,8 +23,9 @@
     </div>
     <div class="feedTape lineUp">
         <div class="tabs">
-            <a *ngFor="let category of user.Categories" class="tabLink">Custom  category</a>
-            <a routerLink="./createCategory" class="tabLink"><img src="content/images/add_category.png" class="ulLink">Add category</a>
+            <a *ngFor="let category of user.Categories" class="tabLink">Custom category</a>
+            <a routerLink="./createCategory" class="tabLink"><img src="content/images/add_category.png" class="ulLink">Add
+                category</a>
         </div>
         <div class="tabContent">
             <feed-list></feed-list>
@@ -32,13 +33,13 @@
     </div>
 </div>
 <script type="text/javascript">
-    $(function() {
-        $(".availableSocials a").click(function() {
+    $(function () {
+        $(".availableSocials a").click(function () {
             $(".availableSocials a").removeClass("active");
             $(this).addClass("active");
         });
 
-        $(".tabs a").click(function() {
+        $(".tabs a").click(function () {
             $(".tabs a").removeClass("active");
             $(this).addClass("active");
         });

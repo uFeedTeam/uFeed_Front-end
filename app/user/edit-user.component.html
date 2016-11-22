@@ -4,8 +4,8 @@
 <div class="content">
     <div class="mainInfo">
         <div class="profilePhoto">
-            <img *ngIf="!picUrl" src="content/images/person.png" class="mainPhoto">
-            <img *ngIf="picUrl" #img [src]="picUrl" class="mainPhoto">
+            <img width="100" height="100" style="border-radius: 100px;" *ngIf="!picUrl" src="content/images/person.png" class="mainPhoto">
+            <img width="100" height="100" style="border-radius: 100px;" *ngIf="picUrl" #img [src]="picUrl" class="mainPhoto">
 
             <br>
             <div class="uploadLink">
@@ -14,14 +14,19 @@
 
             </div>
         </div>
-        <form>
+        <form style="
+    text-align: right;
+    position: relative;
+    top: -183px;
+    left: -325px;
+">
             <div class="data">
                 <div class="inputLabel">
                     <h5>Name</h5>
                 </div>
                 <div class="input-field">
-                    <small style="display: block" *ngIf="name.errors">Name must consist from 1 to 25 characters</small>
-                    <input placeholder="Name" pattern="\w{1,25}"
+                    <small style="display: block" *ngIf="name.errors">Name must consist from 1 to 35 characters</small>
+                    <input placeholder="Name" pattern="[\w\s]{1,35}"
                            [(ngModel)]="user.Name" #name="ngModel"
                            [class.red]="name.errors" [class.lighten-5]="name.errors"
                            name="name" type="text"></div>
@@ -59,7 +64,7 @@
                         network</a></p>
                 <input type="text" [(ngModel)]="FBToken" placeholder="token"> <input type="button" (click)="activateFB()" value="Authorize">
                 <p><input type="checkbox" id="Vk"/>
-                    <label for="Vk"><img src="content/images/vk_logo.png" class="ulImage">Vkontakte</label> <a href="#"
+                    <label for="Vk"><img src="content/images/vk_logo.png" class="ulImage">Vkontakte</label> <a
                                                                                                                class="ulLink">Manage
                         network</a></p>
 

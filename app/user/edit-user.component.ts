@@ -36,9 +36,16 @@ export class EditComponent implements OnInit {
                 if (this.user.Photo) {
                     this.picUrl = this.sanitizer.bypassSecurityTrustUrl(this.user.Photo);
                 }
-
-
             }));
+
+        setInterval(() => {
+            if (this.authService.isLogined) {
+                var photo = this.authService.user.Photo;
+                if (photo != null) {
+                    this.picUrl = this.sanitizer.bypassSecurityTrustUrl(photo);
+                }
+            }
+        }, 100);
     }
 
     user: UserCredentials;
