@@ -9,31 +9,34 @@ export class FeedService {
 
     constructor(private http: Http, private authService: AuthService) {
 
+    }
+
+    getFeed(categoryId, page, postsCount) {
         let headers = new Headers();
         headers.append("Content-type", "application/json");
         headers.append("Authorization", this.authService.AuthHeader.get("Authorization"));
-    }
 
-
-
-
-    getFeed() {
-        return this.http.get(this.FEED_URL)
+        return this.http.post(`http://ufeed.azurewebsites.net/api/social/feed/${categoryId}/${page}/${postsCount}`,
+            {
+                "FacebookLogin": {
+                    AccessToken: 'EAACAjHMvjOMBAOVud4J15lSmjQUaEhJbHVQCMjNd7tbK6RrJpWTmcBla00ZCJArZBrjyGuinwyMojwV3eOZC7qpxtFo3IpZAWH2nxZC0zVBbHjZCNuNae5LyEaVyzlaw1qgZAUQXd7OixH7aNbiasjUSeRzBjsb6dYZD'
+                }
+            }, {headers: headers})
             .map(resp => resp.json());
     }
 
     getAuthors(token: string) {
 
-        let headers = new Headers();
-        headers.append("Content-type", "application/json");
-        headers.append("Authorization", this.authService.AuthHeader.get("Authorization"));
+        let heads = new Headers();
+        heads.append("Content-type", "application/json");
+        heads.append("Authorization", this.authService.AuthHeader.get("Authorization"));
 
         return this.http.post(this.FEED_GET_AUTHORS, {
             FacebookLogin: {
                 // todo unhardcode
-                AccessToken: 'EAACAjHMvjOMBAActU7q8235gEU77mZBcVknrHkOpRJKOnXpa7q49xn7lT3hkGnVwMptnnxTh1tgUobPZBjkNxdM16aLRkJqOhx3bAYdg6vk4U691zSpfjnuCETOd5ZBQtRRzUQFZBPUZCZCrs6HrKe0JwBndPy0EcZD'
+                AccessToken: 'EAACAjHMvjOMBAOVud4J15lSmjQUaEhJbHVQCMjNd7tbK6RrJpWTmcBla00ZCJArZBrjyGuinwyMojwV3eOZC7qpxtFo3IpZAWH2nxZC0zVBbHjZCNuNae5LyEaVyzlaw1qgZAUQXd7OixH7aNbiasjUSeRzBjsb6dYZD'
             }
-        }, {headers: headers})
+        }, {headers: heads})
             .map(resp => resp.json());
     }
 }
