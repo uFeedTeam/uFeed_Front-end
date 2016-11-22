@@ -13,7 +13,7 @@ import {AuthGuard} from "../auth/auth-guard.service";
         RouterModule.forChild([
             {
                 path: 'feed',
-                component: FeedComponent, resolve: {user: UserAuthResolveGuard} , canActivate: [AuthGuard]
+                component: FeedComponent, resolve: {user: UserAuthResolveGuard} , canActivate: [AuthGuard],
             }
         ])
     ],

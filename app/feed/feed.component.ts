@@ -12,7 +12,6 @@ export class FeedComponent implements OnInit {
         this.route.data
             .subscribe(( (data: { user: UserCredentials })=> {
                 this.user = data.user;
-                alert(JSON.stringify(this.user));
             }));
     }
 

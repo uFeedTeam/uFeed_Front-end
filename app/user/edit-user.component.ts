@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {UserEditService} from "./user.service";
 import {Observable} from "rxjs";
 import {DomSanitizer} from "@angular/platform-browser";
-
+import {AuthService} from "../auth/auth.service";
 
 @Component({
     moduleId: module.id,
@@ -23,7 +23,7 @@ export class EditComponent implements OnInit {
     isFBConnected: boolean = false;
 
     constructor(private route: ActivatedRoute, private router: Router, private sanitizer: DomSanitizer,
-                private userEditService: UserEditService) {
+                private userEditService: UserEditService, private authService: AuthService) {
         this.user = new UserCredentials('', '', '');
     }
 
@@ -33,6 +33,11 @@ export class EditComponent implements OnInit {
                 this.user = data.user;
                 this.oldPassword = this.user.Password;
                 this.isFBConnected = this.user.Logins.indexOf(1) !== -1;
+                if (this.user.Photo) {
+                    this.picUrl = this.sanitizer.bypassSecurityTrustUrl(this.user.Photo);
+                }
+
+
             }));
     }
 
@@ -67,6 +72,7 @@ export class EditComponent implements OnInit {
         byteStringReader.addEventListener("load", (e: UIEvent)=> {
             // unsafe, but i have to pass sprint successful!
             this.picUrl = this.sanitizer.bypassSecurityTrustUrl(byteStringReader.result);
+            this.authService.user.Photo = byteStringReader.result;
         });
     }
 

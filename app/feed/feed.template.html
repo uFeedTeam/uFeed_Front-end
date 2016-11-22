@@ -2,7 +2,7 @@
     <div class="feedSettings lineUp">
         <div class="userInfo">
             <h5><img src="content/images/person.png" class="userInfoPhoto">
-                User Login</h5>
+                {{user.Name}}</h5>
         </div>
         <div class="availableSocials">
             <ul>
@@ -23,10 +23,8 @@
     </div>
     <div class="feedTape lineUp">
         <div class="tabs">
-            <a href="#" class="tabLink">test</a>
-            <a href="#" class="tabLink">test</a>
-            <a href="#" class="tabLink">test</a>
-            <a href="#" class="tabLink"><img src="content/images/add_category.png" class="ulLink">Add category</a>
+            <a *ngFor="let category of user.Categories" class="tabLink">{{category}}</a>
+            <a routerLink="./createCategory" class="tabLink"><img src="content/images/add_category.png" class="ulLink">Add category</a>
         </div>
         <div class="tabContent">
             <div class="tabCard">

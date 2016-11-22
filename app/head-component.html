@@ -8,11 +8,16 @@
     </div>
     <div *ngIf="isAuthorized" (click)="toggleDropdown()"
          style="position: relative; right: -100px;" class="headLinks input-field">
-        <a class="dropdown-button" data-activates="drop1"><img src="content/images/person.png"
-                                                                        class="miniPhoto"><img
-                src="content/images/arrow.png" class="arrowImage"></a>
+        <a class="dropdown-button" data-activates="drop1">
+            <img *ngIf="!picUrl" src="content/images/person.png"
+                 class="miniPhoto">
+            <img *ngIf="picUrl" [src]="picUrl"
+                 class="miniPhoto">
+            <img src="content/images/arrow.png" class="arrowImage">
+        </a>
 
-        <ul *ngIf="dropdownShown" id="drop1" class="dropdown-content active" style="width: 80px; position: absolute; top: 15px; left: 0px; opacity: 1; display: block;">
+        <ul *ngIf="dropdownShown" id="drop1" class="dropdown-content active"
+            style="width: 80px; position: absolute; top: 15px; left: 0px; opacity: 1; display: block;">
             <li><a routerLink="/edit">Settings</a></li>
             <li><a routerLink="/feed">Feed</a></li>
             <li><a (blur)="logout()" (click)="logout()">Log out</a></li>
