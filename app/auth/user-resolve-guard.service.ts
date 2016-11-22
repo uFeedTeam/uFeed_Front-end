@@ -16,6 +16,8 @@ export class UserAuthResolveGuard implements Resolve<UserCredentials> {
             return false;
         }
 
+        console.log("resilve guard: " + JSON.stringify(fullUserInfo));
+
         return fullUserInfo;
     }
 

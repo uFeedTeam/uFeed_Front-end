@@ -7,8 +7,8 @@ import {UserCredentials} from "../user/UserCredentials";
 @Injectable()
 export class AuthService {
 
-    private LOGIN_URL = "http://localhost:3995/token";
-    private REGISTER_URL: string = "http://localhost:3995/api/account/register";
+    private LOGIN_URL = "http://ufeed.azurewebsites.net/token";
+    private REGISTER_URL: string = "http://ufeed.azurewebsites.net/api/account/register";
 
     private isLoggedIn: boolean = false;
     private authHeader: Headers = new Headers();

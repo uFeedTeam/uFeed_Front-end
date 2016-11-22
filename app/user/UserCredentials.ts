@@ -4,6 +4,7 @@ export class UserCredentials {
                 public Password: string,
                 public Id?: number,
                 public Categories?: number[],
+                public Logins?: number[],
                 public Photo?: string) {
         if (Id == null) {
             Id = 0;
@@ -11,6 +12,9 @@ export class UserCredentials {
 
         if (Categories == null) {
             Categories = []
+        }
+        if (Logins == null) {
+            Logins = []
         }
 
         if (Photo == null) {

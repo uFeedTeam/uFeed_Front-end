@@ -8,13 +8,21 @@ import {UserCredentials} from "./UserCredentials";
 @Injectable()
 export class UserEditService {
 
-    private GET_FULL_INFO_URL: string = "http://localhost:3995/api/user/get";
-    private DELETE_URL: string = "http://localhost:3995/api/account/delete";
-    private UPDATE_USR_LOGIN_URL: string = "http://localhost:3995/api/user/newname";
-    private CHANGE_PASS_URL = "http://localhost:3995/api/Account/ChangePassword";
-    private SEND_PIC = "http://localhost:3995/api/user/newphoto";
+    private GET_FULL_INFO_URL: string = "http://ufeed.azurewebsites.net/api/user/get";
+    private DELETE_URL: string = "http://ufeed.azurewebsites.net/api/account/delete";
+    private UPDATE_USR_LOGIN_URL: string = "http://ufeed.azurewebsites.net/api/user/newname";
+    private CHANGE_PASS_URL = "http://ufeed.azurewebsites.net/api/Account/ChangePassword";
+    private SEND_PIC = "http://ufeed.azurewebsites.net/api/user/newphoto";
+    private ADD_SOC = "http://ufeed.azurewebsites.net/api/user/addLogin";
 
     constructor(private http: Http, private router: Router, private authService: AuthService) {
+    }
+
+    activateSocials(socialNum: number): Observable<boolean> {
+        let headers = this.authService.AuthHeader;
+        headers.append('Content-type', 'application/json');
+        return this.http.post(this.ADD_SOC, socialNum, {headers: headers})
+            .map(resp => true);
     }
 
     getFullUserInfo(): Observable<UserCredentials> {
@@ -25,7 +33,7 @@ export class UserEditService {
             .map((resp: Response) => {
                 var json = resp.json();
                 let usr: UserCredentials = new UserCredentials(json.Name, json.Email, this.authService.user.Password,
-                    json.Id, json.Categories, json.Photo);
+                    json.Id, json.Categories, json.Logins, json.Photo);
                 return usr;
             });
     }

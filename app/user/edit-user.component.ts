@@ -4,12 +4,15 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {UserEditService} from "./user.service";
 import {Observable} from "rxjs";
 import {DomSanitizer} from "@angular/platform-browser";
+import {FacebookService, FacebookLoginResponse} from "ng2-facebook-sdk/dist";
+
 
 @Component({
     moduleId: module.id,
     selector: 'edit',
     templateUrl: 'edit-user.component.html',
-    styleUrls: ['edit-user.styles.css']
+    styleUrls: ['edit-user.styles.css'],
+    providers: [FacebookService]
 
 })
 export class EditComponent implements OnInit {
@@ -19,10 +22,18 @@ export class EditComponent implements OnInit {
     private oldPassword;
     updateProps: string[] = [];
     photo: Int8Array;
+    isFBConnected: boolean = false;
 
     constructor(private route: ActivatedRoute, private router: Router, private sanitizer: DomSanitizer,
-                private userEditService: UserEditService) {
+                private userEditService: UserEditService, private fb: FacebookService) {
         this.user = new UserCredentials('', '', '');
+
+        let fbParams = {
+            appId: '141340716272867',
+            xfbml: true,
+            version: 'v2.6'
+        };
+        this.fb.init(fbParams);
     }
 
     ngOnInit(): void {
@@ -30,6 +41,7 @@ export class EditComponent implements OnInit {
             .subscribe(( (data: { user: UserCredentials })=> {
                 this.user = data.user;
                 this.oldPassword = this.user.Password;
+                this.isFBConnected = this.user.Logins.indexOf(1) !== -1;
             }));
     }
 
@@ -65,6 +77,21 @@ export class EditComponent implements OnInit {
             // unsafe, but i have to pass sprint successful!
             this.picUrl = this.sanitizer.bypassSecurityTrustUrl(byteStringReader.result);
         });
+    }
+
+    manageFacebook() {
+        this.fb.login().then(
+            (response: FacebookLoginResponse) => console.log(response),
+            (error: any) => console.error(error)
+        );
+    }
+
+    activateFB() {
+        this.userEditService.activateSocials(1)
+            .subscribe(good => {
+                alert('Facebook has been added properly');
+                this.isFBConnected = true;
+            }, bar => alert('Facebook has not been added properly'));
     }
 
     updateProfile() {
