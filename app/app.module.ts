@@ -20,7 +20,6 @@ import {FeedModule} from "./feed/feed.module";
         FeedModule,
         AuthModule,
         AppRoutingModule],
-
     declarations: [AppComponent, HeadComponent],
     bootstrap: [AppComponent],
     providers: [AuthService]

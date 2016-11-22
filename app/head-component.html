@@ -15,7 +15,7 @@
         <ul *ngIf="dropdownShown" id="drop1" class="dropdown-content active" style="width: 80px; position: absolute; top: 15px; left: 0px; opacity: 1; display: block;">
             <li><a routerLink="/edit">Settings</a></li>
             <li><a routerLink="/feed">Feed</a></li>
-            <li><a (click)="logout()">Log out</a></li>
+            <li><a (blur)="logout()" (click)="logout()">Log out</a></li>
         </ul>
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
