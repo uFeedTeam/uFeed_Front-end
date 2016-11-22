@@ -5,7 +5,7 @@ import {AuthService} from  "../auth/auth.service";
 @Component({
     moduleId: module.id,
     selector: 'feed-list',
-    stylesUrls: ['feedStyle.css'],
+    styleUrls: ['feedStyle.css'],
     templateUrl: 'post.template.html'
 })
 export class FeedListComponent {

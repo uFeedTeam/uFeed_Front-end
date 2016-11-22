@@ -15,11 +15,11 @@
                            name="name" type="text">
                 </div>
 
-                <div *ngIf="emailInput.errors">
-                    <small>Email's not valid. What about example@email.com?</small>
+                <div *ngIf="emailInput.errors || emailInput.maxLength">
+                    <small>Email's not valid. Must be < 35 chars. What about example@email.com?</small>
                 </div>
                 <div class="materialInput">
-                    <input placeholder="Email" pattern="\w+@\w+(\.\w+)*"
+                    <input placeholder="Email" pattern="\w+@\w+(\.\w+)*" maxlength="35"
                            [(ngModel)]="user.Email" #emailInput="ngModel"
                            [class.red]="emailInput.errors" [class.lighten-5]="emailInput.errors"
                            name="email" type="text">
@@ -47,7 +47,7 @@
                        (click)="register()"
                        [disabled]="!formTemplate.valid || !(passInput.value===confirmInput.value) || formTemplate.pristine"
                        [class.disabled]="!formTemplate.valid || !(passInput.value===confirmInput.value)
-                        || formTemplate.pristine"
+                        || formTemplate.pristine || emailInput.maxLength"
                        class="submitButton">
             </form>
         </div>
