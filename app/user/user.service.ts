@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Http, Response} from "@angular/http";
+import {Http, Response, Headers} from "@angular/http";
 import {AuthService} from "../auth/auth.service";
 import {Router} from "@angular/router";
 import {Observable} from "rxjs";
@@ -40,8 +40,11 @@ export class UserEditService {
 
     sendPic(bytes: Int8Array): Observable<string> {
         let nums = [];
+        let headers: Headers;
+        headers = this.authService.AuthHeader;
+        headers.append("Content-type", "application/x-www-form-urlencoded");
         bytes.forEach(b => nums.push(b));
-        return this.http.put(this.SEND_PIC, nums, {headers: this.authService.AuthHeader})
+        return this.http.put(this.SEND_PIC, JSON.stringify(nums), {headers: headers})
             .map(resp => 'picture');
     }
 

@@ -26,6 +26,8 @@
 
 
                 <input type="image" src="content/images/logInL.png"
+                       [disabled]="!formTemplate.valid || formTemplate.pristine"
+                       [class.disabled]="!formTemplate.valid || formTemplate.pristine"
                        class="submitButton">
             </form>
         </div>

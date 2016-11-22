@@ -82,11 +82,7 @@ export class EditComponent implements OnInit {
         this.updateProps = [];
         let isPassChanged: boolean = this.user.Password !== this.oldPassword;
         let obs: Observable<string> = null;
-        if (isPassChanged) {
-            obs = this.userEditService.editUser(this.user, this.oldPassword);
-        } else {
-            obs = this.userEditService.editUser(this.user);
-        }
+        obs = this.userEditService.editUser(this.user, this.oldPassword);
 
         obs.subscribe((updPropName: string)=> {
             this.updateProps.push(updPropName)
