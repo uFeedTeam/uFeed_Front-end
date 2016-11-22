@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {Http, Response, Headers} from "@angular/http";
 import {AuthService} from "../auth/auth.service";
 import {Router} from "@angular/router";
-import {Observable} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {UserCredentials} from "./UserCredentials";
 
 @Injectable()
@@ -19,7 +19,8 @@ export class UserEditService {
     }
 
     activateSocials(socialNum: number): Observable<boolean> {
-        let headers = this.authService.AuthHeader;
+        let headers = new Headers();
+        headers.append("Authorization", this.authService.AuthHeader.get("Authorization"));
         headers.append('Content-type', 'application/json');
         return this.http.post(this.ADD_SOC, socialNum, {headers: headers})
             .map(resp => true);
@@ -41,8 +42,9 @@ export class UserEditService {
     sendPic(bytes: Int8Array): Observable<string> {
         let nums = [];
         let headers: Headers;
-        headers = this.authService.AuthHeader;
+        headers = new Headers();
         headers.append("Content-type", "application/x-www-form-urlencoded");
+        headers.append("Authorization", this.authService.AuthHeader.get("Authorization"));
         bytes.forEach(b => nums.push(b));
         return this.http.put(this.SEND_PIC, JSON.stringify(nums), {headers: headers})
             .map(resp => 'picture');
@@ -58,23 +60,24 @@ export class UserEditService {
     }
 
 
-    editUser(user: UserCredentials, oldPass?: string): Observable<string> {
-        let nameUpd: Observable<string> = this.http.put(this.UPDATE_USR_LOGIN_URL, user,
-            {headers: this.authService.AuthHeader})
-            .map(resp => 'user name');
+    editUser(user: UserCredentials, oldPass: string): Observable<string> {
+        let subj = new Subject<string>();
 
-        if (oldPass !== null) {
-            let passUpd: Observable<string> = this.http.post(this.CHANGE_PASS_URL,
-                {OldPassword: oldPass, NewPassword: user.Password, ConfirmPassword: user.Password},
-                {headers: this.authService.AuthHeader})
-                .map(resp => 'password');
+        var headers = new Headers();
+        headers.append("Authorization",this.authService.AuthHeader.get("Authorization"));
+        headers.append("Content-type", "application/json");
 
-            return Observable.merge(nameUpd, passUpd)
-                .catch(resp => resp);
+        this.http.put(this.UPDATE_USR_LOGIN_URL, user,
+            {headers: headers})
+            .subscribe(resp => subj.next('user name'));
 
-        } else {
-            return nameUpd;
-        }
+        this.http.post(this.CHANGE_PASS_URL,
+            {OldPassword: oldPass, NewPassword: user.Password, ConfirmPassword: user.Password},
+            {headers: headers})
+            .subscribe(resp => subj.next('password'));
+
+        return subj.asObservable();
 
     }
+
 }

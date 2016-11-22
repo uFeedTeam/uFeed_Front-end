@@ -21,7 +21,7 @@ export class EditComponent implements OnInit {
     updateProps: string[] = [];
     photo: Int8Array;
     isFBConnected: boolean = false;
-
+    FBToken: string = "";
     constructor(private route: ActivatedRoute, private router: Router, private sanitizer: DomSanitizer,
                 private userEditService: UserEditService, private authService: AuthService) {
         this.user = new UserCredentials('', '', '');
@@ -81,12 +81,12 @@ export class EditComponent implements OnInit {
             .subscribe(good => {
                 alert('Facebook has been added properly');
                 this.isFBConnected = true;
+                this.authService.FBToken = this.FBToken;
             }, bar => alert('Facebook has not been added properly'));
     }
 
     updateProfile() {
         this.updateProps = [];
-        let isPassChanged: boolean = this.user.Password !== this.oldPassword;
         let obs: Observable<string> = null;
         obs = this.userEditService.editUser(this.user, this.oldPassword);
 

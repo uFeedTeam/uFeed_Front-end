@@ -1,0 +1,22 @@
+<div *ngFor="let post of posts" class="tabCard">
+    <div class="cardHeader">
+        <a class="publicLink">
+            <img src="https://pp.vk.me/c626324/v626324776/1a981/5pPExdq3tEQ.jpg" class="miniPhoto">{{post.Author.Name}}</a>
+        <a class="favouriteLink"><img src="content/images/favourite.png" class="ulLink"></a>
+    </div>
+    <div class="cardContent">
+        <p>{{post.Message}}</p>
+        <a *ngIf="post.Attachments.Link" [href]="post.Attachments.Link.URL"></a>
+        <div class="carContentImages">
+            <img *ngIf="post.Attachments.Photo" [src]="post.Attachments.Photo" class="cardContentImage">
+            <img *ngIf="post.Attachments.Link" [src]="post.Attachments.Link.Photo.Url" class="cardContentImage">
+        </div>
+    </div>
+    <div clas="cardActions">
+        <div class="likeContainer">
+            <a href="#" class="cardText"><img src="content/images/like.png" class="ulLink">Like</a>
+            <span class="cardText">{{post.Likes.Count}}</span>
+        </div>
+        <span class="postTime">{{post.CreatedTime | date}}</span>
+    </div>
+</div>

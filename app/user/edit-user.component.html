@@ -57,7 +57,7 @@
                        target="_blank"
                        class="ulLink">Manage
                         network</a></p>
-                <input type="text" placeholder="token"> <input type="button" (click)="activateFB()" value="Authorize">
+                <input type="text" [(ngModel)]="FBToken" placeholder="token"> <input type="button" (click)="activateFB()" value="Authorize">
                 <p><input type="checkbox" id="Vk"/>
                     <label for="Vk"><img src="content/images/vk_logo.png" class="ulImage">Vkontakte</label> <a href="#"
                                                                                                                class="ulLink">Manage

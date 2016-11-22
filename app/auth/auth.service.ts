@@ -13,6 +13,8 @@ export class AuthService {
     private isLoggedIn: boolean = false;
     private authHeader: Headers = new Headers();
 
+    public FBToken: string;
+
     constructor(private http: Http) {
     };
 
