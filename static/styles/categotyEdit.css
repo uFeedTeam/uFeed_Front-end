@@ -1,0 +1,38 @@
+.catGroupList{
+    text-align: center;
+    -webkit-column-width:       400px;
+    -moz-column-width:      400px;
+    -o-column-width:        400px;
+    -ms-column-width:       400px;
+    column-width:           400px;
+    
+    margin: 2%;
+        
+}
+
+.catGroupList li {
+    width: 400px;
+    display: inline-block;
+}
+
+.addCategory {
+    margin: 1%;
+}
+
+.ulImage {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.controlPanel {
+    margin-left: 65%;
+    margin-top: 5%;
+}
+
+.controlLink {
+    width: 110px;
+    margin-right: 30px;
+    height: 40px;
+}
