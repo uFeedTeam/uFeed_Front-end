@@ -11,12 +11,19 @@ export class FacebookComponent implements OnInit {
 
     newCategoryFlag: boolean = false;
     private UID: number;
+    categories: any[];
+    authors: any[];
 
     constructor(private categoryService: CategoryService, private authService: AuthService) {
     }
 
     ngOnInit(): void {
         this.extractCategories();
+        this.extractAuthors();
+        this.extractUID();
+    }
+
+    private extractUID() {
         this.authService.getUserInfo()
             .subscribe((user: UserCredentials) => {
                 console.log('extractCategories -> user');
@@ -33,6 +40,11 @@ export class FacebookComponent implements OnInit {
         this.newCategoryFlag = false;
         this.categoryService.getCategories()
             .subscribe(categories => this.categories = categories);
+    }
+
+    private extractAuthors(): void {
+        this.categoryService.getAuthors()
+            .subscribe((authors: any[]) => this.authors = authors);
     }
 
     createCategory(name: string, event: Event): void {
@@ -58,5 +70,4 @@ export class FacebookComponent implements OnInit {
         this.categories = this.categories
             .filter((categ: any )=> categ.Id !== id);
     }
-    categories: any[];
 }

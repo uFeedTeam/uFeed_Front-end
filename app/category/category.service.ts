@@ -6,8 +6,8 @@ import {UserCredentials} from "../user/UserCredentials";
 @Injectable()
 export class CategoryService {
 
-    private LOAD_CATEGORIES_URL: string = "/app/category/fake-category.json";
     private NEW_CATEGORY_URL = 'http://ufeed.azurewebsites.net/api/category/new';
+    private GET_AUTHORS_URL = 'http://ufeed.azurewebsites.net/api/social/authors';
 
     constructor(private http: Http, private authService: AuthService) {
     }
@@ -16,24 +16,38 @@ export class CategoryService {
         let headers = this.authService.generateAuthenticatedHeaders();
         let body = {
             Name: name,
-            UserId:uID
+            UserId: uID
         };
         return this.http.post(this.NEW_CATEGORY_URL, body, {headers: headers})
             .map((resp: Response) => resp.json);
     }
 
-    getCategories(): Observable<any>  {
+    getCategories(): Observable<any> {
         let headers = new Headers();
         headers.append("Content-type", "application/json");
         headers.append("Authorization", `Bearer ${this.authService.AuthHeader.get("Authorization")}`);
         return this.authService.getUserInfo()
-            .map((user:UserCredentials) => user.Categories);
+            .map((user: UserCredentials) => user.Categories);
     }
 
     private REMOVE_CATEGORY_URL: string;
 
+    // todo only FB so far
+    // todo hardcoded fb token here
+    getAuthors(): Observable<any[]> {
+        let body = {
+            FacebookLogin: {
+                AccessToken: "EAACAjHMvjOMBAOVud4J15lSmjQUaEhJbHVQCMjNd7tbK6RrJpWTmcBla00ZCJArZBrjyGuinwyMojwV3eOZC7qpxtFo3IpZAWH2nxZC0zVBbHjZCNuNae5LyEaVyzlaw1qgZAUQXd7OixH7aNbiasjUSeRzBjsb6dYZD"
+            }
+        };
+
+        let headers = this.authService.generateAuthenticatedHeaders();
+        return this.http.post(this.GET_AUTHORS_URL, body, {headers: headers})
+            .map(resp => resp.json().FacebookAuthors);
+    }
+
     deleteCategory(categoryId: string): Observable<boolean> {
-        var headers = this.authService.generateAuthenticatedHeaders();
+        let headers = this.authService.generateAuthenticatedHeaders();
         this.REMOVE_CATEGORY_URL = `http://ufeed.azurewebsites.net/api/category/${categoryId}/delete`;
         return this.http.get(this.REMOVE_CATEGORY_URL, {headers: headers})
             .map((resp: Response) => true);

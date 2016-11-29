@@ -11,12 +11,12 @@
                     {{category.Name}} <img src="content/images/arrow.png" class="arrowImage"></div>
                 <div #categoryBody class="collapsible-body">
                     <ul class="catGroupList">
-                        <li *ngFor="let author of category.Authors">
-                            <p>
-                                <input type="checkbox" id="{{category.UserId}}_{{author.AuthorId}}"/>
-                                <label for="{{category.UserId}}_{{author.AuthorId}}"><img src="content/images/group.png"
-                                                                                          class="ulImage">
-                                    {{author.AuthorId}}</label>
+                        <li *ngFor="let author of authors">
+                            <p class="left-align">
+                                <input type="checkbox" id="{{category.Id}}_{{author.Id}}"/>
+                                <label style="color: #000;" for="{{category.Id}}_{{author.Id}}">
+                                    <img [src]="author.Photo.Url" class="ulImage">
+                                    {{author.Name}}</label>
                             </p>
                         </li>
                     </ul>
