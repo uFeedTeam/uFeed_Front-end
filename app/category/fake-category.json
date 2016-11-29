@@ -1,0 +1,39 @@
+[
+  {
+    "Id": 3,
+    "Name": "Custom category",
+    "UserId": 4,
+    "Authors": [
+      {
+        "Id": 6,
+        "AuthorId": "375587425929352",
+        "CategoryId": 3,
+        "Source": 1
+      },
+      {
+        "Id": 7,
+        "AuthorId": "326107667542102",
+        "CategoryId": 3,
+        "Source": 1
+      }
+    ]
+  }, {
+  "Id": 4,
+  "Name": "Custom category",
+  "UserId": 4,
+  "Authors": [
+    {
+      "Id": 6,
+      "AuthorId": "375587425929352",
+      "CategoryId": 3,
+      "Source": 1
+    },
+    {
+      "Id": 7,
+      "AuthorId": "326107667542102",
+      "CategoryId": 3,
+      "Source": 1
+    }
+  ]
+}
+]

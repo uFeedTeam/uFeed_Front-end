@@ -34,7 +34,7 @@ export class UserEditService {
             .map((resp: Response) => {
                 var json = resp.json();
                 let usr: UserCredentials = new UserCredentials(json.Name, json.Email, this.authService.user.Password,
-                    json.Id, json.Categories, json.Logins, json.Photo);
+                    json.UserId, json.Categories, json.Logins, json.Photo);
                 return usr;
             });
     }

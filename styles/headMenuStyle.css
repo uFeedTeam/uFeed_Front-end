@@ -30,6 +30,29 @@ body {
 
 
 .arrowImage {
-    width: 20px;
-    height: 10px;
+    width: 15px;
+    height: 8px;
+}
+
+.location {
+    background-color: rgb(23, 129, 224);
+    padding-bottom: 10px;
+    padding-top: 5px;
+    margin-top: 1%;
+}
+
+@font-face {
+    font-family: 'PT Sans';
+    src: url('../font/pt-sans.ttf');
+} 
+
+ h4 {
+    font-family: 'PT Sans';
+    color: white;
+}
+
+
+
+.locationText {
+    margin-left: 5%;
 }

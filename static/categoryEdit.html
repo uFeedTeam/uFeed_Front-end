@@ -7,6 +7,7 @@
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
     </head>
+
     <body>
         <div class="headMenu">
             <div class="headLogo">
@@ -14,7 +15,7 @@
             </div>
             <div class="headLinks input-field">
                 <a class="dropdown-button" href="#" data-activates="drop1"><img src="content/images/person.png" class="miniPhoto"><img src="content/images/arrow.png" class="arrowImage"></a>
-                
+
                 <ul id='drop1' class='dropdown-content'>
                     <li><a href="#!">Settings</a></li>
                     <li><a href="#!">Help</a></li>
@@ -114,10 +115,12 @@
                             </ul>
                         </div>
                     </li>
-                </ul>          
+                </ul>
             </div>
             <div class="addCategory">
-                <a href="#"><img src="content/images/add_category.png" class="ulImage"><span style="padding-left: 5px;">Add category</span></a>
+                <div class="row">
+                    <span class="col s3"> <form action=""><input type="text"> <button class="btn blue darken-2">Create category</button></form></span>
+                </div>
             </div>
                 <div class="controlPanel">
                     <a href="#"><img src="content/images/cancel.png" class="controlLink"></a>
