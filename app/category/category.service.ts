@@ -5,7 +5,9 @@ import {Observable} from "rxjs";
 import {UserCredentials} from "../user/UserCredentials";
 @Injectable()
 export class CategoryService {
+
     private LOAD_CATEGORIES_URL: string = "/app/category/fake-category.json";
+    private NEW_CATEGORY_URL = 'http://ufeed.azurewebsites.net/api/category/new';
 
     constructor(private http: Http, private authService: AuthService) {
     }
@@ -16,7 +18,7 @@ export class CategoryService {
             Name: name,
             UserId:uID
         };
-        return this.http.post('http://ufeed.azurewebsites.net/api/category/new', body, {headers: headers})
+        return this.http.post(this.NEW_CATEGORY_URL, body, {headers: headers})
             .map((resp: Response) => resp.json);
     }
 
@@ -26,5 +28,14 @@ export class CategoryService {
         headers.append("Authorization", `Bearer ${this.authService.AuthHeader.get("Authorization")}`);
         return this.authService.getUserInfo()
             .map((user:UserCredentials) => user.Categories);
+    }
+
+    private REMOVE_CATEGORY_URL: string;
+
+    deleteCategory(categoryId: string): Observable<boolean> {
+        var headers = this.authService.generateAuthenticatedHeaders();
+        this.REMOVE_CATEGORY_URL = `http://ufeed.azurewebsites.net/api/category/${categoryId}/delete`;
+        return this.http.get(this.REMOVE_CATEGORY_URL, {headers: headers})
+            .map((resp: Response) => true);
     }
 }

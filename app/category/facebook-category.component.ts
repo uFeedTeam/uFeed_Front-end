@@ -47,5 +47,16 @@ export class FacebookComponent implements OnInit {
             );
     }
 
+    deleteCategory(id: string):void {
+        this.categoryService.deleteCategory(id)
+            .subscribe(resp => {
+                this.removeCategoryWithId(id);
+            }, bad => alert("Cannot delete a category"));
+    }
+
+    private removeCategoryWithId(id: string) {
+        this.categories = this.categories
+            .filter((categ: any )=> categ.Id !== id);
+    }
     categories: any[];
 }
