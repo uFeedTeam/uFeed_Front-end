@@ -21,8 +21,6 @@ export class FacebookComponent implements OnInit {
         this.extractCategories();
         this.extractAuthors();
         this.extractUID();
-
-
     }
 
     private extractUID() {
@@ -72,20 +70,24 @@ export class FacebookComponent implements OnInit {
     }
 
     addAuthorToCategory(category, author) {
+        console.log('adding author)');
+        console.log(author);
         category.Authors.push(author);
     }
 
     removeAuthorFromCategory(category, author) {
+        console.log('removing author)');
+        console.log(author);
         for (let i = 0; i < category.Authors.length; i++) {
             let authr = category.Authors[i];
-            if (authr.Id === author.Id) {
+            if (authr.AuthorId === author.AuthorId) {
                 category.Authors.splice(category.Authors.indexOf(authr), 1);
             }
         }
     }
 
     toggleAuthor(category, author) {
-        if (this.isAuthorInCategory(category, author)) {
+        if (this.isAuthorInCategoryForSelected(category, author)) {
             this.removeAuthorFromCategory(category, author);
         } else {
             this.addAuthorToCategory(category, author);
