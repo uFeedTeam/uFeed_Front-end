@@ -6,10 +6,10 @@
         <div class="availableSocials">
             <ul>
                 <li>
-                    <a href="#" class="socialLink"><img src="content/images/vk.png" class="ulLink">Vkontakte</a>
+                    <a routerLink="/category/facebook" class="socialLink"><img src="content/images/fb.png" class="ulLink">Facebook</a>
                 </li>
                 <li>
-                    <a href="#" class="socialLink"><img src="content/images/fb.png" class="ulLink">Facebook</a>
+                    <a href="#"  class="socialLink"><img src="content/images/vk.png" class="ulLink">Vkontakte</a>
                 </li>
                 <li>
                     <a href="#" class="socialLink"><img src="content/images/add_category.png" class="ulLink">Add
@@ -23,12 +23,18 @@
     </div>
     <div class="feedTape lineUp">
         <div class="tabs">
-            <a *ngFor="let category of user.Categories" class="tabLink">Custom category</a>
+
+            <a *ngFor="let category of user.Categories"
+               [class.active]="category.Id === selectedCategory.Id  "
+                (click)="changeSelectedCategory(category)"
+               style="padding: 10px 10px;"
+               name="{{category.Name}}" class="tabLink">{{category.Name}}</a>
+
             <a routerLink="./createCategory" class="tabLink"><img src="content/images/add_category.png" class="ulLink">Add
                 category</a>
         </div>
         <div class="tabContent">
-            <feed-list></feed-list>
+            <feed-list [categoryId]="selectedCategory.Id"></feed-list>
         </div>
     </div>
 </div>

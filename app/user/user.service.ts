@@ -34,7 +34,7 @@ export class UserEditService {
             .map((resp: Response) => {
                 var json = resp.json();
                 let usr: UserCredentials = new UserCredentials(json.Name, json.Email, this.authService.user.Password,
-                    json.Id, json.Categories, json.Logins, json.Photo);
+                    json.UserId, json.Categories, json.Logins, json.Photo);
                 return usr;
             });
     }
@@ -54,7 +54,6 @@ export class UserEditService {
         return this.http.post(this.DELETE_URL, {}, {headers: this.authService.AuthHeader})
             .map(resp => true)
             .catch(resp => {
-                console.log(resp);
                 return Observable.throw("Cannot delete account")
             });
     }

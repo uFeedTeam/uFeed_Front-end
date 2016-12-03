@@ -96,7 +96,3 @@ li {
     list-style-type: none;
 }
 
-.disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}

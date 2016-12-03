@@ -16,7 +16,14 @@ export class AuthService {
     public FBToken: string;
 
     constructor(private http: Http) {
-    };
+    }
+
+    public generateAuthenticatedHeaders(): Headers {
+        let headers = new Headers();
+        headers.set('Content-type', 'application/json');
+        headers.set('Authorization', `${this.authHeader.get("Authorization")}`);
+        return headers;
+    }
 
     public get AuthHeader() {
         return this.authHeader;
@@ -67,4 +74,21 @@ export class AuthService {
                 || "Cannot register: internal error"));
     }
 
+    getUserInfo(): Observable<UserCredentials> {
+        var headers = this.generateAuthenticatedHeaders();
+        return this.http.get("http://ufeed.azurewebsites.net/api/user/get",
+            { headers: headers })
+            .map((resp: Response) => {
+                let responseJson: any = resp.json();
+                return new UserCredentials(
+                    responseJson.Name,
+                    responseJson.Email,
+                    null,
+                    responseJson.UserId,
+                    responseJson.Categories,
+                    responseJson.Logins,
+                    responseJson.Photo
+                );
+            });
+    }
 }

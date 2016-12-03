@@ -13,20 +13,18 @@ import {DomSanitizer} from "@angular/platform-browser";
 export class FeedComponent implements OnInit {
 
     picUrl;
-
+    selectedCategory;
     ngOnInit(): void {
         this.route.data
             .subscribe(( (data: { user: UserCredentials })=> {
                 this.user = data.user;
             }));
-        setInterval(() => {
-            if (this.authService.isLogined) {
-                var photo = this.authService.user.Photo;
-                if (photo != null) {
-                    this.picUrl = this.sanitizer.bypassSecurityTrustUrl(photo);
-                }
-            }
-        }, 100);
+        this.selectedCategory = this.user.Categories[0];
+    }
+
+    changeSelectedCategory(category) {
+        this.selectedCategory = category;
+
     }
 
     constructor(private route: ActivatedRoute, private authService: AuthService, private sanitizer: DomSanitizer) {

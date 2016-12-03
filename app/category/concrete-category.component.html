@@ -1,0 +1,51 @@
+<div class="location">
+    <h4 class="locationText">Facebook Settings</h4>
+</div>
+<div class="content">
+    <div class="groupLists">
+        <ul class="collapsible" data-collapsible="accordion">
+            <li *ngFor="let category of categories">
+                <div (click)="categoryBody.style.display = categoryBody.style.display==='block' ? 'none' : 'block';"
+                     class="collapsible-header" style="color: black;"><a href="#"><img src="content/images/remove.png"
+                                                                                       class="ulImage"></a>
+                    {{category.Name}} <img src="content/images/arrow.png" class="arrowImage"></div>
+                <div #categoryBody class="collapsible-body">
+                    <ul class="catGroupList">
+                        <li *ngFor="let author of globalAuthors">
+                            <p class="left-align">
+                                <input [checked]="isAuthorInCategoryForSelected(category, author)"
+                                       (click)="toggleAuthor(category, author)"
+                                       #checkbox type="checkbox" id="{{category.Id}}_{{author.Id}}"/>
+                                <label style="color: #000;" for="{{category.Id}}_{{author.Id}}">
+                                    <img [src]="author.Photo.Url" class="ulImage">
+                                    {{author.Name}}</label>
+                            </p>
+                        </li>
+                    </ul>
+                    <div style="padding: 0 10px 10px 0" class="right-align">
+                        <a (click)="deleteCategory(category.Id)">Delete category</a>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+    <div class="addCategory">
+        <div class="row">
+            <div *ngIf="newCategoryFlag" class="col s3">
+                <form action=""><input #categoryName type="text">
+                    <button (click)="createCategory(categoryName.value, $event)" class="btn blue darken-2">Create category</button>
+                </form>
+            </div>
+            <div *ngIf="!newCategoryFlag" (click)="popupCategoryCreate()" class="col s3">
+                <a><img src="content/images/add_category.png" class="ulImage">
+                    <span style="padding-left: 5px;">Add category</span></a>
+            </div>
+        </div>
+
+    </div>
+    <div class="controlPanel">
+        <a href="#"><img src="content/images/cancel.png" class="controlLink"></a>
+        <a (click)="updateCategories()"><img src="content/images/save.png" class="controlLink"></a>
+    </div>
+</div>

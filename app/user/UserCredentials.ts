@@ -2,12 +2,12 @@ export class UserCredentials {
     constructor(public Name: string,
                 public Email: string,
                 public Password: string,
-                public Id?: number,
-                public Categories?: number[],
+                public UserId?: number,
+                public Categories?: any[],
                 public Logins?: number[],
                 public Photo?: string) {
-        if (Id == null) {
-            Id = 0;
+        if (UserId == null) {
+            UserId = 0;
         }
 
         if (Categories == null) {
