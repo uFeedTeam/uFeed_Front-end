@@ -46,6 +46,21 @@ export class CategoryService {
             .map(resp => resp.json().FacebookAuthors);
     }
 
+
+    updateCategory(category): Observable<any> {
+        for (let i = 0; i < category.Authors.length; i++) {
+            let cat = category.Authors[i];
+            cat["AuthorId"] = cat.Id;
+            delete cat.Id;
+        }
+
+        console.log('service -> ');
+        console.log(category);
+        return this.http.post("http://ufeed.azurewebsites.net/api/category/update", category,
+            {headers: this.authService.generateAuthenticatedHeaders()})
+            .map(resp => true);
+    }
+
     deleteCategory(categoryId: string): Observable<boolean> {
         let headers = this.authService.generateAuthenticatedHeaders();
         this.REMOVE_CATEGORY_URL = `http://ufeed.azurewebsites.net/api/category/${categoryId}/delete`;

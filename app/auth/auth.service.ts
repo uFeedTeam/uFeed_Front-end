@@ -76,7 +76,6 @@ export class AuthService {
 
     getUserInfo(): Observable<UserCredentials> {
         var headers = this.generateAuthenticatedHeaders();
-        console.log(headers);
         return this.http.get("http://ufeed.azurewebsites.net/api/user/get",
             { headers: headers })
             .map((resp: Response) => {

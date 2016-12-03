@@ -11,9 +11,11 @@
                     {{category.Name}} <img src="content/images/arrow.png" class="arrowImage"></div>
                 <div #categoryBody class="collapsible-body">
                     <ul class="catGroupList">
-                        <li *ngFor="let author of authors">
+                        <li *ngFor="let author of globalAuthors">
                             <p class="left-align">
-                                <input type="checkbox" id="{{category.Id}}_{{author.Id}}"/>
+                                <input [checked]="isAuthorInCategoryForSelected(category, author)"
+                                       (click)="toggleAuthor(category, author)"
+                                       #checkbox type="checkbox" id="{{category.Id}}_{{author.Id}}"/>
                                 <label style="color: #000;" for="{{category.Id}}_{{author.Id}}">
                                     <img [src]="author.Photo.Url" class="ulImage">
                                     {{author.Name}}</label>
@@ -44,6 +46,6 @@
     </div>
     <div class="controlPanel">
         <a href="#"><img src="content/images/cancel.png" class="controlLink"></a>
-        <a href="#"><img src="content/images/save.png" class="controlLink"></a>
+        <a (click)="updateCategories()"><img src="content/images/save.png" class="controlLink"></a>
     </div>
 </div>

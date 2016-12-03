@@ -9,7 +9,6 @@ import {UserModule} from "./user/user-specific.module";
 import {AuthService} from "./auth/auth.service";
 import {CommonModule} from "@angular/common";
 import {FeedModule} from "./feed/feed.module";
-import {CategoryComponent} from "./category/category.component";
 import {CategoryModule} from "./category/category.module";
 
 @NgModule({

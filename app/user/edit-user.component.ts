@@ -71,7 +71,6 @@ export class EditComponent implements OnInit {
         }, false);
         reader.readAsArrayBuffer(input.files[0]);
         reader.addEventListener("progress", (e: ProgressEvent) => {
-            console.log(e.loaded / e.total);
         });
 
         let byteStringReader = new FileReader();

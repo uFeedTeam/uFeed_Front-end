@@ -12,7 +12,7 @@ export class FacebookComponent implements OnInit {
     newCategoryFlag: boolean = false;
     private UID: number;
     categories: any[];
-    authors: any[];
+    globalAuthors: any[];
 
     constructor(private categoryService: CategoryService, private authService: AuthService) {
     }
@@ -21,35 +21,86 @@ export class FacebookComponent implements OnInit {
         this.extractCategories();
         this.extractAuthors();
         this.extractUID();
+
+
     }
 
     private extractUID() {
         this.authService.getUserInfo()
             .subscribe((user: UserCredentials) => {
-                console.log('extractCategories -> user');
-                console.log(user);
                 this.UID = user.UserId
             });
     }
 
-    popupCategoryCreate() : void{
+    popupCategoryCreate(): void {
         this.newCategoryFlag = true;
     }
 
     private extractCategories() {
         this.newCategoryFlag = false;
         this.categoryService.getCategories()
-            .subscribe(categories => this.categories = categories);
+            .subscribe(categories => {
+                this.categories = categories;
+            });
     }
 
     private extractAuthors(): void {
         this.categoryService.getAuthors()
-            .subscribe((authors: any[]) => this.authors = authors);
+            .subscribe((authors: any[]) => this.globalAuthors = authors);
+    }
+
+    isAuthorInCategoryForSelected(category, author): boolean {
+        for (let i = 0; i < category.Authors.length; i++) {
+            let authr = category.Authors[i];
+            if (authr.AuthorId === author.Id) {
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    isAuthorInCategory(category, author): boolean {
+        for (let i = 0; i < category.Authors.length; i++) {
+            let authr = category.Authors[i];
+            if (authr.Id === author.Id) {
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    addAuthorToCategory(category, author) {
+        category.Authors.push(author);
+    }
+
+    removeAuthorFromCategory(category, author) {
+        for (let i = 0; i < category.Authors.length; i++) {
+            let authr = category.Authors[i];
+            if (authr.Id === author.Id) {
+                category.Authors.splice(category.Authors.indexOf(authr), 1);
+            }
+        }
+    }
+
+    toggleAuthor(category, author) {
+        if (this.isAuthorInCategory(category, author)) {
+            this.removeAuthorFromCategory(category, author);
+        } else {
+            this.addAuthorToCategory(category, author);
+        }
+    }
+
+    updateCategories() {
+        for( let i = 0; i < this.categories.length; i++) {
+            this.categoryService.updateCategory(this.categories[i])
+                .subscribe(resp => alert("Category updated"), err => alert(err));
+        }
     }
 
     createCategory(name: string, event: Event): void {
         event.preventDefault();
-        console.log(this.UID);
         this.categoryService.createCategory(name, this.UID)
             .subscribe(
                 ok => {
@@ -59,7 +110,7 @@ export class FacebookComponent implements OnInit {
             );
     }
 
-    deleteCategory(id: string):void {
+    deleteCategory(id: string): void {
         this.categoryService.deleteCategory(id)
             .subscribe(resp => {
                 this.removeCategoryWithId(id);
@@ -68,6 +119,6 @@ export class FacebookComponent implements OnInit {
 
     private removeCategoryWithId(id: string) {
         this.categories = this.categories
-            .filter((categ: any )=> categ.Id !== id);
+            .filter((categ: any)=> categ.Id !== id);
     }
 }

@@ -54,7 +54,6 @@ export class UserEditService {
         return this.http.post(this.DELETE_URL, {}, {headers: this.authService.AuthHeader})
             .map(resp => true)
             .catch(resp => {
-                console.log(resp);
                 return Observable.throw("Cannot delete account")
             });
     }
