@@ -8,12 +8,12 @@ import {UserCredentials} from "./UserCredentials";
 @Injectable()
 export class UserEditService {
 
-    private GET_FULL_INFO_URL: string = "http://ufeed.azurewebsites.net/api/user/get";
-    private DELETE_URL: string = "http://ufeed.azurewebsites.net/api/account/delete";
-    private UPDATE_USR_LOGIN_URL: string = "http://ufeed.azurewebsites.net/api/user/newname";
-    private CHANGE_PASS_URL = "http://ufeed.azurewebsites.net/api/Account/ChangePassword";
-    private SEND_PIC = "http://ufeed.azurewebsites.net/api/user/newphoto";
-    private ADD_SOC = "http://ufeed.azurewebsites.net/api/user/addLogin";
+    private GET_FULL_INFO_URL: string = "http://localhost:3995/api/user/get";
+    private DELETE_URL: string = "http://localhost:3995/api/account/delete";
+    private UPDATE_USR_LOGIN_URL: string = "http://localhost:3995/api/user/newname";
+    private CHANGE_PASS_URL = "http://localhost:3995/api/Account/ChangePassword";
+    private SEND_PIC = "http://localhost:3995/api/user/newphoto";
+    private ADD_SOC = "http://localhost:3995/api/user/addLogin";
 
     constructor(private http: Http, private router: Router, private authService: AuthService) {
     }

@@ -6,8 +6,8 @@ import {UserCredentials} from "../user/UserCredentials";
 @Injectable()
 export class CategoryService {
 
-    private NEW_CATEGORY_URL = 'http://ufeed.azurewebsites.net/api/category/new';
-    private GET_AUTHORS_URL = 'http://ufeed.azurewebsites.net/api/social/authors';
+    private NEW_CATEGORY_URL = 'http://localhost:3995/api/category/new';
+    private GET_AUTHORS_URL = 'http://localhost:3995/api/social/authors';
 
     constructor(private http: Http, private authService: AuthService) {
     }
@@ -37,11 +37,11 @@ export class CategoryService {
     getAuthors(): Observable<any[]> {
         let body = {
             FacebookLogin: {
-                AccessToken: "EAACAjHMvjOMBAOVud4J15lSmjQUaEhJbHVQCMjNd7tbK6RrJpWTmcBla00ZCJArZBrjyGuinwyMojwV3eOZC7qpxtFo3IpZAWH2nxZC0zVBbHjZCNuNae5LyEaVyzlaw1qgZAUQXd7OixH7aNbiasjUSeRzBjsb6dYZD"
+                AccessToken: "EAACAjHMvjOMBAD1aq5rFIuGnvzcasxujvtnmOTHDPZC4eev9rJd25JROzpf60zAZALBezozpsER3wwLS1oRZCjGjZCcQ79wdoeu8bDhZBSAcSQlEcWePoqq8yUjrpATG6KPwvrUTSUyo3DRzZBJ1ezDO3uZBxoRjYgZD"
             }
         };
 
-        let headers = this.authService.generateAuthenticatedHeaders();
+            let headers = this.authService.generateAuthenticatedHeaders();
         return this.http.post(this.GET_AUTHORS_URL, body, {headers: headers})
             .map(resp => {
                 let authors = resp.json().FacebookAuthors;
@@ -63,7 +63,7 @@ export class CategoryService {
         console.log('service -> ');
         console.log(category);
 
-        var result = this.http.post("http://ufeed.azurewebsites.net/api/category/update", category,
+        var result = this.http.post("http://localhost:3995/api/category/update", category,
             {headers: this.authService.generateAuthenticatedHeaders()})
             .map(resp => {
                 return true;
@@ -75,7 +75,7 @@ export class CategoryService {
 
     deleteCategory(categoryId: string): Observable<boolean> {
         let headers = this.authService.generateAuthenticatedHeaders();
-        this.REMOVE_CATEGORY_URL = `http://ufeed.azurewebsites.net/api/category/${categoryId}/delete`;
+        this.REMOVE_CATEGORY_URL = `http://localhost:3995/api/category/${categoryId}/delete`;
         return this.http.get(this.REMOVE_CATEGORY_URL, {headers: headers})
             .map((resp: Response) => true);
     }

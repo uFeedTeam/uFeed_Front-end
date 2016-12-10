@@ -1,0 +1,46 @@
+<div class="feedContent">
+    <div class="feedSettings lineUp">
+        <div class="userInfo">
+            <h5> Bookmarks</h5>
+        </div>
+    </div>
+    <div class="feedTape lineUp">
+        <div class="tabContent">
+            <div #card *ngFor="let post of posts" class="tabCard">
+                <div  class="cardHeader">
+                    <a class="publicLink">
+                        <img [src]="post.Author.Photo.Url" class="miniPhoto">{{post.Author.Name}}</a>
+                    <a (click)="deleteBookmark(post.Id); card.style.display='none';" class="favouriteLink">Delete</a>
+                </div>
+                <div class="cardContent">
+                    <p>{{post.Message}}</p>
+                    <a *ngIf="post?.Attachments[0]?.Link" [href]="post.Attachments[0].Link.URL"></a>
+                    <div class="carContentImages">
+                        <img *ngIf="post?.Attachments[0]?.Photo" [src]="post.Attachments[0].Photo" class="cardContentImage">
+                        <img *ngIf="post?.Attachments[0]?.Link?.Photo?.Url" [src]="post.Attachments[0].Link.Photo.Url" class="cardContentImage">
+                    </div>
+                </div>
+                <div clas="cardActions">
+                    <div class="likeContainer">
+                        <a href="#" class="cardText"><img src="content/images/like.png" class="ulLink">Like</a>
+                        <span class="cardText">{{post.Likes.Count}}</span>
+                    </div>
+                    <span class="postTime">{{post.CreatedTime | date}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $(".availableSocials a").click(function () {
+            $(".availableSocials a").removeClass("active");
+            $(this).addClass("active");
+        });
+
+        $(".tabs a").click(function () {
+            $(".tabs a").removeClass("active");
+            $(this).addClass("active");
+        });
+    });
+</script>

@@ -2,7 +2,9 @@
     <div class="cardHeader">
         <a class="publicLink">
             <img [src]="post.Author.Photo.Url" class="miniPhoto">{{post.Author.Name}}</a>
-        <a class="favouriteLink"><img src="content/images/favourite.png" class="ulLink"></a>
+        <a (click)="addToFavorites(post.Author.Source, post.Id);
+         fav.style.border='1px solid rgb(23, 129, 224)'; fav.style.borderRadius='100%'"
+           class="favouriteLink"><img #fav src="content/images/favourite.png" class="ulLink"></a>
     </div>
     <div class="cardContent">
         <p>{{post.Message}}</p>
