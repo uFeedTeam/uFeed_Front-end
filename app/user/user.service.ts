@@ -8,12 +8,12 @@ import {UserCredentials} from "./UserCredentials";
 @Injectable()
 export class UserEditService {
 
-    private GET_FULL_INFO_URL: string = "http://ufeed.azurewebsites.net/api/user/get";
-    private DELETE_URL: string = "http://ufeed.azurewebsites.net/api/account/delete";
-    private UPDATE_USR_LOGIN_URL: string = "http://ufeed.azurewebsites.net/api/user/newname";
-    private CHANGE_PASS_URL = "http://ufeed.azurewebsites.net/api/Account/ChangePassword";
-    private SEND_PIC = "http://ufeed.azurewebsites.net/api/user/newphoto";
-    private ADD_SOC = "http://ufeed.azurewebsites.net/api/user/addLogin";
+    private GET_FULL_INFO_URL: string = "http://localhost:3995/api/user/get";
+    private DELETE_URL: string = "http://localhost:3995/api/account/delete";
+    private UPDATE_USR_LOGIN_URL: string = "http://localhost:3995/api/user/newname";
+    private CHANGE_PASS_URL = "http://localhost:3995/api/Account/ChangePassword";
+    private SEND_PIC = "http://localhost:3995/api/user/newphoto";
+    private ADD_SOC = "http://localhost:3995/api/user/addLogin";
 
     constructor(private http: Http, private router: Router, private authService: AuthService) {
     }
@@ -39,14 +39,12 @@ export class UserEditService {
             });
     }
 
-    sendPic(bytes: Int8Array): Observable<string> {
-        let nums = [];
+    sendPic(picUrl): Observable<string> {
         let headers: Headers;
         headers = new Headers();
         headers.append("Content-type", "application/x-www-form-urlencoded");
         headers.append("Authorization", this.authService.AuthHeader.get("Authorization"));
-        bytes.forEach(b => nums.push(b));
-        return this.http.put(this.SEND_PIC, JSON.stringify(nums), {headers: headers})
+        return this.http.put(this.SEND_PIC, picUrl.changingThisBreaksApplicationSecurity.substring(21), {headers: headers})
             .map(resp => 'picture');
     }
 

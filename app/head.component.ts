@@ -27,7 +27,7 @@ export class HeadComponent implements OnInit {
                     this.picUrl = this.sanitizer.bypassSecurityTrustUrl(photo);
                 }
             }
-        }, 100);
+        }, 1000);
     }
 
     logout() {

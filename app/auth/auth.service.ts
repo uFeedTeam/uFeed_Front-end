@@ -2,13 +2,14 @@ import {Injectable} from "@angular/core";
 import {Http, Headers, Response} from "@angular/http";
 import {Observable} from "rxjs";
 import {UserCredentials} from "../user/UserCredentials";
+import {Markers} from "../social.markers";
 
 
 @Injectable()
 export class AuthService {
 
-    private LOGIN_URL = "http://ufeed.azurewebsites.net/token";
-    private REGISTER_URL: string = "http://ufeed.azurewebsites.net/api/account/register";
+    private LOGIN_URL = "http://localhost:3995/token";
+    private REGISTER_URL: string = "http://localhost:3995/api/account/register";
 
     private isLoggedIn: boolean = false;
     private authHeader: Headers = new Headers();
@@ -54,6 +55,15 @@ export class AuthService {
                 console.log(tokenJson);
                 this.authHeader.set("Authorization", "Bearer " + tokenJson.access_token);
 
+                let heads = new Headers();
+                heads.append("Content-type", "application/json");
+                heads.append("Authorization", "Bearer " + tokenJson.access_token);
+
+                // register vk and FB
+                this.http.post('http://localhost:3995/api/user/addlogin', Markers.FACEBOOK, {headers: heads})
+                    .subscribe((ok) => {});
+                this.http.post('http://localhost:3995/api/user/addLogin', Markers.VK, {headers: heads})
+                    .subscribe((ok) => {});
                 return user;
             }).catch((resp: Response) => Observable.throw(resp.json().error_description));
     }
@@ -76,7 +86,7 @@ export class AuthService {
 
     getUserInfo(): Observable<UserCredentials> {
         var headers = this.generateAuthenticatedHeaders();
-        return this.http.get("http://ufeed.azurewebsites.net/api/user/get",
+        return this.http.get("http://localhost:3995/api/user/get",
             { headers: headers })
             .map((resp: Response) => {
                 let responseJson: any = resp.json();

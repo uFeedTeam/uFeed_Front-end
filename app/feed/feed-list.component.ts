@@ -2,6 +2,7 @@ import {Component, Input, OnInit, OnChanges, SimpleChanges} from "@angular/core"
 import {FeedService} from "./feed.service";
 import {AuthService} from  "../auth/auth.service";
 import {loadavg} from "os";
+import {BookmarkService} from "./bookmark.service";
 
 @Component({
     moduleId: module.id,
@@ -18,6 +19,10 @@ export class FeedListComponent implements OnInit, OnChanges {
     posts: any[] = [];
     @Input() categoryId: string;
 
+    addToFavorites(source, postId) {
+        this.bookmarkService.addBookmark(source, postId)
+            .subscribe(ok => alert('bookmark added'));
+    }
 
     ngOnInit(): void {
         this.loadFeed();
@@ -35,7 +40,8 @@ export class FeedListComponent implements OnInit, OnChanges {
     }
 
 
-    constructor(private feedService: FeedService, private authService: AuthService) {
+    constructor(private feedService: FeedService, private authService: AuthService,
+        private bookmarkService: BookmarkService) {
 
     }
 

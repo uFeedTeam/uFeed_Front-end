@@ -1,5 +1,5 @@
 <div class="location">
-    <h4 class="locationText">Facebook Settings</h4>
+    <h4 class="locationText">{{socialNetwork}} Settings</h4>
 </div>
 <div class="content">
     <div class="groupLists">
@@ -11,7 +11,8 @@
                     {{category.Name}} <img src="content/images/arrow.png" class="arrowImage"></div>
                 <div #categoryBody class="collapsible-body">
                     <ul class="catGroupList">
-                        <li *ngFor="let author of globalAuthors">
+                        <li *ngFor="let author of globalAuthors"
+                            [style.display] = "author.Source != marker ? 'none' : 'inline-block'">
                             <p class="left-align">
                                 <input [checked]="isAuthorInCategoryForSelected(category, author)"
                                        (click)="toggleAuthor(category, author)"

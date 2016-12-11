@@ -7,6 +7,8 @@ import {UserAuthResolveGuard} from "../auth/user-resolve-guard.service";
 import {AuthGuard} from "../auth/auth-guard.service";
 import {FeedListComponent} from "./feed-list.component";
 import {FeedService} from "./feed.service";
+import {BookmarkComponent} from "./bookmarks.component";
+import {BookmarkService} from "./bookmark.service";
 
 @NgModule({
     imports: [
@@ -14,13 +16,17 @@ import {FeedService} from "./feed.service";
         FormsModule,
         RouterModule.forChild([
             {
+                path: 'bookmarks',
+                component: BookmarkComponent, canActivate: [AuthGuard]
+            },
+            {
                 path: 'feed',
                 component: FeedComponent, resolve: {user: UserAuthResolveGuard} , canActivate: [AuthGuard],
             }
         ])
     ],
-    declarations: [FeedComponent, FeedListComponent],
-    providers: [FeedService]
+    declarations: [FeedComponent, FeedListComponent, BookmarkComponent],
+    providers: [FeedService, BookmarkService]
 })
 export class FeedModule {
 

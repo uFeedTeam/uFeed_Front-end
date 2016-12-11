@@ -2,13 +2,15 @@
     <div class="cardHeader">
         <a class="publicLink">
             <img [src]="post.Author.Photo.Url" class="miniPhoto">{{post.Author.Name}}</a>
-        <a class="favouriteLink"><img src="content/images/favourite.png" class="ulLink"></a>
+        <a (click)="addToFavorites(post.Author.Source, post.Id);
+         fav.style.border='1px solid rgb(23, 129, 224)'; fav.style.borderRadius='100%'"
+           class="favouriteLink"><img #fav src="content/images/favourite.png" class="ulLink"></a>
     </div>
     <div class="cardContent">
         <p>{{post.Message}}</p>
         <a *ngIf="post?.Attachments[0]?.Link" [href]="post.Attachments[0].Link.URL"></a>
         <div class="carContentImages">
-            <img *ngIf="post?.Attachments[0]?.Photo" [src]="post.Attachments[0].Photo" class="cardContentImage">
+            <img *ngIf="post?.Attachments[0]?.Photo?.Url" [src]="post.Attachments[0].Photo.Url" class="cardContentImage">
             <img *ngIf="post?.Attachments[0]?.Link?.Photo?.Url" [src]="post.Attachments[0].Link.Photo.Url" class="cardContentImage">
         </div>
     </div>

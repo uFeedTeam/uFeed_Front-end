@@ -6,8 +6,8 @@ import {UserCredentials} from "../user/UserCredentials";
 @Injectable()
 export class CategoryService {
 
-    private NEW_CATEGORY_URL = 'http://ufeed.azurewebsites.net/api/category/new';
-    private GET_AUTHORS_URL = 'http://ufeed.azurewebsites.net/api/social/authors';
+    private NEW_CATEGORY_URL = 'http://localhost:3995/api/category/new';
+    private GET_AUTHORS_URL = 'http://localhost:3995/api/social/authors';
 
     constructor(private http: Http, private authService: AuthService) {
     }
@@ -37,19 +37,31 @@ export class CategoryService {
     getAuthors(): Observable<any[]> {
         let body = {
             FacebookLogin: {
-                AccessToken: "EAACAjHMvjOMBAOVud4J15lSmjQUaEhJbHVQCMjNd7tbK6RrJpWTmcBla00ZCJArZBrjyGuinwyMojwV3eOZC7qpxtFo3IpZAWH2nxZC0zVBbHjZCNuNae5LyEaVyzlaw1qgZAUQXd7OixH7aNbiasjUSeRzBjsb6dYZD"
+                AccessToken: "EAACAjHMvjOMBAD1aq5rFIuGnvzcasxujvtnmOTHDPZC4eev9rJd25JROzpf60zAZALBezozpsER3wwLS1oRZCjGjZCcQ79wdoeu8bDhZBSAcSQlEcWePoqq8yUjrpATG6KPwvrUTSUyo3DRzZBJ1ezDO3uZBxoRjYgZD"
+            },
+            VkLogin: {
+                AccessToken: "a1594a465fd54f1deb107a284f95e82a0e0f667252e6da5a473858dcbe1163657db1fddcc0f583393f437",
+                UserId: "134408351"
             }
         };
 
         let headers = this.authService.generateAuthenticatedHeaders();
         return this.http.post(this.GET_AUTHORS_URL, body, {headers: headers})
             .map(resp => {
-                let authors = resp.json().FacebookAuthors;
-                for (let i = 0; i < authors.length; i++) {
-                    let authr = authors[i];
-                    authr["AuthorId"] = authr.Id;
+                let fbAuthors = resp.json().FacebookAuthors;
+                let vkAuthors = resp.json().VkAuthors;
+                let result = [];
+                for (let i = 0; i < fbAuthors.length; i++) {
+                    let fbAuthr = fbAuthors[i];
+                    fbAuthr["AuthorId"] = fbAuthr.Id;
+
+                    let vkAuthor = vkAuthors[i];
+                    vkAuthor["AuthorId"] = vkAuthor.Id;
+
+                    result.push(fbAuthr);
+                    result.push(vkAuthor);
                 }
-                return authors;
+                return result;
             });
     }
 
@@ -63,7 +75,7 @@ export class CategoryService {
         console.log('service -> ');
         console.log(category);
 
-        var result = this.http.post("http://ufeed.azurewebsites.net/api/category/update", category,
+        var result = this.http.post("http://localhost:3995/api/category/update", category,
             {headers: this.authService.generateAuthenticatedHeaders()})
             .map(resp => {
                 return true;
@@ -75,7 +87,7 @@ export class CategoryService {
 
     deleteCategory(categoryId: string): Observable<boolean> {
         let headers = this.authService.generateAuthenticatedHeaders();
-        this.REMOVE_CATEGORY_URL = `http://ufeed.azurewebsites.net/api/category/${categoryId}/delete`;
+        this.REMOVE_CATEGORY_URL = `http://localhost:3995/api/category/${categoryId}/delete`;
         return this.http.get(this.REMOVE_CATEGORY_URL, {headers: headers})
             .map((resp: Response) => true);
     }
