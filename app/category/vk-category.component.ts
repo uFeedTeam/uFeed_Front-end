@@ -1,22 +1,23 @@
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {CategoryService} from "./category.service";
-import {AuthService} from "../auth/auth.service";
 import {UserCredentials} from "../user/UserCredentials";
+import {AuthService} from "../auth/auth.service";
 import {Markers} from "../social.markers";
 @Component({
     moduleId: module.id,
-    selector: 'facebook-component',
+    selector: 'vk-component',
     templateUrl: 'concrete-category.component.html'
 })
-export class FacebookComponent implements OnInit {
-
+// Yeah: I could have a parent class for both FB and VK components
+// But I have no time for refactoring :(
+// Sorry, dear reviewer
+export class VKComponent {
     newCategoryFlag: boolean = false;
     private UID: number;
     categories: any[];
     globalAuthors: any[];
-    socialNetwork = "Facebook";
-    marker = +Markers.FACEBOOK;
-
+    socialNetwork = "VK";
+    marker=+Markers.VK;
     constructor(private categoryService: CategoryService, private authService: AuthService) {
     }
 
@@ -98,7 +99,7 @@ export class FacebookComponent implements OnInit {
     }
 
     updateCategories() {
-        for (let i = 0; i < this.categories.length; i++) {
+        for( let i = 0; i < this.categories.length; i++) {
             this.categoryService.updateCategory(this.categories[i])
                 .subscribe(resp => alert("Category updated"), err => alert(err));
         }
