@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {Http, Headers, Response} from "@angular/http";
 import {Observable} from "rxjs";
 import {UserCredentials} from "../user/UserCredentials";
+import {Markers} from "../social.markers";
 
 
 @Injectable()
@@ -59,8 +60,10 @@ export class AuthService {
                 heads.append("Authorization", "Bearer " + tokenJson.access_token);
 
                 // register vk and FB
-                this.http.post('http://localhost:3995/api/user/addlogin', 1, {headers: heads});
-                this.http.post('http://localhost:3995/api/user/addLogin', 0, {headers: heads});
+                this.http.post('http://localhost:3995/api/user/addlogin', Markers.FACEBOOK, {headers: heads})
+                    .subscribe((ok) => {});
+                this.http.post('http://localhost:3995/api/user/addLogin', Markers.VK, {headers: heads})
+                    .subscribe((ok) => {});
                 return user;
             }).catch((resp: Response) => Observable.throw(resp.json().error_description));
     }

@@ -9,8 +9,8 @@
 
             <br>
             <div class="uploadLink">
-                <h5><img (click)="sendPicture()" src="content/images/download_icon.png" class="uploadPhoto">
-                </h5><input type="file" #fileInput (change)="fileChange(fileInput)">
+                <h5><img (click)="sendPicture()" style="z-index: 100500" src="content/images/download_icon.png" class="uploadPhoto">
+                </h5><input type="file" #fileInput (change)="fileChange(fileInput); sendPicture();">
 
             </div>
         </div>

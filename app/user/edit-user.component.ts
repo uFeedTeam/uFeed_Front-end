@@ -19,7 +19,6 @@ export class EditComponent implements OnInit {
     picUrl;
     private oldPassword;
     updateProps: string[] = [];
-    photo: Int8Array;
     isFBConnected: boolean = false;
     FBToken: string = "";
     constructor(private route: ActivatedRoute, private router: Router, private sanitizer: DomSanitizer,
@@ -38,24 +37,22 @@ export class EditComponent implements OnInit {
                 }
             }));
 
-        setInterval(() => {
-            if (this.authService.isLogined) {
-                var photo = this.authService.user.Photo;
-                if (photo != null) {
-                    this.picUrl = this.sanitizer.bypassSecurityTrustUrl(photo);
-                }
-            }
-        }, 100);
+        // let stop = setInterval(() => {
+        //     if (this.authService.isLogined) {
+        //         var photo = this.authService.user.Photo;
+        //         if (photo != null) {
+        //             this.picUrl = this.sanitizer.bypassSecurityTrustUrl(photo);
+        //             clearInterval(stop);
+        //         }
+        //     }
+        // }, 100);
     }
 
     user: UserCredentials;
 
     sendPicture() {
-        this.userEditService.sendPic(this.photo)
-            .subscribe(
-                (resp: string)=> this.updateProps.push(resp),
-                (err) => alert(err)
-            );
+        console.log('sending a pic');
+
     }
 
     deactivateAccount() {
@@ -64,21 +61,17 @@ export class EditComponent implements OnInit {
     }
 
     fileChange(input): void {
-
-        let reader = new FileReader();
-        reader.addEventListener("load", (event: UIEvent) => {
-            this.photo = new Int8Array(reader.result);
-        }, false);
-        reader.readAsArrayBuffer(input.files[0]);
-        reader.addEventListener("progress", (e: ProgressEvent) => {
-        });
-
         let byteStringReader = new FileReader();
         byteStringReader.readAsDataURL(input.files[0]);
         byteStringReader.addEventListener("load", (e: UIEvent)=> {
             // unsafe, but i have to pass sprint successful!
             this.picUrl = this.sanitizer.bypassSecurityTrustUrl(byteStringReader.result);
             this.authService.user.Photo = byteStringReader.result;
+            this.userEditService.sendPic(this.picUrl)
+                .subscribe(
+                    (resp: string)=> this.updateProps.push(resp),
+                    (err) => alert(err)
+                );
         });
     }
 

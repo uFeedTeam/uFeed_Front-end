@@ -38,18 +38,30 @@ export class CategoryService {
         let body = {
             FacebookLogin: {
                 AccessToken: "EAACAjHMvjOMBAD1aq5rFIuGnvzcasxujvtnmOTHDPZC4eev9rJd25JROzpf60zAZALBezozpsER3wwLS1oRZCjGjZCcQ79wdoeu8bDhZBSAcSQlEcWePoqq8yUjrpATG6KPwvrUTSUyo3DRzZBJ1ezDO3uZBxoRjYgZD"
+            },
+            VkLogin: {
+                AccessToken: "a1594a465fd54f1deb107a284f95e82a0e0f667252e6da5a473858dcbe1163657db1fddcc0f583393f437",
+                UserId: "134408351"
             }
         };
 
-            let headers = this.authService.generateAuthenticatedHeaders();
+        let headers = this.authService.generateAuthenticatedHeaders();
         return this.http.post(this.GET_AUTHORS_URL, body, {headers: headers})
             .map(resp => {
-                let authors = resp.json().FacebookAuthors;
-                for (let i = 0; i < authors.length; i++) {
-                    let authr = authors[i];
-                    authr["AuthorId"] = authr.Id;
+                let fbAuthors = resp.json().FacebookAuthors;
+                let vkAuthors = resp.json().VkAuthors;
+                let result = [];
+                for (let i = 0; i < fbAuthors.length; i++) {
+                    let fbAuthr = fbAuthors[i];
+                    fbAuthr["AuthorId"] = fbAuthr.Id;
+
+                    let vkAuthor = vkAuthors[i];
+                    vkAuthor["AuthorId"] = vkAuthor.Id;
+
+                    result.push(fbAuthr);
+                    result.push(vkAuthor);
                 }
-                return authors;
+                return result;
             });
     }
 
