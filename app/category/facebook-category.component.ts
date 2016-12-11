@@ -46,7 +46,7 @@ export class FacebookComponent implements OnInit {
     }
 
     private extractAuthors(): void {
-        this.categoryService.getAuthors()
+        this.categoryService.getAuthors(Markers.FACEBOOK)
             .subscribe((authors: any[]) => this.globalAuthors = authors);
     }
 
