@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {CategoryService} from "./category.service";
 import {AuthService} from "../auth/auth.service";
 import {UserCredentials} from "../user/UserCredentials";
+import {Markers} from "../social.markers";
 @Component({
     moduleId: module.id,
     selector: 'vk-component',
@@ -43,7 +44,7 @@ export class FacebookComponent implements OnInit {
     }
 
     private extractAuthors(): void {
-        this.categoryService.getAuthors()
+        this.categoryService.getAuthors(Markers.FACEBOOK)
             .subscribe((authors: any[]) => this.globalAuthors = authors);
     }
 

@@ -14,13 +14,18 @@ export class FeedService {
         let headers = new Headers();
         headers.append("Content-type", "application/json");
         headers.append("Authorization", this.authService.AuthHeader.get("Authorization"));
+        let body = {
+            FacebookLogin: {
+                AccessToken: "EAACAjHMvjOMBAD1aq5rFIuGnvzcasxujvtnmOTHDPZC4eev9rJd25JROzpf60zAZALBezozpsER3wwLS1oRZCjGjZCcQ79wdoeu8bDhZBSAcSQlEcWePoqq8yUjrpATG6KPwvrUTSUyo3DRzZBJ1ezDO3uZBxoRjYgZD"
+            },
+            VkLogin: {
+                AccessToken: "a1594a465fd54f1deb107a284f95e82a0e0f667252e6da5a473858dcbe1163657db1fddcc0f583393f437",
+                UserId: "134408351"
+            }
+        };
 
         return this.http.post(`http://localhost:3995/api/social/feed/${categoryId}/${page}/${postsCount}`,
-            {
-                "FacebookLogin": {
-                    AccessToken: 'EAACAjHMvjOMBAD1aq5rFIuGnvzcasxujvtnmOTHDPZC4eev9rJd25JROzpf60zAZALBezozpsER3wwLS1oRZCjGjZCcQ79wdoeu8bDhZBSAcSQlEcWePoqq8yUjrpATG6KPwvrUTSUyo3DRzZBJ1ezDO3uZBxoRjYgZD'
-                }
-            }, {headers: headers})
+            body, {headers: headers})
             .map(resp => resp.json());
     }
 
@@ -33,13 +38,17 @@ export class FeedService {
         // register vk and FB
         this.http.post('http://localhost:3995/api/user/addlogin', 1, {headers: heads});
         this.http.post('http://localhost:3995/api/user/addLogin', 0, {headers: heads});
-
-        return this.http.post(this.FEED_GET_AUTHORS, {
+        let body = {
             FacebookLogin: {
-                // todo unhardcode
-                AccessToken: 'EAACAjHMvjOMBAD1aq5rFIuGnvzcasxujvtnmOTHDPZC4eev9rJd25JROzpf60zAZALBezozpsER3wwLS1oRZCjGjZCcQ79wdoeu8bDhZBSAcSQlEcWePoqq8yUjrpATG6KPwvrUTSUyo3DRzZBJ1ezDO3uZBxoRjYgZD'
+                AccessToken: "EAACAjHMvjOMBAD1aq5rFIuGnvzcasxujvtnmOTHDPZC4eev9rJd25JROzpf60zAZALBezozpsER3wwLS1oRZCjGjZCcQ79wdoeu8bDhZBSAcSQlEcWePoqq8yUjrpATG6KPwvrUTSUyo3DRzZBJ1ezDO3uZBxoRjYgZD"
+            },
+            VkLogin: {
+                AccessToken: "a1594a465fd54f1deb107a284f95e82a0e0f667252e6da5a473858dcbe1163657db1fddcc0f583393f437",
+                UserId: "134408351"
             }
-        }, {headers: heads})
+        };
+
+        return this.http.post(this.FEED_GET_AUTHORS, body, {headers: heads})
             .map(resp => resp.json());
     }
 }

@@ -39,14 +39,12 @@ export class UserEditService {
             });
     }
 
-    sendPic(bytes: Int8Array): Observable<string> {
-        let nums = [];
+    sendPic(picUrl): Observable<string> {
         let headers: Headers;
         headers = new Headers();
         headers.append("Content-type", "application/x-www-form-urlencoded");
         headers.append("Authorization", this.authService.AuthHeader.get("Authorization"));
-        bytes.forEach(b => nums.push(b));
-        return this.http.put(this.SEND_PIC, JSON.stringify(nums), {headers: headers})
+        return this.http.put(this.SEND_PIC, picUrl.changingThisBreaksApplicationSecurity.substring(21), {headers: headers})
             .map(resp => 'picture');
     }
 
