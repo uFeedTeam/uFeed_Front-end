@@ -16,11 +16,11 @@ export class FeedService {
         headers.append("Authorization", this.authService.AuthHeader.get("Authorization"));
         let body = {
             FacebookLogin: {
-                AccessToken: "EAACAjHMvjOMBAD1aq5rFIuGnvzcasxujvtnmOTHDPZC4eev9rJd25JROzpf60zAZALBezozpsER3wwLS1oRZCjGjZCcQ79wdoeu8bDhZBSAcSQlEcWePoqq8yUjrpATG6KPwvrUTSUyo3DRzZBJ1ezDO3uZBxoRjYgZD"
+                AccessToken: this.authService.FBToken
             },
             VkLogin: {
-                AccessToken: "a1594a465fd54f1deb107a284f95e82a0e0f667252e6da5a473858dcbe1163657db1fddcc0f583393f437",
-                UserId: "134408351"
+                AccessToken: this.authService.VKToken,
+                UserId: this.authService.VKUserID
             }
         };
 
@@ -40,11 +40,11 @@ export class FeedService {
         this.http.post('http://localhost:3995/api/user/addLogin', 0, {headers: heads});
         let body = {
             FacebookLogin: {
-                AccessToken: "EAACAjHMvjOMBAD1aq5rFIuGnvzcasxujvtnmOTHDPZC4eev9rJd25JROzpf60zAZALBezozpsER3wwLS1oRZCjGjZCcQ79wdoeu8bDhZBSAcSQlEcWePoqq8yUjrpATG6KPwvrUTSUyo3DRzZBJ1ezDO3uZBxoRjYgZD"
+                AccessToken: this.authService.FBToken
             },
             VkLogin: {
-                AccessToken: "a1594a465fd54f1deb107a284f95e82a0e0f667252e6da5a473858dcbe1163657db1fddcc0f583393f437",
-                UserId: "134408351"
+                AccessToken: this.authService.VKToken,
+                UserId: this.authService.VKUserID
             }
         };
 

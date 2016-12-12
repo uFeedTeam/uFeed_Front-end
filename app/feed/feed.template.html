@@ -24,7 +24,7 @@
     <div class="feedTape lineUp">
         <div class="tabs">
             <a *ngFor="let category of user.Categories"
-               [class.active]="category.Id === selectedCategory.Id  "
+               [class.active]="category?.Id === selectedCategory?.Id  "
                 (click)="changeSelectedCategory(category)"
                style="padding: 10px 10px;"
                name="{{category.Name}}" class="tabLink">{{category.Name}}</a>
@@ -33,7 +33,7 @@
                 category</a>
         </div>
         <div class="tabContent">
-            <feed-list [categoryId]="selectedCategory.Id"></feed-list>
+            <feed-list [categoryId]="selectedCategory?.Id"></feed-list>
         </div>
     </div>
 </div>

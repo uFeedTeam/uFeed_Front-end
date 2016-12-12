@@ -1,7 +1,6 @@
 import {Component, Input, OnInit, OnChanges, SimpleChanges} from "@angular/core";
 import {FeedService} from "./feed.service";
-import {AuthService} from  "../auth/auth.service";
-import {loadavg} from "os";
+import {AuthService} from "../auth/auth.service";
 import {BookmarkService} from "./bookmark.service";
 
 @Component({
@@ -32,16 +31,18 @@ export class FeedListComponent implements OnInit, OnChanges {
     }
 
     loadFeed() {
-        console.log('loading feed with id ' + this.categoryId);
-        this.feedService.getFeed(this.categoryId, "1", "5")
-            .subscribe(posts => {
-                this.posts = posts;
-            });
+        if (this.categoryId) {
+            console.log('loading feed with id ' + this.categoryId);
+            this.feedService.getFeed(this.categoryId, "1", "5")
+                .subscribe(posts => {
+                    this.posts = posts;
+                });
+        }
     }
 
 
     constructor(private feedService: FeedService, private authService: AuthService,
-        private bookmarkService: BookmarkService) {
+                private bookmarkService: BookmarkService) {
 
     }
 

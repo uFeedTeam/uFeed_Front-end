@@ -4,12 +4,15 @@
 <div class="content">
     <div class="mainInfo">
         <div class="profilePhoto">
-            <img width="100" height="100" style="border-radius: 100px;" *ngIf="!picUrl" src="content/images/person.png" class="mainPhoto">
-            <img width="100" height="100" style="border-radius: 100px;" *ngIf="picUrl" #img [src]="picUrl" class="mainPhoto">
+            <img width="100" height="100" style="border-radius: 100px;" *ngIf="!picUrl" src="content/images/person.png"
+                 class="mainPhoto">
+            <img width="100" height="100" style="border-radius: 100px;" *ngIf="picUrl" #img [src]="picUrl"
+                 class="mainPhoto">
 
             <br>
             <div class="uploadLink">
-                <h5><img (click)="sendPicture()" style="z-index: 100500" src="content/images/download_icon.png" class="uploadPhoto">
+                <h5><img (click)="sendPicture()" style="z-index: 100500" src="content/images/download_icon.png"
+                         class="uploadPhoto">
                 </h5><input type="file" #fileInput (change)="fileChange(fileInput); sendPicture();">
 
             </div>
@@ -61,14 +64,21 @@
                     <a href="https://www.facebook.com/dialog/oauth?client_id=141340716272867&redirect_uri=http://ufeed.azurewebsites.net/api/social/fbauth&scope=user_likes,user_posts,user_managed_groups"
                        target="_blank"
                        class="ulLink">Manage
-                        network</a></p>
-                <input type="text" [(ngModel)]="FBToken" placeholder="token"> <input type="button" (click)="activateFB()" value="Authorize">
-                <p><input type="checkbox" id="Vk"/>
-                    <label for="Vk"><img src="content/images/vk_logo.png" class="ulImage">Vkontakte</label> <a
-                                                                                                               class="ulLink">Manage
-                        network</a></p>
-
-                <p><a href="#"><img src="content/images/add_icon.png" class="addNewSocial">Add network</a></p>
+                        network</a>
+                </p>
+                <input type="text" [(ngModel)]="FBToken" placeholder="Token"> <input type="button"
+                                                                                     (click)="activateFB()"
+                                                                                     value="Authorize">
+                <p><input [checked]="isVKConnected" type="checkbox" id="Vk"/>
+                    <label for="Vk"><img src="content/images/vk_logo.png" class="ulImage">Facebook</label>
+                    <a href="https://oauth.vk.com/authorize?client_id=5494787&display=popup&redirect_uri=http://ufeed.azurewebsites.net/api/social/vkauth&scope=groups,audio&response_type=code&v=5.52"
+                       target="_blank"
+                       class="ulLink">Manage
+                        network</a>
+                </p>
+                <input type="text" style="width:50%;" [(ngModel)]="VKToken" placeholder="Token">
+                <input type="text" style="width:50%;" [(ngModel)]="VKUserId" placeholder="User id">
+                <input type="button" (click)="activateVK()" value="Authorize">
             </ul>
         </div>
         <br>
