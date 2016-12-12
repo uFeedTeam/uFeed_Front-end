@@ -16,12 +16,12 @@ export class FeedService {
         headers.append("Authorization", this.authService.AuthHeader.get("Authorization"));
         let body = {
             FacebookLogin: {
-                AccessToken: this.authService.FBToken
+                AccessToken: "EAACAjHMvjOMBAJOAggOorPcGLhRoXiGA8OSJ7utE47bBAo5AweVu7f24l9YZCYZCM1y68H7DiLSYTS0IKSqRLvziqaZBroqWBynJBFgQAEkyxAPXV8Pnf4xTgFqOtbyiHDAXoLBN4ZAClDwgZBpND2sfDGpqfpDMZD"
             },
-            VkLogin: {
-                AccessToken: this.authService.VKToken,
-                UserId: this.authService.VKUserID
-            }
+            // VkLogin: {
+            //     AccessToken: this.authService.VKToken,
+            //     UserId: this.authService.VKUserID
+            // }
         };
 
         return this.http.post(`http://localhost:3995/api/social/feed/${categoryId}/${page}/${postsCount}`,
@@ -40,12 +40,12 @@ export class FeedService {
         this.http.post('http://localhost:3995/api/user/addLogin', 0, {headers: heads});
         let body = {
             FacebookLogin: {
-                AccessToken: this.authService.FBToken
+                AccessToken: "EAACAjHMvjOMBAJOAggOorPcGLhRoXiGA8OSJ7utE47bBAo5AweVu7f24l9YZCYZCM1y68H7DiLSYTS0IKSqRLvziqaZBroqWBynJBFgQAEkyxAPXV8Pnf4xTgFqOtbyiHDAXoLBN4ZAClDwgZBpND2sfDGpqfpDMZD"
             },
-            VkLogin: {
-                AccessToken: this.authService.VKToken,
-                UserId: this.authService.VKUserID
-            }
+            // VkLogin: {
+            //     AccessToken: this.authService.VKToken,
+            //     UserId: this.authService.VKUserID
+            // }
         };
 
         return this.http.post(this.FEED_GET_AUTHORS, body, {headers: heads})

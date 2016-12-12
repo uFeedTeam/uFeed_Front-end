@@ -37,12 +37,12 @@ export class CategoryService {
     getAuthors(): Observable<any[]> {
         let body = {
             FacebookLogin: {
-                AccessToken: this.authService.FBToken
+                AccessToken: "EAACAjHMvjOMBAJOAggOorPcGLhRoXiGA8OSJ7utE47bBAo5AweVu7f24l9YZCYZCM1y68H7DiLSYTS0IKSqRLvziqaZBroqWBynJBFgQAEkyxAPXV8Pnf4xTgFqOtbyiHDAXoLBN4ZAClDwgZBpND2sfDGpqfpDMZD"
             },
-            VkLogin: {
-                AccessToken: this.authService.VKToken,
-                UserId: this.authService.VKUserID
-            }
+            // VkLogin: {
+            //     AccessToken: this.authService.VKToken,
+            //     UserId: this.authService.VKUserID
+            // }
         };
 
         let headers = this.authService.generateAuthenticatedHeaders();
@@ -52,14 +52,16 @@ export class CategoryService {
                 let vkAuthors = resp.json().VkAuthors;
                 let result = [];
                 for (let i = 0; i < fbAuthors.length; i++) {
-                    let fbAuthr = fbAuthors[i];
-                    fbAuthr["AuthorId"] = fbAuthr.Id;
-
-                    let vkAuthor = vkAuthors[i];
-                    vkAuthor["AuthorId"] = vkAuthor.Id;
-
-                    result.push(fbAuthr);
-                    result.push(vkAuthor);
+                    if (fbAuthors) {
+                        let fbAuthr = fbAuthors[i];
+                        fbAuthr["AuthorId"] = fbAuthr.Id;
+                        result.push(fbAuthr);
+                    }
+                    if (vkAuthors) {
+                        let vkAuthor = vkAuthors[i];
+                        vkAuthor["AuthorId"] = vkAuthor.Id;
+                        result.push(vkAuthor);
+                    }
                 }
                 return result;
             });

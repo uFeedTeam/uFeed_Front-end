@@ -17,12 +17,12 @@ export class BookmarkService {
     getBookmarks(): Observable<any> {
         let body = {
             FacebookLogin: {
-                AccessToken: this.authService.FBToken
+                AccessToken: "EAACAjHMvjOMBAJOAggOorPcGLhRoXiGA8OSJ7utE47bBAo5AweVu7f24l9YZCYZCM1y68H7DiLSYTS0IKSqRLvziqaZBroqWBynJBFgQAEkyxAPXV8Pnf4xTgFqOtbyiHDAXoLBN4ZAClDwgZBpND2sfDGpqfpDMZD"
             },
-            VkLogin: {
-                AccessToken: this.authService.VKToken,
-                UserId: this.authService.VKUserID
-            }
+            // VkLogin: {
+            //     AccessToken: this.authService.VKToken,
+            //     UserId: this.authService.VKUserID
+            // }
         };
         return this.http.post(this.GET_BOOKMARKS_URL, body, {headers: this.headers})
             .map(resp => resp.json());
@@ -31,12 +31,12 @@ export class BookmarkService {
     addBookmark(source: string, postId: string): Observable<boolean> {
         let body = {
             FacebookLogin: {
-                AccessToken: this.authService.FBToken
+                AccessToken: "EAACAjHMvjOMBAJOAggOorPcGLhRoXiGA8OSJ7utE47bBAo5AweVu7f24l9YZCYZCM1y68H7DiLSYTS0IKSqRLvziqaZBroqWBynJBFgQAEkyxAPXV8Pnf4xTgFqOtbyiHDAXoLBN4ZAClDwgZBpND2sfDGpqfpDMZD"
             },
-            VkLogin: {
-                AccessToken: this.authService.VKToken,
-                UserId: this.authService.VKUserID
-            }
+            // VkLogin: {
+            //     AccessToken: this.authService.VKToken,
+            //     UserId: this.authService.VKUserID
+            // }
         };
         let add_bookmark_url: string = `http://localhost:3995/api/social/bookmarks/add/${source}/${postId}`;
         return this.http.post(add_bookmark_url, body, {headers: this.headers})
@@ -47,12 +47,12 @@ export class BookmarkService {
         console.log('deleting ' + postId);
         let body = {
             FacebookLogin: {
-                AccessToken: this.authService.FBToken
+                AccessToken: "EAACAjHMvjOMBAJOAggOorPcGLhRoXiGA8OSJ7utE47bBAo5AweVu7f24l9YZCYZCM1y68H7DiLSYTS0IKSqRLvziqaZBroqWBynJBFgQAEkyxAPXV8Pnf4xTgFqOtbyiHDAXoLBN4ZAClDwgZBpND2sfDGpqfpDMZD"
             },
-            VkLogin: {
-                AccessToken: this.authService.VKToken,
-                UserId: this.authService.VKUserID
-            }
+            // VkLogin: {
+            //     AccessToken: this.authService.VKToken,
+            //     UserId: this.authService.VKUserID
+            // }
         };
         let delete_bookmark_url: string = `http://localhost:3995/api/social/bookmarks/${postId}/delete`;
         return this.http.post(delete_bookmark_url, body, {headers: this.headers})
