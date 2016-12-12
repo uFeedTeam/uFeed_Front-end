@@ -15,6 +15,9 @@ export class AuthService {
     private authHeader: Headers = new Headers();
 
     public FBToken: string;
+    public VKToken: string;
+    public VKUserID: string;
+
 
     constructor(private http: Http) {
     }
@@ -60,10 +63,10 @@ export class AuthService {
                 heads.append("Authorization", "Bearer " + tokenJson.access_token);
 
                 // register vk and FB
-                this.http.post('http://localhost:3995/api/user/addlogin', Markers.FACEBOOK, {headers: heads})
-                    .subscribe((ok) => {});
-                this.http.post('http://localhost:3995/api/user/addLogin', Markers.VK, {headers: heads})
-                    .subscribe((ok) => {});
+                // this.http.post('http://localhost:3995/api/user/addlogin', Markers.FACEBOOK, {headers: heads})
+                //     .subscribe((ok) => {});
+                // this.http.post('http://localhost:3995/api/user/addLogin', Markers.VK, {headers: heads})
+                //     .subscribe((ok) => {});
                 return user;
             }).catch((resp: Response) => Observable.throw(resp.json().error_description));
     }

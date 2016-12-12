@@ -5,6 +5,7 @@ import {UserEditService} from "./user.service";
 import {Observable} from "rxjs";
 import {DomSanitizer} from "@angular/platform-browser";
 import {AuthService} from "../auth/auth.service";
+import {Markers} from "../social.markers";
 
 @Component({
     moduleId: module.id,
@@ -20,7 +21,11 @@ export class EditComponent implements OnInit {
     private oldPassword;
     updateProps: string[] = [];
     isFBConnected: boolean = false;
+    isVKConnected: boolean = false;
     FBToken: string = "";
+    VKToken: string = "";
+    VKUserId: string = "";
+
     constructor(private route: ActivatedRoute, private router: Router, private sanitizer: DomSanitizer,
                 private userEditService: UserEditService, private authService: AuthService) {
         this.user = new UserCredentials('', '', '');
@@ -31,7 +36,8 @@ export class EditComponent implements OnInit {
             .subscribe(( (data: { user: UserCredentials })=> {
                 this.user = data.user;
                 this.oldPassword = this.user.Password;
-                this.isFBConnected = this.user.Logins.indexOf(1) !== -1;
+                this.isFBConnected = this.user.Logins.indexOf(+Markers.FACEBOOK) !== -1;
+                this.isVKConnected = this.user.Logins.indexOf(+Markers.VK) !== -1;
                 if (this.user.Photo) {
                     this.picUrl = this.sanitizer.bypassSecurityTrustUrl(this.user.Photo);
                 }
@@ -76,12 +82,22 @@ export class EditComponent implements OnInit {
     }
 
     activateFB() {
-        this.userEditService.activateSocials(1)
+        this.userEditService.activateSocials(+Markers.FACEBOOK)
             .subscribe(good => {
                 alert('Facebook has been added properly');
                 this.isFBConnected = true;
                 this.authService.FBToken = this.FBToken;
             }, bar => alert('Facebook has not been added properly'));
+    }
+
+    activateVK() {
+        this.userEditService.activateSocials(+Markers.VK)
+            .subscribe(good => {
+                alert('VK has been added properly');
+                this.isVKConnected = true;
+                this.authService.VKToken = this.VKToken;
+                this.authService.VKUserID = this.VKUserId;
+            }, bar => alert('VK has not been added properly'));
     }
 
     updateProfile() {
