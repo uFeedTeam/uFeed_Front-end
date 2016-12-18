@@ -10,7 +10,7 @@ Developing system which:
 ## How to use? 
 1. Bind social networks into account settings
 2. Create categories 
-3. Enjoy grouped feed, like it, boormark it. 
+3. Enjoy grouped feed, like it, bookmark it. 
 
 --------------
 
