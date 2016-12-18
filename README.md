@@ -1,5 +1,4 @@
 ![uFeed logo](https://raw.githubusercontent.com/uFeedTeam/uFeed_Front-end/master/logo.png  "uFeed Logo" )
-
 ## Background 
 A problem of wasting too much time for surfing different social networks to find relevant news
 
