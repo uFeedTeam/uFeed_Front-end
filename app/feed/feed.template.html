@@ -23,13 +23,14 @@
     </div>
     <div class="feedTape lineUp">
         <div class="tabs">
+
             <a *ngFor="let category of user.Categories"
                [class.active]="category?.Id === selectedCategory?.Id  "
                 (click)="changeSelectedCategory(category)"
                style="padding: 10px 10px;"
                name="{{category.Name}}" class="tabLink">{{category.Name}}</a>
 
-            <a routerLink="./createCategory" class="tabLink"><img src="content/images/add_category.png" class="ulLink">Add
+            <a routerLink="/category/facebook" class="tabLink"><img src="content/images/add_category.png" class="ulLink">Add
                 category</a>
         </div>
         <div class="tabContent">

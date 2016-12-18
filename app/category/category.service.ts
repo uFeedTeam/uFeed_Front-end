@@ -37,12 +37,12 @@ export class CategoryService {
     getAuthors(): Observable<any[]> {
         let body = {
             FacebookLogin: {
-                AccessToken: "EAACAjHMvjOMBAJOAggOorPcGLhRoXiGA8OSJ7utE47bBAo5AweVu7f24l9YZCYZCM1y68H7DiLSYTS0IKSqRLvziqaZBroqWBynJBFgQAEkyxAPXV8Pnf4xTgFqOtbyiHDAXoLBN4ZAClDwgZBpND2sfDGpqfpDMZD"
+                AccessToken: "EAACAjHMvjOMBANErH0NOdr3wGDcQC7cJ2rWkAIAZA5jtyuJzACZCq1eaWz7s2E67OnonQ74YYzRpx8G4MBA5jjNWF7evS9RGyvvbBh3ROFlo8zRfuaKZBNDiZCRtsqdNf8cBUAAnnM2lx22KA5mB2CHB3bkZADMIZD"
             },
-            // VkLogin: {
-            //     AccessToken: this.authService.VKToken,
-            //     UserId: this.authService.VKUserID
-            // }
+            VkLogin: {
+                AccessToken: this.authService.VKToken,
+                UserId: this.authService.VKUserID
+            }
         };
 
         let headers = this.authService.generateAuthenticatedHeaders();

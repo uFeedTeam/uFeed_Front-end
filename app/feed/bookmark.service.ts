@@ -17,42 +17,49 @@ export class BookmarkService {
     getBookmarks(): Observable<any> {
         let body = {
             FacebookLogin: {
-                AccessToken: "EAACAjHMvjOMBAJOAggOorPcGLhRoXiGA8OSJ7utE47bBAo5AweVu7f24l9YZCYZCM1y68H7DiLSYTS0IKSqRLvziqaZBroqWBynJBFgQAEkyxAPXV8Pnf4xTgFqOtbyiHDAXoLBN4ZAClDwgZBpND2sfDGpqfpDMZD"
+                AccessToken: "EAACAjHMvjOMBANErH0NOdr3wGDcQC7cJ2rWkAIAZA5jtyuJzACZCq1eaWz7s2E67OnonQ74YYzRpx8G4MBA5jjNWF7evS9RGyvvbBh3ROFlo8zRfuaKZBNDiZCRtsqdNf8cBUAAnnM2lx22KA5mB2CHB3bkZADMIZD"
             },
-            // VkLogin: {
-            //     AccessToken: this.authService.VKToken,
-            //     UserId: this.authService.VKUserID
-            // }
+            VkLogin: {
+                AccessToken: this.authService.VKToken,
+                UserId: this.authService.VKUserID
+            }
         };
         return this.http.post(this.GET_BOOKMARKS_URL, body, {headers: this.headers})
             .map(resp => resp.json());
     }
 
-    addBookmark(source: string, postId: string): Observable<boolean> {
+    /** With vk you should use addBookmarkVK method */
+    addBookmark(source: number, postId: string): Observable<boolean> {
         let body = {
             FacebookLogin: {
-                AccessToken: "EAACAjHMvjOMBAJOAggOorPcGLhRoXiGA8OSJ7utE47bBAo5AweVu7f24l9YZCYZCM1y68H7DiLSYTS0IKSqRLvziqaZBroqWBynJBFgQAEkyxAPXV8Pnf4xTgFqOtbyiHDAXoLBN4ZAClDwgZBpND2sfDGpqfpDMZD"
+                AccessToken: "EAACAjHMvjOMBANErH0NOdr3wGDcQC7cJ2rWkAIAZA5jtyuJzACZCq1eaWz7s2E67OnonQ74YYzRpx8G4MBA5jjNWF7evS9RGyvvbBh3ROFlo8zRfuaKZBNDiZCRtsqdNf8cBUAAnnM2lx22KA5mB2CHB3bkZADMIZD"
             },
-            // VkLogin: {
-            //     AccessToken: this.authService.VKToken,
-            //     UserId: this.authService.VKUserID
-            // }
+            VkLogin: {
+                AccessToken: this.authService.VKToken,
+                UserId: this.authService.VKUserID
+            }
         };
         let add_bookmark_url: string = `http://localhost:3995/api/social/bookmarks/add/${source}/${postId}`;
+        console.log(add_bookmark_url);
         return this.http.post(add_bookmark_url, body, {headers: this.headers})
-            .map(resp => resp.json());
+            .map(resp => true);
     }
+
+    addBookmarkVK(source: number, postId: String, authorId: string): Observable<boolean> {
+        return this.addBookmark(source, `${authorId}_${postId}`);
+    }
+
 
     deleteBookmark(postId: string): Observable<boolean> {
         console.log('deleting ' + postId);
         let body = {
             FacebookLogin: {
-                AccessToken: "EAACAjHMvjOMBAJOAggOorPcGLhRoXiGA8OSJ7utE47bBAo5AweVu7f24l9YZCYZCM1y68H7DiLSYTS0IKSqRLvziqaZBroqWBynJBFgQAEkyxAPXV8Pnf4xTgFqOtbyiHDAXoLBN4ZAClDwgZBpND2sfDGpqfpDMZD"
+                AccessToken: "EAACAjHMvjOMBANErH0NOdr3wGDcQC7cJ2rWkAIAZA5jtyuJzACZCq1eaWz7s2E67OnonQ74YYzRpx8G4MBA5jjNWF7evS9RGyvvbBh3ROFlo8zRfuaKZBNDiZCRtsqdNf8cBUAAnnM2lx22KA5mB2CHB3bkZADMIZD"
             },
-            // VkLogin: {
-            //     AccessToken: this.authService.VKToken,
-            //     UserId: this.authService.VKUserID
-            // }
+            VkLogin: {
+                AccessToken: this.authService.VKToken,
+                UserId: this.authService.VKUserID
+            }
         };
         let delete_bookmark_url: string = `http://localhost:3995/api/social/bookmarks/${postId}/delete`;
         return this.http.post(delete_bookmark_url, body, {headers: this.headers})

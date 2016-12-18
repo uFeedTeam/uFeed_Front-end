@@ -1,9 +1,8 @@
-import {Component, OnInit, ViewChild} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {UserCredentials} from "../user/UserCredentials";
 import {AuthService} from "../auth/auth.service";
 import {DomSanitizer} from "@angular/platform-browser";
-import {FeedListComponent} from "./feed-list.component";
 
 @Component({
     moduleId: module.id,
@@ -25,6 +24,7 @@ export class FeedComponent implements OnInit {
 
     changeSelectedCategory(category) {
         this.selectedCategory = category;
+
     }
 
     constructor(private route: ActivatedRoute, private authService: AuthService, private sanitizer: DomSanitizer) {
