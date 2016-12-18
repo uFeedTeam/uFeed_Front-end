@@ -66,4 +66,8 @@ export class BookmarkService {
             .map(resp => true);
     }
 
+    deleteBookmarkVk(postId:string, authorId:string): Observable<boolean> {
+        return this.deleteBookmark(`${authorId}_${postId}`);
+    }
+
 }

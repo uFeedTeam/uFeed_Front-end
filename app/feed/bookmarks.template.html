@@ -17,7 +17,7 @@
                 <div class="cardHeader">
                     <a class="publicLink">
                         <img [src]="post.Author.Photo.Url" class="miniPhoto">{{post.Author.Name}}</a>
-                    <a (click)="deleteBookmark(post.Id); card.style.display='none';" class="favouriteLink">Delete</a>
+                    <a (click)="deleteBookmark(post.Author.Source, post.Id, post.Author.Id); card.style.display='none';" class="favouriteLink">Delete</a>
                 </div>
                 <div class="cardContent">
                     <p>{{post.Message}}</p>
