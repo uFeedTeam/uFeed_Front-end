@@ -9,10 +9,13 @@ import {FeedListComponent} from "./feed-list.component";
 import {FeedService} from "./feed.service";
 import {BookmarkComponent} from "./bookmarks.component";
 import {BookmarkService} from "./bookmark.service";
+import {LoaderModule} from "../loader/loader.module";
+import {LoaderComponent} from "../loader/loader.component";
 
 @NgModule({
     imports: [
         CommonModule,
+        LoaderModule,
         FormsModule,
         RouterModule.forChild([
             {

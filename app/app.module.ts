@@ -10,6 +10,8 @@ import {AuthService} from "./auth/auth.service";
 import {CommonModule} from "@angular/common";
 import {FeedModule} from "./feed/feed.module";
 import {CategoryModule} from "./category/category.module";
+import {LoaderComponent} from "./loader/loader.component";
+import {LoaderModule} from "./loader/loader.module";
 
 @NgModule({
     imports: [
@@ -20,11 +22,10 @@ import {CategoryModule} from "./category/category.module";
         FormsModule,
         FeedModule,
         AuthModule,
-        CategoryModule,
-        AppRoutingModule],
-    declarations: [AppComponent, HeadComponent],
+        CategoryModule, AppRoutingModule],
+    declarations: [AppComponent, HeadComponent  ],
     bootstrap: [AppComponent],
-    providers: [AuthService]
+    providers: [AuthService],
 })
 export class AppModule {
 }

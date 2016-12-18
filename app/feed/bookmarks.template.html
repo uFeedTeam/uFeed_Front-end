@@ -6,7 +6,8 @@
     </div>
     <div class="feedTape lineUp" style="width:100%">
         <div class="tabContent">
-            <div *ngIf="posts == null || posts.length === 0" class="text-center">
+            <loader [predicate]="isLoading"></loader>
+            <div *ngIf="!isLoading && (posts == null || posts.length === 0)" class="text-center">
                 <h4 class="text-center"
                     style="color: black;font-weight: 200;padding: 20px;">
                     No bookmarks.

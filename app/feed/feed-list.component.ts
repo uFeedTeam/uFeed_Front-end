@@ -18,6 +18,7 @@ export class FeedListComponent implements OnInit, OnChanges {
 
     posts: any[] = [];
     @Input() categoryId: string;
+    loadingPosts: boolean = false;
 
     addToFavorites(source: number, postId, authorId) {
         if(source === +Markers.FACEBOOK) {
@@ -40,15 +41,17 @@ export class FeedListComponent implements OnInit, OnChanges {
     }
 
     loadFeed() {
+        this.loadingPosts = true;
+        this.posts = [];
         if (this.categoryId) {
             console.log('loading feed with id ' + this.categoryId);
             this.feedService.getFeed(this.categoryId, "1", "5")
                 .subscribe(posts => {
                     this.posts = posts;
-                });
+                    this.loadingPosts = false;
+                }, err => this.loadingPosts = false);
         }
     }
-
 
     constructor(private feedService: FeedService, private authService: AuthService,
                 private bookmarkService: BookmarkService) {

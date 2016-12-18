@@ -1,3 +1,10 @@
+<div class="center-align">
+    <loader [predicate]="loadingPosts"></loader>
+</div>
+<div *ngIf=" !loadingPosts && (posts == null || posts.length == 0)">
+    <h4 class="center-align" style="color: black">No feed</h4>
+    <small class="center-align">Ensure you are have logined into social networks and added authors to category</small>
+</div>
 <div *ngFor="let post of posts" class="tabCard">
     <div class="cardHeader">
         <a class="publicLink">
@@ -7,13 +14,14 @@
            class="favouriteLink"><img #fav src="content/images/favourite.png" class="ulLink"></a>
     </div>
     <div class="cardContent">
-    <p>{{post.Message}}</p>
-    <a *ngIf="post?.Attachments[0]?.Link" [href]="post.Attachments[0].Link.URL"></a>
-    <div class="carContentImages">
-        <img *ngIf="post?.Attachments[0]?.Photo?.Url" [src]="post.Attachments[0].Photo.Url" class="cardContentImage">
-        <img *ngIf="post?.Attachments[0]?.Link?.Photo?.Url" [src]="post.Attachments[0].Link.Photo.Url"
-             class="cardContentImage">
-    </div>
+        <p>{{post.Message}}</p>
+        <a *ngIf="post?.Attachments[0]?.Link" [href]="post.Attachments[0].Link.URL"></a>
+        <div class="carContentImages">
+            <img *ngIf="post?.Attachments[0]?.Photo?.Url" [src]="post.Attachments[0].Photo.Url"
+                 class="cardContentImage">
+            <img *ngIf="post?.Attachments[0]?.Link?.Photo?.Url" [src]="post.Attachments[0].Link.Photo.Url"
+                 class="cardContentImage">
+        </div>
     </div>
     <div clas="cardActions">
         <div class="likeContainer">

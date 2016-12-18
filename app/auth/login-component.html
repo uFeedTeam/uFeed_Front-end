@@ -24,11 +24,11 @@
                            #passInput="ngModel" [(ngModel)]="user.Password" name="password">
                 </div>
 
-
                 <input type="image" src="content/images/logInL.png"
                        [disabled]="!formTemplate.valid || formTemplate.pristine"
                        [class.disabled]="!formTemplate.valid || formTemplate.pristine"
                        class="submitButton">
+                <loader [predicate]="submitted"></loader>
             </form>
         </div>
     </div>

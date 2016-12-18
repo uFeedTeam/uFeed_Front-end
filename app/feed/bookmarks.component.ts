@@ -7,11 +7,15 @@ import {Markers} from "../social.markers";
 })
 export class BookmarkComponent implements OnInit {
 
+    isLoading: boolean = false;
+
     ngOnInit(): void {
+        this.isLoading = true;
         this.bookmarkService.getBookmarks()
             .subscribe(bookmarks => {
                 console.log(bookmarks);
-                this.posts = bookmarks
+                this.posts = bookmarks;
+                this.isLoading = false;
             });
     }
 
