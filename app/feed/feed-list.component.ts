@@ -2,6 +2,7 @@ import {Component, Input, OnInit, OnChanges, SimpleChanges} from "@angular/core"
 import {FeedService} from "./feed.service";
 import {AuthService} from "../auth/auth.service";
 import {BookmarkService} from "./bookmark.service";
+import {Markers} from "../social.markers";
 
 @Component({
     moduleId: module.id,
@@ -17,10 +18,19 @@ export class FeedListComponent implements OnInit, OnChanges {
 
     posts: any[] = [];
     @Input() categoryId: string;
+    loadingPosts: boolean = false;
 
-    addToFavorites(source, postId) {
-        this.bookmarkService.addBookmark(source, postId)
-            .subscribe(ok => alert('bookmark added'));
+    addToFavorites(source: number, postId, authorId) {
+        if(source === +Markers.FACEBOOK) {
+            console.log('Adding fb bookmark');
+            this.bookmarkService.addBookmark(source, postId)
+                .subscribe(ok => {});
+        }
+        if(source === +Markers.VK) {
+            console.log('Adding vk bookmark');
+            this.bookmarkService.addBookmarkVK(source, postId, authorId)
+                .subscribe(ok => {});
+        }
     }
 
     ngOnInit(): void {
@@ -31,15 +41,17 @@ export class FeedListComponent implements OnInit, OnChanges {
     }
 
     loadFeed() {
+        this.loadingPosts = true;
+        this.posts = [];
         if (this.categoryId) {
             console.log('loading feed with id ' + this.categoryId);
             this.feedService.getFeed(this.categoryId, "1", "5")
                 .subscribe(posts => {
                     this.posts = posts;
-                });
+                    this.loadingPosts = false;
+                }, err => this.loadingPosts = false);
         }
     }
-
 
     constructor(private feedService: FeedService, private authService: AuthService,
                 private bookmarkService: BookmarkService) {

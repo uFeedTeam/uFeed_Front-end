@@ -10,11 +10,13 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent {
     user: UserCredentials = new UserCredentials('', '', '');
+    submitted: boolean = false;
 
     constructor(private authService: AuthService, private router: Router) {
     }
 
     login() {
+        this.submitted = true;
         this.authService.login(this.user)
             .subscribe(
                 good => {
@@ -22,6 +24,7 @@ export class LoginComponent {
                 },
                 err => {
                     alert(err);
+                    this.submitted = false;
                 }
             )
     }

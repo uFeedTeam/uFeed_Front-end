@@ -4,19 +4,28 @@
             <h5> Bookmarks</h5>
         </div>
     </div>
-    <div class="feedTape lineUp">
+    <div class="feedTape lineUp" style="width:100%">
         <div class="tabContent">
+            <loader [predicate]="isLoading"></loader>
+            <div *ngIf="!isLoading && (posts == null || posts.length === 0)" class="text-center">
+                <h4 class="text-center"
+                    style="color: black;font-weight: 200;padding: 20px;">
+                    No bookmarks.
+                </h4>
+                <small>To add any bookmark click on a star on the post</small>
+            </div>
             <div #card *ngFor="let post of posts" class="tabCard">
-                <div  class="cardHeader">
+                <div class="cardHeader">
                     <a class="publicLink">
                         <img [src]="post.Author.Photo.Url" class="miniPhoto">{{post.Author.Name}}</a>
-                    <a (click)="deleteBookmark(post.Id); card.style.display='none';" class="favouriteLink">Delete</a>
+                    <a (click)="deleteBookmark(post.Author.Source, post.Id, post.Author.Id); card.style.display='none';" class="favouriteLink">Delete</a>
                 </div>
                 <div class="cardContent">
                     <p>{{post.Message}}</p>
                     <a *ngIf="post?.Attachments[0]?.Link" [href]="post.Attachments[0].Link.URL"></a>
                     <div class="carContentImages">
-                        <img *ngIf="post?.Attachments[0]?.Photo?.Url" [src]="post.Attachments[0].Photo.Url" class="cardContentImage">
+                        <img *ngIf="post?.Attachments[0]?.Photo?.Url" [src]="post.Attachments[0].Photo.Url"
+                             class="cardContentImage">
                         <img *ngIf="post?.Attachments[0]?.Link?.Photo?.Url" [src]="post.Attachments[0].Link.Photo.Url"
                              class="cardContentImage">
                     </div>

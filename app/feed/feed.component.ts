@@ -14,6 +14,8 @@ export class FeedComponent implements OnInit {
 
     picUrl;
     selectedCategory;
+    user: UserCredentials;
+
     ngOnInit(): void {
         this.route.data
             .subscribe(( (data: { user: UserCredentials })=> {
@@ -30,6 +32,5 @@ export class FeedComponent implements OnInit {
     constructor(private route: ActivatedRoute, private authService: AuthService, private sanitizer: DomSanitizer) {
     }
 
-    user: UserCredentials;
 
 }

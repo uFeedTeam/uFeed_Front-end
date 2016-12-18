@@ -1,5 +1,5 @@
 <div class="feedContent">
-    <div class="feedSettings lineUp">
+    <div class="feedSettings lineUp" >
         <div class="userInfo">
             <h5> {{user.Name}}</h5>
         </div>
@@ -21,7 +21,7 @@
             </ul>
         </div>
     </div>
-    <div class="feedTape lineUp">
+    <div class="feedTape lineUp" style="width: 100%">
         <div class="tabs">
 
             <a *ngFor="let category of user.Categories"
@@ -30,7 +30,7 @@
                style="padding: 10px 10px;"
                name="{{category.Name}}" class="tabLink">{{category.Name}}</a>
 
-            <a routerLink="./createCategory" class="tabLink"><img src="content/images/add_category.png" class="ulLink">Add
+            <a routerLink="/category/facebook" class="tabLink"><img src="content/images/add_category.png" class="ulLink">Add
                 category</a>
         </div>
         <div class="tabContent">

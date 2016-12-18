@@ -10,12 +10,15 @@ import {AuthService} from "./auth.service";
 import {HttpModule} from "@angular/http";
 import {AuthGuard} from "./auth-guard.service";
 import {UserAuthResolveGuard} from "./user-resolve-guard.service";
+import {LoaderComponent} from "../loader/loader.component";
+import {LoaderModule} from "../loader/loader.module";
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         HttpModule,
+        LoaderModule,
         RouterModule.forChild([
             {
                 path: '',

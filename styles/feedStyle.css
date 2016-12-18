@@ -2,7 +2,7 @@
     width: 80px;
     height: 80px;
     border-radius: 100px;
-    vertical-align:middle
+    vertical-align: middle
 }
 
 @font-face {
@@ -27,7 +27,6 @@ h5, a, p {
     height: 20px;
 }
 
-
 .socialLink:link, .socialLink:visited {
     background-color: white;
     color: grey;
@@ -37,7 +36,7 @@ h5, a, p {
 }
 
 .socialLink:hover, .availableSocials .active {
-  background-color: rgb(21, 63, 120);
+    background-color: rgb(21, 63, 120);
     color: white;
 }
 
@@ -50,26 +49,24 @@ h5, a, p {
 }
 
 .tabLink:hover, .tabs .active {
-  background-color: rgb(243, 243, 243);
+    background-color: rgb(243, 243, 243);
     color: black;
 }
 
-
 .ulLink {
     width: 20px;
-    vertical-align:middle;
+    vertical-align: middle;
     height: 20px;
     margin-right: 10px;
 }
 
-
 .lineUp {
-    white-space:nowrap;
+    white-space: nowrap;
 }
 
 .lineUp {
     vertical-align: top;
-    display:inline-block;
+    display: inline-block;
 }
 
 .tabContent {
@@ -79,7 +76,7 @@ h5, a, p {
 }
 
 .tabContent .tabCard {
-    display:inline-block;
+    display: inline-block;
 }
 
 .tabCard {
@@ -135,43 +132,39 @@ h5, a, p {
     float: right;
 }
 
-@media screen and (min-width : 1350px)
-{
+@media screen and (min-width: 1350px) {
     .tabContent {
         width: 985px;
     }
-    
+
     .socialLink {
         width: 300px;
     }
-    
+
     .tabCard {
         width: 450px;
     }
 }
 
-@media screen and (max-width : 1350px)
-{
+@media screen and (max-width: 1350px) {
     .feedSettings li {
         display: inline;
     }
-    
+
     .feedSettings, .availableSocials {
         width: 100%;
         text-align: center;
     }
-    
+
     .socialLink {
         width: 200px;
     }
-    
+
     .tabCard {
         width: 40%;
     }
-    
-    .tabContent{
+
+    .tabContent {
         text-align: center;
     }
-    
-    
 }
