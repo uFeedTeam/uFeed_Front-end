@@ -10,9 +10,13 @@
                                                                                        class="ulImage"></a>
                     {{category.Name}} <img src="content/images/arrow.png" class="arrowImage"></div>
                 <div #categoryBody class="collapsible-body">
+                    <div class="center-align">
+                        <loader [predicate]="isLoadingAuthors &&
+                            (globalAuthors==null || globalAuthors.length == 0)"></loader>
+                    </div>
                     <ul class="catGroupList">
                         <li *ngFor="let author of globalAuthors"
-                            [style.display] = "author.Source != marker ? 'none' : 'inline-block'">
+                            [style.display]="author.Source != marker ? 'none' : 'inline-block'">
                             <p class="left-align">
                                 <input [checked]="isAuthorInCategoryForSelected(category, author)"
                                        (click)="toggleAuthor(category, author)"
@@ -35,7 +39,9 @@
         <div class="row">
             <div *ngIf="newCategoryFlag" class="col s3">
                 <form action=""><input #categoryName type="text">
-                    <button (click)="createCategory(categoryName.value, $event)" class="btn blue darken-2">Create category</button>
+                    <button (click)="createCategory(categoryName.value, $event)" class="btn blue darken-2">Create
+                        category
+                    </button>
                 </form>
             </div>
             <div *ngIf="!newCategoryFlag" (click)="popupCategoryCreate()" class="col s3">

@@ -16,6 +16,7 @@ export class FacebookComponent implements OnInit {
     globalAuthors: any[];
     socialNetwork = "Facebook";
     marker = +Markers.FACEBOOK;
+    isLoadingAuthors: boolean = false;
 
     constructor(private categoryService: CategoryService, private authService: AuthService) {
     }
@@ -46,8 +47,12 @@ export class FacebookComponent implements OnInit {
     }
 
     private extractAuthors(): void {
+        this.isLoadingAuthors = true;
         this.categoryService.getAuthors()
-            .subscribe((authors: any[]) => this.globalAuthors = authors);
+            .subscribe((authors: any[]) => {
+                this.globalAuthors = authors;
+                this.isLoadingAuthors = false;
+            });
     }
 
     isAuthorInCategoryForSelected(category, author): boolean {
@@ -100,8 +105,10 @@ export class FacebookComponent implements OnInit {
     updateCategories() {
         for (let i = 0; i < this.categories.length; i++) {
             this.categoryService.updateCategory(this.categories[i])
-                .subscribe(resp => alert("Category updated"), err => alert(err));
+                .subscribe(resp => {}, err => alert("Cannot update categories"));
         }
+        alert("Categories updated");
+
     }
 
     createCategory(name: string, event: Event): void {

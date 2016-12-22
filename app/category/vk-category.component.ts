@@ -18,6 +18,9 @@ export class VKComponent {
     globalAuthors: any[];
     socialNetwork = "VK";
     marker=+Markers.VK;
+
+    isLoadingAuthors: boolean = false;
+
     constructor(private categoryService: CategoryService, private authService: AuthService) {
     }
 
@@ -47,8 +50,12 @@ export class VKComponent {
     }
 
     private extractAuthors(): void {
+        this.isLoadingAuthors = true;
         this.categoryService.getAuthors()
-            .subscribe((authors: any[]) => this.globalAuthors = authors);
+            .subscribe((authors: any[]) => {
+                this.globalAuthors = authors;
+                this.isLoadingAuthors = false;
+            });
     }
 
     isAuthorInCategoryForSelected(category, author): boolean {
@@ -101,8 +108,9 @@ export class VKComponent {
     updateCategories() {
         for( let i = 0; i < this.categories.length; i++) {
             this.categoryService.updateCategory(this.categories[i])
-                .subscribe(resp => alert("Category updated"), err => alert(err));
+                .subscribe(resp => {}, err => alert("Cannot update categories"));
         }
+        alert("Categories updated");
     }
 
     createCategory(name: string, event: Event): void {
