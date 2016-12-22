@@ -12,6 +12,7 @@ export class RegisterComponent {
     confirmPass: string = "";
     user: UserCredentials = new UserCredentials('', '', '');
     errMsg: string;
+    submitted: boolean = false;
 
     constructor(private authService: AuthService, private router: Router) {
     }
@@ -24,11 +25,13 @@ export class RegisterComponent {
         this.authService.register(this.user)
             .subscribe(
                 (resp)=> {
+                    this.submitted = false;
                     this.router.navigate(['/login']);
                 },
                 (err) => {
                     // todo replace
                     alert(JSON.stringify(err));
+                    this.submitted = false;
                 });
     }
 }

@@ -37,9 +37,6 @@ export class FeedListComponent implements OnInit, OnChanges {
 
     ngOnInit(): void {
         this.loadFeed();
-
-        // setInterval(() => console.log(this.categoryId));
-        this.feedService.getAuthors(this.authService.FBToken).subscribe(as => console.log(as));
     }
 
     loadFeed() {
@@ -52,7 +49,10 @@ export class FeedListComponent implements OnInit, OnChanges {
                     this.posts = posts;
                     this.posts.sort((a, b) => .5 - Math.random());
                     this.loadingPosts = false;
+                    console.log('got feed');
                 }, err => this.loadingPosts = false);
+        } else {
+            this.loadingPosts = false;
         }
     }
 

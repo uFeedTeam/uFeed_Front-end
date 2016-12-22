@@ -44,11 +44,12 @@
                            name="confirmPass" type="password">
                 </div>
                 <input type="image" src="content/images/signUpR.png"
-                       (click)="register()"
+                       (click)="register(); submitted = true;"
                        [disabled]="!formTemplate.valid || !(passInput.value===confirmInput.value) || formTemplate.pristine"
                        [class.disabled]="!formTemplate.valid || !(passInput.value===confirmInput.value)
                         || formTemplate.pristine || emailInput.maxLength"
                        class="submitButton">
+                <loader [predicate]="submitted"></loader>
             </form>
         </div>
     </div>
