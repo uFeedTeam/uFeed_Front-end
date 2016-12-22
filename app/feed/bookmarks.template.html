@@ -22,7 +22,14 @@
                 </div>
                 <div class="cardContent">
                     <p>{{post.Message}}</p>
-                    <a *ngIf="post?.Attachments[0]?.Link" [href]="post.Attachments[0].Link.URL"></a>
+                    <a *ngIf="post?.Attachments[0]?.Link?.Url" [href]="post.Attachments[0].Link.Url">
+          <span *ngIf="post?.Attachments[0]?.Link?.Description">
+              > {{post?.Attachments[0]?.Link?.Description | truncate:60}}
+          </span>
+                        <span *ngIf="!post?.Attachments[0]?.Link?.Description">
+              > {{post?.Attachments[0]?.Link.Url | truncate:40}}
+          </span>
+                    </a>
                     <div class="carContentImages">
                         <img *ngIf="post?.Attachments[0]?.Photo?.Url" [src]="post.Attachments[0].Photo.Url"
                              class="cardContentImage">

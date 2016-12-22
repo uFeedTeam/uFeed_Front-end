@@ -12,6 +12,7 @@ import {FeedModule} from "./feed/feed.module";
 import {CategoryModule} from "./category/category.module";
 import {LoaderComponent} from "./loader/loader.component";
 import {LoaderModule} from "./loader/loader.module";
+import { TruncatePipe } from 'angular2-truncate';
 
 @NgModule({
     imports: [
@@ -23,7 +24,7 @@ import {LoaderModule} from "./loader/loader.module";
         FeedModule,
         AuthModule,
         CategoryModule, AppRoutingModule],
-    declarations: [AppComponent, HeadComponent  ],
+    declarations: [AppComponent, HeadComponent],
     bootstrap: [AppComponent],
     providers: [AuthService],
 })

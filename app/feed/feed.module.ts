@@ -10,7 +10,7 @@ import {FeedService} from "./feed.service";
 import {BookmarkComponent} from "./bookmarks.component";
 import {BookmarkService} from "./bookmark.service";
 import {LoaderModule} from "../loader/loader.module";
-import {LoaderComponent} from "../loader/loader.component";
+import { TruncatePipe } from 'angular2-truncate';
 
 @NgModule({
     imports: [
@@ -24,12 +24,12 @@ import {LoaderComponent} from "../loader/loader.component";
             },
             {
                 path: 'feed',
-                component: FeedComponent, resolve: {user: UserAuthResolveGuard} , canActivate: [AuthGuard],
+                component: FeedComponent, resolve: {user: UserAuthResolveGuard}, canActivate: [AuthGuard],
             }
         ])
     ],
-    declarations: [FeedComponent, FeedListComponent, BookmarkComponent],
-    providers: [FeedService, BookmarkService]
+    declarations: [FeedComponent, FeedListComponent, BookmarkComponent, TruncatePipe],
+    providers: [FeedService, BookmarkService],
 })
 export class FeedModule {
 

@@ -8,7 +8,7 @@ import {Markers} from "../social.markers";
     moduleId: module.id,
     selector: 'feed-list',
     styleUrls: ['feedStyle.css'],
-    templateUrl: 'post.template.html'
+    templateUrl: 'post.template.html',
 })
 export class FeedListComponent implements OnInit, OnChanges {
 
@@ -21,15 +21,17 @@ export class FeedListComponent implements OnInit, OnChanges {
     loadingPosts: boolean = false;
 
     addToFavorites(source: number, postId, authorId) {
-        if(source === +Markers.FACEBOOK) {
+        if (source === +Markers.FACEBOOK) {
             console.log('Adding fb bookmark');
             this.bookmarkService.addBookmark(source, postId)
-                .subscribe(ok => {});
+                .subscribe(ok => {
+                });
         }
-        if(source === +Markers.VK) {
+        if (source === +Markers.VK) {
             console.log('Adding vk bookmark');
             this.bookmarkService.addBookmarkVK(source, postId, authorId)
-                .subscribe(ok => {});
+                .subscribe(ok => {
+                });
         }
     }
 
@@ -48,6 +50,7 @@ export class FeedListComponent implements OnInit, OnChanges {
             this.feedService.getFeed(this.categoryId, "1", "5")
                 .subscribe(posts => {
                     this.posts = posts;
+                    this.posts.sort((a, b) => .5 - Math.random());
                     this.loadingPosts = false;
                 }, err => this.loadingPosts = false);
         }
