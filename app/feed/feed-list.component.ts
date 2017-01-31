@@ -39,6 +39,13 @@ export class FeedListComponent implements OnInit, OnChanges {
         this.loadFeed();
     }
 
+    like(url) {
+        console.log(url);
+        this.feedService.like(url)
+            .subscribe(resp => {
+            });
+    }
+
     loadFeed() {
         this.loadingPosts = true;
         this.posts = [];

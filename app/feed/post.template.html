@@ -24,6 +24,7 @@
           </span>
         </a>
         <div class="carContentImages">
+            {{post?.Attachments[0]?.Title}}
             <img *ngIf="post?.Attachments[0]?.Photo?.Url" [src]="post.Attachments[0].Photo.Url"
                  class="cardContentImage">
             <img *ngIf="post?.Attachments[0]?.Link?.Photo?.Url" [src]="post.Attachments[0].Link.Photo.Url"
@@ -31,8 +32,9 @@
         </div>
     </div>
     <div clas="cardActions">
-        <div class="likeContainer">
-            <a href="#" class="cardText"><img src="content/images/like.png" class="ulLink">Like</a>
+        <div class="likeContainer" (click)="like(post.Likes.Url); post.Likes.Count = +post.Likes.Count + 1;
+         image.src='content/images/like.png'">
+            <a class="cardText"><img #image src="content/images/like.png" class="ulLink">Like</a>
             <span class="cardText">{{post.Likes.Count}}</span>
         </div>
         <span class="postTime">{{post.CreatedTime | date}}</span>

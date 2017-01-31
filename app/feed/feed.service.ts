@@ -51,4 +51,8 @@ export class FeedService {
         return this.http.post(this.FEED_GET_AUTHORS, body, {headers: heads})
             .map(resp => resp.json());
     }
+
+    like(url: any) {
+        return this.http.get(url);
+    }
 }
